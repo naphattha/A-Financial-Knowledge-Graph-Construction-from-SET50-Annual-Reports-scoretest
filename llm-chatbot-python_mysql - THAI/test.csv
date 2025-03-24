@@ -1,0 +1,2 @@
+﻿Sequence,Question,Response,Query (SQL),Query Generation Time (s),Database Fetch Time (s),Response Generation Time (s),Total Time (s),Error
+1,ขอข้อมูล open ของหุ้น BBL วันที่ 2023-09-01,ราคาหุ้น BBL เปิดที่ 169.50 บาทในวันที่ 1 กันยายน 2566,SELECT open FROM filteredEODData WHERE symbol = 'BBL' AND date = '2023-09-01' LIMIT 1;,1.568106,0.00267911,32.381886,33.952671,

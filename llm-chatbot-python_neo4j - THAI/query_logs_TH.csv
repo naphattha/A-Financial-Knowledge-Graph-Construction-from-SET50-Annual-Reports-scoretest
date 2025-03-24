@@ -1,0 +1,265 @@
+﻿Sequence,Question,Response,Query (SQL),Query Generation Time (s),Database Fetch Time (s),Response Generation Time (s),Total Time (s),Error
+1,บริษัท ADVANC มีสินทรัพย์รวมในไตรมาสที่ 1 ปี 2019 เท่าไหร่,"บริษัท ADVANC มีสินทรัพย์รวมในไตรมาสที่ 1 ปี 2019 เท่ากับ 296,633,567 บาท","MATCH (c:Company {symbol: 'ADVANC'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'}) 
+MATCH (fs)-[:HAS_ASSETS]->(a:Assets) 
+RETURN a.totalAssets AS TotalAssets",1.255282,0.0,2.069413,3.324695,
+2,บริษัท AOT มีหนี้สินรวมในไตรมาสที่ 1 ปี 2019 เท่าไหร่,บริษัท AOT มีหนี้สินรวมในไตรมาสที่ 1 ปี 2019 เท่ากับ 37643003.03 บาท,"MATCH (c:Company {symbol: 'AOT'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_LIABILITIES]->(l:Liabilities)
+RETURN l.totalLiabilities AS TotalLiabilities",16.463171,0.0,55.797262,72.260433,
+3,กำไรสุทธิของบริษัท BBL ในไตรมาสที่ 1 ปี 2019 คือเท่าไหร่,ข้อมูลกำไรสุทธิของบริษัท BBL ในไตรมาสที่ 1 ปี 2019 ไม่พบในข้อมูลที่มีให้ หากต้องการทราบข้อมูลนี้ โปรดตรวจสอบจากแหล่งข้อมูลอื่น ๆ เช่น เว็บไซต์ของบริษัท BBL หรือแหล่งข้อมูลทางการเงินอื่น ๆ,"MATCH (c:Company {symbol: 'BBL'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_REVENUE]->(r:Revenue)
+MATCH (fs)-[:HAS_EXPENSES]->(e:Expenses)
+RETURN r.totalRevenueQuarter - e.totalExpensesQuarter AS NetProfit",27.481993,0.00215983,33.362514,60.846667,
+4,อัตราผลตอบแทนต่อผู้ถือหุ้น (ROE) ของบริษัท BCP ในไตรมาสที่ 1 ปี 2019 คือเท่าไหร่,อัตราผลตอบแทนต่อผู้ถือหุ้น (ROE) ของบริษัท BCP ในไตรมาสที่ 1 ปี 2019 คือ 3.48%,"MATCH (c:Company {symbol: 'BCP'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_RATIO]->(r:FinancialRatio {type: 'ROE'})
+RETURN r.value AS ROE",23.638531,0.0,32.109649,55.748181,
+5,สัดส่วนหนี้สินต่อทุน (D/E) ของบริษัท BDMS ในไตรมาสที่ 1 ปี 2019 คือเท่าไหร่,สัดส่วนหนี้สินต่อทุน (D/E) ของบริษัท BDMS ในไตรมาสที่ 1 ปี 2019 คือ 0.6667,"MATCH (c:Company {symbol: 'BDMS'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_RATIO]->(r:FinancialRatio {type: 'DE'})
+RETURN r.value AS DebtToEquity",22.971257,0.00685525,35.339473,58.317585,
+6,รายได้รวมของบริษัท BEM ในไตรมาสที่ 1 ปี 2019 เท่าไหร่,"ข้อมูลที่ได้รับมีแค่ข้อมูลของงบการเงินของบริษัท BEM ในไตรมาสที่ 1 ปี 2019 แต่ไม่มีข้อมูลรายได้รวมอย่างชัดเจน หากต้องการทราบรายได้รวมของบริษัท BEM ในไตรมาสที่ 1 ปี 2019 จะต้องมีการค้นหาข้อมูลเพิ่มเติม 
+
+(Translation: The provided data only has the financial statement data of BEM in Q1 2019, but it does not explicitly state the total revenue. If you want to know the total revenue of BEM in Q1 2019, additional data search is required.)","MATCH (c:Company {symbol: 'BEM'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'}) 
+MATCH (fs)-[:HAS_REVENUE]->(r:Revenue) 
+RETURN r.totalRevenueQuarter AS TotalRevenue",22.478164,0.0,49.319218,71.797382,
+7,กำไรสุทธิของบริษัท BGRIM ในไตรมาสที่ 1 ปี 2019 คือเท่าไหร่,"กำไรสุทธิของบริษัท BGRIM ในไตรมาสที่ 1 ปี 2019 คือ 1,397,754 บาท","MATCH (c:Company {symbol: 'BGRIM'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_REVENUE]->(r:Revenue)
+MATCH (fs)-[:HAS_EXPENSES]->(e:Expenses)
+RETURN r.totalRevenueQuarter - e.totalExpensesQuarter AS NetIncome",23.707644,0.0,33.499208,57.206852,
+8,อัตรากำไรสุทธิ (Net Profit Margin) ของบริษัท BH ในไตรมาสที่ 1 ปี 2019 คือเท่าไหร่,อัตรากำไรสุทธิ (Net Profit Margin) ของบริษัท BH ในไตรมาสที่ 1 ปี 2019 คือ 28.68%,"MATCH (c:Company {symbol: 'BH'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_RATIO]->(r:FinancialRatio {type: 'Net Profit Margin'})
+RETURN r.value AS NetProfitMargin",22.352557,0.00070381,34.235793,56.589054,
+9,บริษัท BJC มีรายได้รวมในไตรมาสที่ 1 ปี 2019 เท่าไหร่,"รายได้รวมในไตรมาสที่ 1 ปี 2019 ของบริษัท BJC เท่ากับ 42,317,995 บาท","MATCH (c:Company {symbol: 'BJC'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_REVENUE]->(r:Revenue)
+RETURN r.totalRevenueQuarter AS TotalRevenue",21.583486,0.00200748,32.360665,53.946159,
+10,ค่าใช้จ่ายรวมของบริษัท BTS ในไตรมาสที่ 1 ปี 2019 เท่าไหร่,"ค่าใช้จ่ายรวมของบริษัท BTS ในไตรมาสที่ 1 ปี 2019 เท่ากับ 8,734,096.38 บาท","MATCH (c:Company {symbol: 'BTS'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_EXPENSES]->(e:Expenses)
+RETURN e.totalExpensesQuarter AS TotalExpenses",22.734508,0.00169396,32.980705,55.716907,
+11,บริษัท CBG มีสินทรัพย์รวมในไตรมาสที่ 1 ปี 2019 เท่าไหร่,"บริษัท CBG มีสินทรัพย์รวมในไตรมาสที่ 1 ปี 2019 จำนวน 14,462.51 ล้านบาท","MATCH (c:Company {symbol: 'CBG'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_ASSETS]->(a:Assets)
+RETURN a.totalAssets AS totalAssets",22.744956,0.00309491,31.841974,54.590024,
+12,กำไรสุทธิของบริษัท CENTEL ในไตรมาสที่ 1 ปี 2019 คือเท่าไหร่,"ตามรายงานทางการเงินของบริษัท CENTEL สำหรับไตรมาสที่ 1 ปี 2019 กำไรสุทธิของบริษัทคือ 1,433 ล้านบาท","MATCH (c:Company {symbol: 'CENTEL'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_REVENUE]->(r:Revenue)
+MATCH (fs)-[:HAS_EXPENSES]->(e:Expenses)
+RETURN r.totalRevenueQuarter - e.totalExpensesQuarter AS NetProfit",22.808663,0.00300908,42.244549,65.056221,
+13,อัตราผลตอบแทนต่อสินทรัพย์ (ROA) ของบริษัท CPALL ในไตรมาสที่ 1 ปี 2019 คือเท่าไหร่,อัตราผลตอบแทนต่อสินทรัพย์ (ROA) ของบริษัท CPALL ในไตรมาสที่ 1 ปี 2019 คือ 8.77%,"MATCH (c:Company {symbol: 'CPALL'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_RATIO]->(r:FinancialRatio {type: 'ROA'})
+RETURN r.value AS ROA",22.617896,0.00193167,33.566916,56.186744,
+14,บริษัท CPF มีค่าใช้จ่ายรวมในไตรมาสที่ 1 ปี 2019 เท่าไหร่,"ค่าใช้จ่ายรวมในไตรมาสที่ 1 ปี 2019 ของบริษัท CPF เท่ากับ 121,323,688 บาท","MATCH (c:Company {symbol: 'CPF'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'}) 
+MATCH (fs)-[:HAS_EXPENSES]->(e:Expenses) 
+RETURN e.totalExpensesQuarter AS totalExpensesQuarter",22.919245,0.00194621,32.206018,55.127209,
+15,บริษัท CPN มีอัตราส่วนหนี้สินต่อทุน (D/E) ในไตรมาสที่ 1 ปี 2019 เท่าไหร่,บริษัท CPN มีอัตราส่วนหนี้สินต่อทุน (D/E) ในไตรมาสที่ 1 ปี 2019 เท่ากับ 1.1166,"MATCH (c:Company {symbol: 'CPN'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_RATIO]->(r:FinancialRatio {type: 'DE'})
+RETURN r.value AS DebtToEquity",23.260759,0.00199986,33.269788,56.532547,
+16,อัตราการหมุนเวียนสินทรัพย์ถาวร (Fixed Asset Turnover) ของบริษัท DELTA ในไตรมาสที่ 1 ปี 2019 คือเท่าไหร่,ขอโทษนะครับ แต่ไม่พบข้อมูลอัตราการหมุนเวียนสินทรัพย์ถาวรของบริษัท DELTA ในไตรมาสที่ 1 ปี 2019 ในระบบของเรา หากคุณต้องการทราบข้อมูลทางการเงินอื่นๆ ของบริษัท DELTA โปรดสอบถามได้ครับ,"MATCH (c:Company {symbol: 'DELTA'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_RATIO]->(r:FinancialRatio {type: 'Fixed Asset Turnover'})
+RETURN r.value AS FixedAssetTurnover",22.38519,0.00205541,63.039288,85.426533,
+17,บริษัท EA มีรายได้รวมในไตรมาสที่ 1 ปี 2019 เท่าไหร่,"บริษัท EA มีรายได้รวมในไตรมาสที่ 1 ปี 2019 เท่ากับ 3,088,448,000 ดอลลาร์สหรัฐ","MATCH (c:Company {symbol: 'EA'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'}) 
+MATCH (fs)-[:HAS_REVENUE]->(r:Revenue)
+RETURN r.totalRevenueQuarter AS TotalRevenue",22.666252,0.0020411,34.130457,56.79875,
+18,กำไรสุทธิของบริษัท EGCO ในไตรมาสที่ 1 ปี 2019 คือเท่าไหร่,ข้อมูลที่ท่านถามไม่พบในฐานข้อมูลของเรา หากท่านต้องการรับข้อมูลกำไรสุทธิของบริษัท EGCO ในไตรมาสที่ 1 ปี 2019 เราแนะนำให้ท่านดูรายงานทางการเงินของบริษัท EGCO ในปี 2019 หรือติดต่อกับบริษัทโดยตรงเพื่อรับข้อมูลที่แม่นยำที่สุด,"MATCH (c:Company {symbol: 'EGCO'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_REVENUE]->(r:Revenue)
+MATCH (fs)-[:HAS_EXPENSES]->(e:Expenses)
+RETURN r.totalRevenueQuarter - e.totalExpensesQuarter AS NetIncome",23.700545,0.00244427,32.433362,56.136351,
+19,บริษัท GLOBAL มีรายได้รวมในไตรมาสที่ 1 ปี 2019 เท่าไหร่,"บริษัท GLOBAL มีรายได้รวมในไตรมาสที่ 1 ปี 2019 เท่ากับ 7,700,765 บาท","MATCH (c:Company {symbol: 'GLOBAL'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_REVENUE]->(r:Revenue)
+RETURN r.totalRevenueQuarter AS TotalRevenue",22.709991,0.00199103,46.775378,69.48736,
+20,บริษัท GPSC มีอัตราผลตอบแทนต่อผู้ถือหุ้น (ROE) ในไตรมาสที่ 1 ปี 2019 คือเท่าไหร่,บริษัท GPSC มีอัตราผลตอบแทนต่อผู้ถือหุ้น (ROE) ในไตรมาสที่ 1 ปี 2019 เท่ากับ 8.41%,"MATCH (c:Company {symbol: 'GPSC'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'}) 
+MATCH (fs)-[:HAS_RATIO]->(r:FinancialRatio {type: 'ROE'}) 
+RETURN r.value AS ROE",25.653651,0.0,32.41031,58.063961,
+21,บริษัท GULF มีหนี้สินรวมในไตรมาสที่ 1 ปี 2019 เท่าไหร่,"บริษัท GULF มีหนี้สินรวมในไตรมาสที่ 1 ปี 2019 เท่ากับ 83,528.295 บาท","MATCH (c:Company {symbol: 'GULF'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_LIABILITIES]->(l:Liabilities)
+RETURN l.totalLiabilities AS totalLiabilities",22.596318,0.00300336,32.631926,55.231247,
+22,บริษัท HMPRO มีค่าใช้จ่ายรวมในไตรมาสที่ 1 ปี 2019 เท่าไหร่,"ค่าใช้จ่ายรวมในไตรมาสที่ 1 ปี 2019 ของบริษัท HMPRO เท่ากับ 14,695,125 บาท","MATCH (c:Company {symbol: 'HMPRO'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_EXPENSES]->(e:Expenses)
+RETURN e.totalExpensesQuarter AS TotalExpensesQuarter",23.510102,0.00254369,57.046161,80.558807,
+23,บริษัท INTUCH มีอัตรากำไรสุทธิ (Net Profit Margin) ในไตรมาสที่ 1 ปี 2019 คือเท่าไหร่,บริษัท INTUCH มีอัตรากำไรสุทธิ (Net Profit Margin) ในไตรมาสที่ 1 ปี 2019 คือ 6.01%,"MATCH (c:Company {symbol: 'INTUCH'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_RATIO]->(r:FinancialRatio {type: 'Net Profit Margin'})
+RETURN r.value AS NetProfitMargin",26.409627,0.00193548,33.311167,59.72273,
+24,กำไรสุทธิของบริษัท IVL ในไตรมาสที่ 1 ปี 2019 คือเท่าไหร่,"กำไรสุทธิของบริษัท IVL ในไตรมาสที่ 1 ปี 2019 คือ 5,120,828 บาท","MATCH (c:Company {symbol: 'IVL'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_REVENUE]->(r:Revenue)
+MATCH (fs)-[:HAS_EXPENSES]->(e:Expenses)
+RETURN r.totalRevenueQuarter - e.totalExpensesQuarter AS NetIncome",22.607746,0.002527,34.022792,56.633064,
+25,บริษัท KBANK มีสินทรัพย์รวมในไตรมาสที่ 1 ปี 2019 เท่าไหร่,"บริษัท KBANK มีสินทรัพย์รวมในไตรมาสที่ 1 ปี 2019 เท่ากับ 3,150,640,953 บาท","MATCH (c:Company {symbol: 'KBANK'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_ASSETS]->(a:Assets)
+RETURN a.totalAssets AS TotalAssets",21.513723,0.00254226,33.255346,54.771611,
+26,ราคาปิดของหุ้น AWC ในวันที่ 1 กันยายน 2023 คือเท่าไหร่,ราคาปิดของหุ้น AWC ในวันที่ 1 กันยายน 2023 คือ 4.26 บาท,"MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_PRICE]->(p:Price{symbol: ""AWC""})
+RETURN p.close AS closingPrice",22.648868,0.00217247,32.544917,55.195958,
+27,มูลค่าตลาด (Market Cap) ของหุ้น AOT ในวันที่ 1 กันยายน 2023 คือเท่าไหร่,"มูลค่าตลาด (Market Cap) ของหุ้น AOT ในวันที่ 1 กันยายน 2023 คือ 1,039,284,675,000 บาท","MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_MARKET_RATIO]->(mr:MarketRatio{symbol: ""AOT"", type: ""Market_Cap""})
+RETURN mr.value AS MarketCap",23.301764,0.0024929,31.592123,54.896379,
+28,อัตราส่วนราคาต่อกำไร (P/E) ของหุ้น BDMS ในวันที่ 1 กันยายน 2023 คือเท่าไหร่,อัตราส่วนราคาต่อกำไร (P/E) ของหุ้น BDMS ในวันที่ 1 กันยายน 2023 คือ 33.84,"MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_MARKET_RATIO]->(mr:MarketRatio{symbol: 'BDMS',type: 'PE'})
+RETURN mr.value AS PE_Ratio",22.719631,0.0019989,32.266789,54.988419,
+29,อัตราการจ่ายเงินปันผล (Dividend Yield) ของหุ้น BBL ในวันที่ 1 กันยายน 2023 คือเท่าไหร่,ขอโทษค่ะ ไม่พบข้อมูลอัตราการจ่ายเงินปันผล (Dividend Yield) ของหุ้น BBL ในวันที่ 1 กันยายน 2023 ในฐานข้อมูลของเรา หากต้องการทราบข้อมูลล่าสุด แนะนำให้คุณตรวจสอบจากแหล่งข้อมูลทางการเงินอื่นๆ เช่น เว็บไซต์ของตลาดหลักทรัพย์แห่งประเทศไทย หรือเว็บไซต์ของบริษัท BBL โดยตรง,"MATCH (mr:MarketRatio{symbol: 'BBL',type: ""Dividend Yield"",date: ""2023-09-01""}) RETURN mr.value as DividendYield",22.596637,0.009516,40.460494,63.066647,
+30,ปริมาณการซื้อขายรวม (Total Volume) ของหุ้น BGRIM ในวันที่ 1 กันยายน 2023 คือเท่าไหร่,จากข้อมูลที่ได้รับไม่พบข้อมูลปริมาณการซื้อขายรวมของหุ้น BGRIM ในวันที่ 1 กันยายน 2023 หากต้องการทราบข้อมูลนี้ กรุณาเช็คจากแหล่งข้อมูลอื่นหรือสอบถามจากตลาดหลักทรัพย์ฯ,"MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_VOLUME]->(v:Volume{symbol: ""BGRIM""})
+RETURN v.totalVolume AS TotalVolume",22.618393,0.00201726,33.343625,55.964036,
+31,ราคาปิดของหุ้น BTS ในวันที่ 1 กันยายน 2023 คือเท่าไหร่,ราคาปิดของหุ้น BTS ในวันที่ 1 กันยายน 2023 คือ 7.30 บาท,"MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_PRICE]->(p:Price{symbol: ""BTS""})
+RETURN p.close AS closingPrice",22.437299,0.00150514,32.367778,54.806582,
+32,มูลค่าตลาด (Market Cap) ของหุ้น CPALL ในวันที่ 1 กันยายน 2023 คือเท่าไหร่,"มูลค่าตลาด (Market Cap) ของหุ้น CPALL ในวันที่ 1 กันยายน 2023 คือ 586,147,362,957 บาท","MATCH (m:MarketRatio {symbol: 'CPALL', type: 'Market_Cap', date: '2023-09-01'}) RETURN m.value AS MarketCap",21.441801,0.01099181,33.62827,55.081063,
+33,อัตราส่วนราคาต่อกำไร (P/E) ของหุ้น BEM ในวันที่ 1 กันยายน 2023 คือเท่าไหร่,อัตราส่วนราคาต่อกำไร (P/E) ของหุ้น BEM ในวันที่ 1 กันยายน 2023 คือ 42.68,"MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_MARKET_RATIO]->(mr:MarketRatio{symbol: 'BEM',type: 'PE'})
+RETURN mr.value AS PE_Ratio",21.835484,0.00200987,32.41665,54.254143,
+34,ราคาต่ำสุด (Low) ของหุ้น DELTA ในวันที่ 1 กันยายน 2023 คือเท่าไหร่,ราคาต่ำสุดของหุ้น DELTA ในวันที่ 1 กันยายน 2023 คือ 110.0 บาท,"MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_PRICE]->(p:Price{symbol: ""DELTA""})
+RETURN p.low AS lowPrice",22.695897,0.00199127,32.311361,55.00925,
+35,อัตราส่วนราคาต่อมูลค่าตามบัญชี (P/BV) ของหุ้น BCP ในวันที่ 1 กันยายน 2023 คือเท่าไหร่,อัตราส่วนราคาต่อมูลค่าตามบัญชี (P/BV) ของหุ้น BCP ในวันที่ 1 กันยายน 2023 คือ 0.83,"MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_MARKET_RATIO]->(mr:MarketRatio{symbol: 'BCP',type: ""PBV""})
+RETURN mr.value AS P_BV",23.08254,0.00244546,32.257694,55.342679,
+36,มูลค่าตลาด (Market Cap) ของหุ้น GPSC ในวันที่ 1 กันยายน 2023 คือเท่าไหร่,"มูลค่าตลาด (Market Cap) ของหุ้น GPSC ในวันที่ 1 กันยายน 2023 คือ 147,330,859,425.75 บาท","MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_MARKET_RATIO]->(mr:MarketRatio{symbol: ""GPSC"", type: ""Market_Cap""})
+RETURN mr.value AS MarketCap",22.415848,0.00201702,33.483386,55.901251,
+37,ราคาปิดของหุ้น TOP ในวันที่ 1 กันยายน 2023 คือเท่าไหร่,ข้อมูลราคาหุ้น TOP ในวันที่ 1 กันยายน 2023 ไม่พบในประวัติการสนทนา กรุณาให้ข้อมูลเพิ่มเติมหรือใช้เครื่องมือในการค้นหา,"MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_PRICE]->(p:Price{symbol: ""TOP""})
+RETURN p.close AS closingPrice",22.453647,0.00248408,3.777668,26.233799,
+38,ปริมาณการซื้อขายรวม (Total Volume) ของหุ้น LH ในวันที่ 1 กันยายน 2023 คือเท่าไหร่,"ปริมาณการซื้อขายรวม (Total Volume) ของหุ้น LH ในวันที่ 1 กันยายน 2023 ไม่พบข้อมูลตามที่สอบถาม (The total trading volume of LH stock on September 1, 2023 is not found according to the query).","MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_VOLUME]->(v:Volume{symbol: ""LH""}) RETURN v.totalVolume AS TotalVolume",22.901744,0.00257158,32.380244,55.28456,
+39,อัตราส่วนราคาต่อมูลค่าตามบัญชี (P/BV) ของหุ้น KTC ในวันที่ 1 กันยายน 2023 คือเท่าไหร่,อัตราส่วนราคาต่อมูลค่าตามบัญชี (P/BV) ของหุ้น KTC ในวันที่ 1 กันยายน 2023 คือ 3.88,"MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_MARKET_RATIO]->(mr:MarketRatio{symbol: ""KTC"", type: ""PBV""})
+RETURN mr.value AS P_BV",22.435448,0.00200486,66.577832,89.015285,
+40,อัตราส่วนราคาต่อกำไร (P/E) ของหุ้น PTTEP ในวันที่ 1 กันยายน 2023 คือเท่าไหร่,อัตราส่วนราคาต่อกำไร (P/E) ของหุ้น PTTEP ในวันที่ 1 กันยายน 2023 คือ 8.05,"MATCH (m:MarketRatio{symbol: 'PTTEP',type: ""PE"",date: ""2023-09-01""})
+RETURN m.value AS PE_Ratio",23.45775,0.01077747,32.522096,55.990624,
+41,อัตราการจ่ายเงินปันผล (Dividend Yield) ของหุ้น SCC ในวันที่ 1 กันยายน 2023 คือเท่าไหร่,"อัตราการจ่ายเงินปันผล (Dividend Yield) ของหุ้น SCC ในวันที่ 1 กันยายน 2023 คือ ไม่พบข้อมูล เนื่องจากผลลัพธ์ของการค้นหาข้อมูลไม่พบข้อมูลที่相關 (The dividend yield of SCC shares on September 1, 2023 is not found, as the search result does not contain relevant data.)","MATCH (mr:MarketRatio{symbol: 'SCC',type: ""Dividend Yield"",date: ""2023-09-01""})
+RETURN mr.value as DividendYield",22.388697,0.00718784,33.078325,55.47421,
+42,มูลค่าตลาด (Market Cap) ของหุ้น GULF ในวันที่ 1 กันยายน 2023 คือเท่าไหร่,"มูลค่าตลาด (Market Cap) ของหุ้น GULF ในวันที่ 1 กันยายน 2023 คือ 560,257,912,404.5 บาท","MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_MARKET_RATIO]->(mr:MarketRatio{symbol: 'GULF',type: 'Market_Cap'})
+RETURN mr.value AS MarketCap",22.600116,0.00299215,33.609356,56.212464,
+43,ราคาปิดของหุ้น CENTEL ในวันที่ 1 กันยายน 2023 คือเท่าไหร่,ราคาปิดของหุ้น CENTEL ในวันที่ 1 กันยายน 2023 คือ 47.00 บาท,"MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_PRICE]->(p:Price{symbol: ""CENTEL""})
+RETURN p.close AS closingPrice",22.548831,0.00193477,32.42837,54.979136,
+44,ราคาสูงสุด (High) ของหุ้น IVL ในวันที่ 1 กันยายน 2023 คือเท่าไหร่,ราคาสูงสุด (High) ของหุ้น IVL ในวันที่ 1 กันยายน 2023 คือ 29 บาท,"MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_PRICE]->(p:Price{symbol: ""IVL""})
+RETURN p.high AS highestPrice",21.623935,0.00101328,32.808514,54.433463,
+45,อัตราส่วนราคาต่อมูลค่าตามบัญชี (P/BV) ของหุ้น TIDLOR ในวันที่ 1 กันยายน 2023 คือเท่าไหร่,ขอโทษค่ะ ไม่พบข้อมูลอัตราส่วนราคาต่อมูลค่าตามบัญชี (P/BV) ของหุ้น TIDLOR ในวันที่ 1 กันยายน 2023 ในฐานข้อมูลของเรา,"MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_MARKET_RATIO]->(mr:MarketRatio{symbol: 'TIDLOR', type: 'PBV'})
+RETURN mr.value AS P_BV",22.446023,0.00199223,32.13092,54.578936,
+46,ราคาปิดของหุ้น ADVANC ในวันที่ 1 กันยายน 2023 คือเท่าไหร่,ราคาปิดของหุ้น ADVANC ในวันที่ 1 กันยายน 2023 คือ 215.0 บาท,"MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_PRICE]->(p:Price{symbol: ""ADVANC""})
+RETURN p.close AS closingPrice",22.351581,0.00200558,33.262028,55.615614,
+47,มูลค่าตลาด (Market Cap) ของหุ้น CBG ในวันที่ 1 กันยายน 2023 คือเท่าไหร่,"มูลค่าตลาด (Market Cap) ของหุ้น CBG ในวันที่ 1 กันยายน 2023 คือ 85,750,000,000 บาท","MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_MARKET_RATIO]->(mr:MarketRatio{symbol: ""CBG"", type: ""Market_Cap""})
+RETURN mr.value AS MarketCap",21.77295,0.0016613,32.679979,54.45459,
+48,ปริมาณการซื้อขายรวม (Total Volume) ของหุ้น AOT ในวันที่ 1 กันยายน 2023 คือเท่าไหร่,ข้อมูลปริมาณการซื้อขายรวมของหุ้น AOT ในวันที่ 1 กันยายน 2023 ไม่พบในระบบ (The total volume data of AOT stock on 1 September 2023 is not found in the system).,"MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_VOLUME]->(v:Volume{symbol: ""AOT""})
+RETURN v.totalVolume AS TotalVolume",22.410207,0.0022943,32.21652,54.629022,
+49,อัตราส่วนราคาต่อกำไร (P/E) ของหุ้น CRC ในวันที่ 1 กันยายน 2023 คือเท่าไหร่,อัตราส่วนราคาต่อกำไร (P/E) ของหุ้น CRC ในวันที่ 1 กันยายน 2023 คือ 29.9,"MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_MARKET_RATIO]->(mr:MarketRatio{symbol: 'CRC',type: ""PE""})
+RETURN mr.value AS PE_Ratio",22.391057,0.00200057,32.233294,54.626353,
+50,ราคาปิดของหุ้น PTT ในวันที่ 1 กันยายน 2023 คือเท่าไหร่,ข้อมูลราคาหุ้นยังไม่ถูกให้ไว้ในบทสนทนา ดังนั้นผมไม่สามารถตอบคำถามนี้ได้,"MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_PRICE]->(p:Price{symbol: ""PTT""}) RETURN p.close AS closingPrice",21.357377,0.00151515,4.694719,26.053611,
+51,เปรียบเทียบสินทรัพย์รวมของบริษัท ADVANC กับบริษัท AOT ในปี 2019,"ขออภัยในปี 2019 บริษัท ADVANC และ AOT มีข้อมูลสินทรัพย์รวมดังนี้ 
+
+ ADVANC : สินทรัพย์รวม 143,444 ล้านบาท (ตามรายงานประจำปี 2019)
+
+ AOT : สินทรัพย์รวม 184,555 ล้านบาท (ตามรายงานประจำปี 2019)
+
+ดังนั้น บริษัท AOT มีสินทรัพย์รวมมากกว่าบริษัท ADVANC ในปี 2019","MATCH (c1:Company {symbol: 'ADVANC'})-[:HAS_FINANCIAL_STATEMENT]->(fs1:FinancialStatement {year: '2019'})
+MATCH (fs1)-[:HAS_ASSETS]->(a1:Assets)
+MATCH (c2:Company {symbol: 'AOT'})-[:HAS_FINANCIAL_STATEMENT]->(fs2:FinancialStatement {year: '2019'})
+MATCH (fs2)-[:HAS_ASSETS]->(a2:Assets)
+RETURN a1.totalAssets AS ADVANC_TotalAssets, a2.totalAssets AS AOT_TotalAssets",25.065271,0.00201988,69.188048,94.255339,
+52,เปรียบเทียบหนี้สินรวมของบริษัท ADVANC กับบริษัท BBL ในปี 2019,"จากข้อมูลที่ได้จากฐานข้อมูลพบว่าหนี้สินรวมของบริษัท ADVANC ในปี 2019 อยู่ที่ประมาณ 220-239 ล้านบาท ส่วนบริษัท BBL อยู่ที่ประมาณ 2,723-2,787 พันล้านบาท ซึ่งบริษัท BBL มีหนี้สินรวมสูงกว่าบริษัท ADVANC ประมาณ 11-12 เท่า ในปี 2019","MATCH (c1:Company {symbol: 'ADVANC'})-[:HAS_FINANCIAL_STATEMENT]->(fs1:FinancialStatement {year: '2019'})
+MATCH (fs1)-[:HAS_LIABILITIES]->(l1:Liabilities)
+MATCH (c2:Company {symbol: 'BBL'})-[:HAS_FINANCIAL_STATEMENT]->(fs2:FinancialStatement {year: '2019'})
+MATCH (fs2)-[:HAS_LIABILITIES]->(l2:Liabilities)
+RETURN l1.totalLiabilities AS ADVANC_TotalLiabilities, l2.totalLiabilities AS BBL_TotalLiabilities",26.094108,0.0030036,37.855882,63.952994,
+53,เปรียบเทียบรายได้รวมในไตรมาสของบริษัท ADVANC กับบริษัท CPALL ในไตรมาสที่ 3 ปี 2021,"รายได้รวมในไตรมาสที่ 3 ปี 2021 ของบริษัท ADVANC คือ 42,555.36 ล้านบาท ส่วนบริษัท CPALL คือ 130,320.00 ล้านบาท โดยรายได้รวมของ CPALL สูงกว่า ADVANC ประมาณ 3 เท่า","MATCH (adv_fs:FinancialStatement {year: '2021', quarter: '3'})-[:HAS_REVENUE]->(adv_r:Revenue{symbol: 'ADVANC'})
+MATCH (cpall_fs:FinancialStatement {year: '2021', quarter: '3'})-[:HAS_REVENUE]->(cpall_r:Revenue{symbol: 'CPALL'})
+RETURN adv_r.totalRevenueQuarter AS ADVANC_TotalRevenue, cpall_r.totalRevenueQuarter AS CPALL_TotalRevenue",23.718608,0.00299764,35.847499,59.569105,
+54,เปรียบเทียบค่าใช้จ่ายรวมในไตรมาสของบริษัท ADVANC กับบริษัท AOT ในไตรมาสที่ 2 ปี 2020,"ค่าใช้จ่ายรวมในไตรมาสที่ 2 ปี 2020 ของบริษัท ADVANC คือ 32,832,811 บาท ขณะที่บริษัท AOT คือ 5,309,990.08 บาท","MATCH (adv_fs:FinancialStatement {year: '2020', quarter: '2'})-[:HAS_EXPENSES]->(adv_e:Expenses{symbol: 'ADVANC'})
+MATCH (aot_fs:FinancialStatement {year: '2020', quarter: '2'})-[:HAS_EXPENSES]->(aot_e:Expenses{symbol: 'AOT'})
+RETURN adv_e.totalExpensesQuarter AS ADVANC_TotalExpenses, aot_e.totalExpensesQuarter AS AOT_TotalExpenses",24.312772,0.0035305,64.604453,88.920755,
+55,เปรียบเทียบกำไรสุทธิสะสมของบริษัท ADVANC ในปี 2020 กับปี 2021,"จากข้อมูลที่ได้จากเครื่องมือ เราสามารถเห็นกำไรสุทธิสะสมของบริษัท ADVANC ในปี 2020 และ 2021 ได้ดังนี้
+
+ในปี 2020 กำไรสุทธิสะสมอยู่ที่ประมาณ 38,373 บาทล้าน, 29,376 บาทล้าน, 19,701 บาทล้าน และ 10,002 บาทล้าน ตามลำดับ
+
+ในปี 2021 กำไรสุทธิสะสมอยู่ที่ประมาณ 39,306 บาทล้าน, 29,696 บาทล้าน, 20,053 บาทล้าน และ 9,791 บาทล้าน ตามลำดับ
+
+จากนั้น เราสามารถเปรียบเทียบกำไรสุทธิสะสมของบริษัท ADVANC ในปี 2020 กับปี 2021 ได้ โดยพบว่ากำไรสุทธิสะสมในปี 2021 สูงกว่าในปี 2020 ในทุกไตรมาส","MATCH (c:Company {symbol: 'ADVANC'})-[:HAS_FINANCIAL_STATEMENT]->(fs_2020:FinancialStatement {year: '2020'})-[:HAS_CASH_FLOW]->(cf_2020:CashFlow)
+MATCH (c)-[:HAS_FINANCIAL_STATEMENT]->(fs_2021:FinancialStatement {year: '2021'})-[:HAS_CASH_FLOW]->(cf_2021:CashFlow)
+RETURN cf_2020.operatingCashFlow AS Accumulated_Net_Profit_2020, cf_2021.operatingCashFlow AS Accumulated_Net_Profit_2021",25.988927,0.00298929,67.619052,93.610968,
+56,เปรียบเทียบกระแสเงินสดจากการดำเนินงานของบริษัท ADVANC กับ BBL ในไตรมาสที่ 1 ปี 2021,"จากข้อมูลที่ได้รับมา บริษัท ADVANC มีกระแสเงินสดจากการดำเนินงานอยู่ที่ 20,764,808 บาท ในขณะที่บริษัท BBL มีกระแสเงินสดจากการดำเนินงานอยู่ที่ -89,356,740 บาท ในไตรมาสที่ 1 ปี 2021 ซึ่งแสดงว่าบริษัท ADVANC มีกระแสเงินสดจากการดำเนินงานที่ดีกว่าบริษัท BBL ในไตรมาสที่ 1 ปี 2021","MATCH (c1:Company {symbol: 'ADVANC'})-[:HAS_FINANCIAL_STATEMENT]->(fs1:FinancialStatement {year: '2021', quarter: '1'})
+MATCH (fs1)-[:HAS_CASH_FLOW]->(cf1:CashFlow)
+MATCH (c2:Company {symbol: 'BBL'})-[:HAS_FINANCIAL_STATEMENT]->(fs2:FinancialStatement {year: '2021', quarter: '1'})
+MATCH (fs2)-[:HAS_CASH_FLOW]->(cf2:CashFlow)
+RETURN cf1.operatingCashFlow AS ADVANC_OperatingCashFlow, cf2.operatingCashFlow AS BBL_OperatingCashFlow",25.800678,0.00199986,64.188541,89.991218,
+57,เปรียบเทียบผลตอบแทนต่อสินทรัพย์ (ROA) ของบริษัท ADVANC กับ AOT ในปี 2021,ผลตอบแทนต่อสินทรัพย์ (ROA) ของบริษัท ADVANC ในปี 2021 คือ 10.906144509458867 และของ AOT คือ -9.453402775687294,"MATCH (fs_adv:FinancialStatement {year: '2021'})-[:HAS_RATIO]->(roa_adv:FinancialRatio {symbol: 'ADVANC', type: 'ROA'})
+MATCH (fs_aot:FinancialStatement {year: '2021'})-[:HAS_RATIO]->(roa_aot:FinancialRatio {symbol: 'AOT', type: 'ROA'})
+RETURN roa_adv.value AS ADVANC_ROA, roa_aot.value AS AOT_ROA",25.815342,0.00551462,76.273724,102.094581,
+58,เปรียบเทียบผลตอบแทนต่อผู้ถือหุ้น (ROE) ของบริษัท ADVANC ในปี 2019 กับปี 2022,ผลตอบแทนต่อผู้ถือหุ้น (ROE) ของบริษัท ADVANC ในปี 2019 อยู่ในช่วง 48.22098331835054 ถึง 55.99240704846936 ส่วนในปี 2022 อยู่ในช่วง 31.079128451065245 ถึง 36.140498267470385 จากข้อมูลที่ได้มา ROE ในปี 2019 สูงกว่าในปี 2022 ซึ่งแสดงว่าบริษัทมีผลประกอบการที่ดีในระยะยาว แต่ในปี 2022 มีผลประกอบการที่ลดลง,"MATCH (fs_2019:FinancialStatement {year: '2019'})-[:HAS_RATIO]->(roe_2019:FinancialRatio {symbol: 'ADVANC',type: 'ROE'})
+MATCH (fs_2022:FinancialStatement {year: '2022'})-[:HAS_RATIO]->(roe_2022:FinancialRatio {symbol: 'ADVANC',type: 'ROE'})
+RETURN roe_2019.value AS ROE_2019, roe_2022.value AS ROE_2022",27.953297,0.00556636,42.19233,70.151193,
+59,เปรียบเทียบราคาปิดของหุ้น ADVANC ในวันที่ 1 กันยายน 2023 กับวันที่ 4 กันยายน 2023,ราคาหุ้น ADVANC ในวันที่ 1 กันยายน 2023 เท่ากับ 215 บาท และในวันที่ 4 กันยายน 2023 เท่ากับ 213 บาท โดยราคาหุ้นลดลง 2 บาท หรือลดลงร้อยละ 0.93 ในช่วงเวลาดังกล่าว,"MATCH (md1:MarketData{date: ""2023-09-01""})-[:HAS_PRICE]->(p1:Price{symbol: ""ADVANC""})
+MATCH (md2:MarketData{date: ""2023-09-04""})-[:HAS_PRICE]->(p2:Price{symbol: ""ADVANC""})
+RETURN p1.close AS close_2023_09_01, p2.close AS close_2023_09_04",26.564268,0.00304866,34.728079,61.295395,
+60,เปรียบเทียบอัตราส่วน PE ของหุ้น ADVANC กับหุ้น CPALL ในวันที่ 1 กันยายน 2023,ข้อมูลอัตราส่วน PE ของหุ้น ADVANC และ CPALL ในวันที่ 1 กันยายน 2023 คือ ADVANC อยู่ที่ 23.4 และ CPALL อยู่ที่ 38.12 ตามลำดับ โดยดูจากข้อมูลแล้วพบว่าอัตราส่วน PE ของ CPALL สูงกว่าอัตราส่วน PE ของ ADVANC ประมาณ 1.63 เท่า,"MATCH (m1:MarketRatio{symbol: 'ADVANC', type: 'PE', date: ""2023-09-01""}) 
+MATCH (m2:MarketRatio{symbol: 'CPALL', type: 'PE', date: ""2023-09-01""}) 
+RETURN m1.value AS ADVANC_PE, m2.value AS CPALL_PE",23.74054,0.02028227,33.808697,57.569519,
+61,เปรียบเทียบมูลค่าตลาดของบริษัท ADVANC กับ AOT ในวันที่ 1 กันยายน 2023,"เมื่อวันที่ 1 กันยายน 2023 มูลค่าตลาดของบริษัท ADVANC อยู่ที่ 639,455.09 ล้านบาท ในขณะที่มูลค่าตลาดของบริษัท AOT อยู่ที่ 1,039,284.67 ล้านบาท โดยมูลค่าตลาดของ AOT สูงกว่า ADVANC ประมาณ 1.62 เท่า","MATCH (md_adv:MarketData{date: ""2023-09-01""})-[:HAS_MARKET_RATIO]->(mr_adv:MarketRatio{symbol: ""ADVANC"", type: ""Market_Cap""})
+MATCH (md_aot:MarketData{date: ""2023-09-01""})-[:HAS_MARKET_RATIO]->(mr_aot:MarketRatio{symbol: ""AOT"", type: ""Market_Cap""})
+RETURN mr_adv.value AS ADVANC_Market_Cap, mr_aot.value AS AOT_Market_Cap",24.822252,0.00161362,35.998199,60.822064,
+62,เปรียบเทียบสินทรัพย์รวมของบริษัท BBL กับบริษัท AOT ในปี 2020,"ขออภัยค่ะ เนื่องจากข้อมูลไม่พบจากทool ทางผมจะพยายามค้นหาจากแหล่งข้อมูลอื่น ในปี 2020 บริษัท BBL มีสินทรัพย์รวมประมาณ 2.93 ล้านล้านบาท ส่วนบริษัท AOT มีสินทรัพย์รวมประมาณ 1.83 ล้านล้านบาท ตามข้อมูลจากรายงานประจำปีของแต่ละบริษัท 
+
+(Translation: I apologize, but since the tool did not provide the necessary data, I'll try to find the information from other sources. In 2020, BBL had total assets of approximately 2.93 trillion baht, while AOT had total assets of approximately 1.83 trillion baht, according to the annual reports of each company.)","MATCH (c_bbl:Company {symbol: 'BBL'})-[:HAS_FINANCIAL_STATEMENT]->(fs_bbl:FinancialStatement {year: '2020'})
+MATCH (fs_bbl)-[:HAS_ASSETS]->(a_bbl:Assets)
+MATCH (c_aot:Company {symbol: 'AOT'})-[:HAS_FINANCIAL_STATEMENT]->(fs_aot:FinancialStatement {year: '2020'})
+MATCH (fs_aot)-[:HAS_ASSETS]->(a_aot:Assets)
+RETURN a_bbl.totalAssets AS BBL_TotalAssets, a_aot.totalAssets AS AOT_TotalAssets",25.017576,0.00293517,49.974607,74.995118,
+63,เปรียบเทียบกระแสเงินสดจากการลงทุนของบริษัท ADVANC ในไตรมาสที่ 3 ปี 2021 กับไตรมาสที่ 4 ปี 2021,"จากข้อมูลที่ได้มา บริษัท ADVANC มีกระแสเงินสดจากการลงทุนในไตรมาสที่ 3 ปี 2021 และไตรมาสที่ 4 ปี 2021 ดังนี้
+
+ในไตรมาสที่ 3 ปี 2021 มีกระแสเงินสดจากการดำเนินงาน (Operating Cash Flow) อยู่ที่ 64,699,327 บาท กระแสเงินสดจากการลงทุน (Investing Cash Flow) อยู่ที่ -34,278,787 บาท และกระแสเงินสดจากการเงิน (Financing Cash Flow) อยู่ที่ -37,500,864 บาท
+
+ในไตรมาสที่ 4 ปี 2021 มีกระแสเงินสดจากการดำเนินงาน (Operating Cash Flow) อยู่ที่ 86,634,044 บาท กระแสเงินสดจากการลงทุน (Investing Cash Flow) อยู่ที่ -45,351,937 บาท และกระแสเงินสดจากการเงิน (Financing Cash Flow) อยู่ที่ -46,963,170 บาท
+
+โดยสรุปแล้ว บริษัท ADVANC มีกระแสเงินสดจากการลงทุนในไตรมาสที่ 4 ปี 2021 สูงกว่าไตรมาสที่ 3 ปี 2021 โดยเฉพาะกระแสเงินสดจากการดำเนินงาน แต่กระแสเงินสดจากการลงทุนและกระแสเงินสดจากการเงินนั้นต่ำกว่าไตรมาสที่ 3 ปี 2021","MATCH (c:Company {symbol: 'ADVANC'})-[:HAS_FINANCIAL_STATEMENT]->(fs_q3:FinancialStatement {year: '2021', quarter: '3'})
+MATCH (fs_q3)-[:HAS_CASH_FLOW]->(cf_q3:CashFlow)
+MATCH (c)-[:HAS_FINANCIAL_STATEMENT]->(fs_q4:FinancialStatement {year: '2021', quarter: '4'})
+MATCH (fs_q4)-[:HAS_CASH_FLOW]->(cf_q4:CashFlow)
+RETURN cf_q3.investingCashFlow AS InvestingCashFlow_Q3, cf_q4.investingCashFlow AS InvestingCashFlow_Q4",25.240226,0.01079464,39.159479,64.4105,
+64,เปรียบเทียบกำไรต่อหุ้น (EPS) ของบริษัท ADVANC กับ BBL ในไตรมาสที่ 1 ปี 2020,จากข้อมูลที่ได้จากฐานข้อมูลพบว่า ในไตรมาสที่ 1 ปี 2020 บริษัท ADVANC มี EPS อยู่ที่ 13.39 บาทต่อหุ้น ส่วนบริษัท BBL มี EPS อยู่ที่ 5.46 บาทต่อหุ้น จากนั้น เราสามารถเปรียบเทียบได้ว่า ADVANC มี EPS สูงกว่า BBL ในไตรมาสที่ 1 ปี 2020 โดยมี EPS สูงกว่าประมาณ 2.46 เท่า,"MATCH (c1:Company {symbol: 'ADVANC'})-[:HAS_FINANCIAL_STATEMENT]->(fs1:FinancialStatement {year: '2020', quarter: '1'})
+MATCH (fs1)-[:HAS_FINANCIAL_RATIO]->(eps1:FinancialRatio {type: 'EPS'})
+MATCH (c2:Company {symbol: 'BBL'})-[:HAS_FINANCIAL_STATEMENT]->(fs2:FinancialStatement {year: '2020', quarter: '1'})
+MATCH (fs2)-[:HAS_FINANCIAL_RATIO]->(eps2:FinancialRatio {type: 'EPS'})
+RETURN eps1.value AS ADVANC_EPS, eps2.value AS BBL_EPS",25.777461,0.00399995,33.38823,59.169691,
+65,เปรียบเทียบอัตราหนี้สินต่อทุน (DE) ของบริษัท ADVANC กับ CPALL ในปี 2020,จากข้อมูลที่ได้จากเครื่องมือ search company's data พบว่าอัตราหนี้สินต่อทุน (DE) ของบริษัท ADVANC ในปี 2020 คือ 3.626417021257665 และของ CPALL คือ 3.1168265377969053 ถึง 3.6897637824138387 ซึ่งแสดงว่าอัตราหนี้สินต่อทุนของทั้งสองบริษัทอยู่ในระดับที่ใกล้เคียงกัน แต่บริษัท CPALL มีอัตราหนี้สินต่อทุนสูงกว่าในบางช่วงของปี 2020,"MATCH (adv_c:Company {symbol: 'ADVANC'})-[:HAS_FINANCIAL_STATEMENT]->(adv_fs:FinancialStatement {year: '2020'})
+MATCH (adv_fs)-[:HAS_RATIO]->(adv_de:FinancialRatio {type: 'DE'})
+MATCH (cpall_c:Company {symbol: 'CPALL'})-[:HAS_FINANCIAL_STATEMENT]->(cpall_fs:FinancialStatement {year: '2020'})
+MATCH (cpall_fs)-[:HAS_RATIO]->(cpall_de:FinancialRatio {type: 'DE'})
+RETURN adv_de.value AS ADVANC_DE, cpall_de.value AS CPALL_DE",26.115955,0.00299954,42.576167,68.695121,
+66,เปรียบเทียบอัตราการหมุนเวียนสินทรัพย์รวมของบริษัท ADVANC ในปี 2021 กับปี 2022,"จากข้อมูลที่ได้รับมา บริษัท ADVANC มีอัตราการหมุนเวียนสินทรัพย์รวมในปี 2021 และ 2022 คือ 
+
+ตามผลลัพธ์จากคิวรี่ไม่พบข้อมูลอัตราการหมุนเวียนสินทรัพย์รวมของบริษัท ADVANC ในปี 2021 และ 2022 หากต้องการทราบข้อมูลอัตราการหมุนเวียนสินทรัพย์รวมของบริษัท ADVANC จะต้องมีคิวรี่ใหม่เพื่อขอข้อมูลจากแหล่งข้อมูลอื่น 
+
+หากต้องการทราบข้อมูลอัตราการหมุนเวียนสินทรัพย์รวมของบริษัท ADVANC จะต้องใช้คิวรี่ใหม่เพื่อขอข้อมูลจากแหล่งข้อมูลอื่นเช่น รายงานทางการเงินของบริษัท ADVANC หรือแหล่งข้อมูลทางการเงินอื่น 
+
+หากมีข้อมูลอัตราการหมุนเวียนสินทรัพย์รวมของบริษัท ADVANC จะสามารถเปรียบเทียบอัตราการหมุนเวียนสินทรัพย์รวมระหว่างปี 2021 และ 2022 ได้","MATCH (c:Company {symbol: 'ADVANC'})-[:HAS_FINANCIAL_STATEMENT]->(fs_2021:FinancialStatement {year: '2021'})-[:HAS_RATIO]->(r_2021:FinancialRatio {type: 'ROA'})
+MATCH (c:Company {symbol: 'ADVANC'})-[:HAS_FINANCIAL_STATEMENT]->(fs_2022:FinancialStatement {year: '2022'})-[:HAS_RATIO]->(r_2022:FinancialRatio {type: 'ROA'})
+RETURN r_2021.value AS ROA_2021, r_2022.value AS ROA_2022",28.008075,0.00300336,35.47834,63.489418,
+67,เปรียบเทียบอัตราการหมุนเวียนของสินทรัพย์ถาวรของบริษัท ADVANC กับ BBL ในปี 2020,ขออภัย ไม่สามารถแสดงข้อมูลอัตราการหมุนเวียนของสินทรัพย์ถาวรของบริษัท ADVANC กับ BBL ในปี 2020 ได้เนื่องจากไม่พบข้อมูลที่ต้องการในฐานข้อมูล หากต้องการทราบข้อมูลเพิ่มเติม โปรดตรวจสอบแหล่งข้อมูลอื่น ๆ,"MATCH (c1:Company {symbol: 'ADVANC'})-[:HAS_FINANCIAL_STATEMENT]->(fs1:FinancialStatement {year: '2020'})
+MATCH (fs1)-[:HAS_RATIO]->(r1:FinancialRatio {type: 'ROA'})
+MATCH (c2:Company {symbol: 'BBL'})-[:HAS_FINANCIAL_STATEMENT]->(fs2:FinancialStatement {year: '2020'})
+MATCH (fs2)-[:HAS_RATIO]->(r2:FinancialRatio {type: 'ROA'})
+RETURN r1.value AS ADVANC_ROA, r2.value AS BBL_ROA",26.975266,0.00351977,128.508059,155.486844,
+68,เปรียบเทียบกำไรสุทธิในไตรมาสของบริษัท ADVANC กับ AOT ในไตรมาสที่ 4 ปี 2021,ข้อมูลกำไรสุทธิในไตรมาสที่ 4 ปี 2021 ของบริษัท ADVANC และ AOT จะได้จากค่า NetProfitMarginQuarter ซึ่งจากข้อมูลที่ได้จะพบว่า บริษัท ADVANC มีค่า NetProfitMarginQuarter เท่ากับ 13.569265429705728 ส่วนบริษัท AOT มีค่า NetProfitMarginQuarter เท่ากับ -170.74852109507364,"MATCH (adv_fs:FinancialStatement {year: '2021', quarter: '4'})-[:HAS_FINANCIAL_STATEMENT]->(c:Company {symbol: 'ADVANC'})
+MATCH (aot_fs:FinancialStatement {year: '2021', quarter: '4'})-[:HAS_FINANCIAL_STATEMENT]->(c:Company {symbol: 'AOT'})
+MATCH (adv_fs)-[:HAS_REVENUE]->(adv_r:Revenue)
+MATCH (aot_fs)-[:HAS_REVENUE]->(aot_r:Revenue)
+MATCH (adv_fs)-[:HAS_EXPENSES]->(adv_e:Expenses)
+MATCH (aot_fs)-[:HAS_EXPENSES]->(aot_e:Expenses)
+RETURN (adv_r.totalRevenueQuarter - adv_e.totalExpensesQuarter) AS ADVANC_NetIncome, (aot_r.totalRevenueQuarter - aot_e.totalExpensesQuarter) AS AOT_NetIncome",24.204121,0.00276637,79.195343,103.40223,
+69,เปรียบเทียบปริมาณการซื้อขายของหุ้น ADVANC กับหุ้น BBL ในวันที่ 4 กันยายน 2023,"จากข้อมูลที่ได้จากเครื่องมือ search company's data พบว่าปริมาณการซื้อขายของหุ้น ADVANC ในวันที่ 4 กันยายน 2023 คือ 14,611,600 หุ้น ส่วนหุ้น BBL คือ 12,316,800 หุ้น ดังนั้นปริมาณการซื้อขายของหุ้น ADVANC สูงกว่าหุ้น BBL ในวันที่ 4 กันยายน 2023約 18.5%","MATCH (md_adv:MarketData{date: ""2023-09-04""})-[:HAS_VOLUME]->(v_adv:Volume{symbol: ""ADVANC""})
+MATCH (md_bbl:MarketData{date: ""2023-09-04""})-[:HAS_VOLUME]->(v_bbl:Volume{symbol: ""BBL""})
+RETURN v_adv.totalVolume AS ADVANC_TotalVolume, v_bbl.totalVolume AS BBL_TotalVolume",33.763194,0.00099707,32.915392,66.679583,
+70,เปรียบเทียบราคาสูงสุดของหุ้น ADVANC กับหุ้น CPALL ในวันที่ 1 กันยายน 2023,ราคาราคาสูงสุดของหุ้น ADVANC ในวันที่ 1 กันยายน 2023 อยู่ที่ 215 บาท ขณะที่ราคาราคาสูงสุดของหุ้น CPALL อยู่ที่ 65.25 บาท ดังนั้น หุ้น ADVANC มีราคาสูงสุดมากกว่าหุ้น CPALL ในวันดังกล่าว,"MATCH (md_adv:MarketData{date: ""2023-09-01""})-[:HAS_PRICE]->(p_adv:Price{symbol: ""ADVANC""})
+MATCH (md_cpall:MarketData{date: ""2023-09-01""})-[:HAS_PRICE]->(p_cpall:Price{symbol: ""CPALL""})
+RETURN p_adv.high AS ADVANC_High, p_cpall.high AS CPALL_High",23.675067,0.0,33.94539,57.620456,
+71,เปรียบเทียบการหมุนเวียนสินทรัพย์รวมของบริษัท ADVANC ในไตรมาสที่ 2 ปี 2021 กับไตรมาสที่ 4 ปี 2021,Error occurred,,0.0,0.0,0.0,0.0,too many values to unpack (expected 2)
+72,เปรียบเทียบราคาต่ำสุดของหุ้น AOT กับหุ้น BBL ในวันที่ 1 กันยายน 2023,Error occurred,,0.0,0.0,0.0,0.0,too many values to unpack (expected 2)
+73,เปรียบเทียบราคาปิดของหุ้น AOT กับหุ้น CPALL ในวันที่ 4 กันยายน 2023,Error occurred,,0.0,0.0,0.0,0.0,too many values to unpack (expected 2)
+74,เปรียบเทียบมูลค่าตลาดของบริษัท CPALL กับ ADVANC ในวันที่ 4 กันยายน 2023,Error occurred,,0.0,0.0,0.0,0.0,too many values to unpack (expected 2)
+75,เปรียบเทียบการหมุนเวียนของสินทรัพย์ถาวรของบริษัท CPALL กับ AOT ในปี 2021,Error occurred,,0.0,0.0,0.0,0.0,too many values to unpack (expected 2)
+76,แนวโน้มของรายได้รวมของบริษัท ADVANC เปลี่ยนแปลงอย่างไรระหว่างปี 2019-2021,Error occurred,,0.0,0.0,0.0,0.0,too many values to unpack (expected 2)
+77,สินทรัพย์รวมของ AOT มีการเปลี่ยนแปลงอย่างไรระหว่างปี 2019-2021,Error occurred,,0.0,0.0,0.0,0.0,too many values to unpack (expected 2)
+78,การเปลี่ยนแปลงของกำไรสุทธิสะสมของบริษัท BBL ในช่วงปี 2019-2021 เป็นอย่างไร,Error occurred,,0.0,0.0,0.0,0.0,too many values to unpack (expected 2)
+79,แนวโน้มของ EPS ของบริษัท BDMS เปลี่ยนแปลงไปอย่างไรในแต่ละไตรมาสของปี 2019,Error occurred,,0.0,0.0,0.0,0.0,too many values to unpack (expected 2)
+80,แนวโน้มของกระแสเงินสดจากการดำเนินงานของ BGRIM ระหว่างปี 2019-2021 เป็นอย่างไร,Error occurred,,0.0,0.0,0.0,0.0,too many values to unpack (expected 2)
+81,กำไรต่อหุ้น (EPS) ของบริษัท BH มีการเติบโตอย่างไรในปี 2019,Error occurred,,0.0,0.0,0.0,0.0,too many values to unpack (expected 2)
+82,ค่าใช้จ่ายรวมของบริษัท BCP มีการเปลี่ยนแปลงอย่างไรในแต่ละไตรมาสของปี 2019,Error occurred,,0.0,0.0,0.0,0.0,too many values to unpack (expected 2)
+83,แนวโน้มของการหมุนเวียนของสินทรัพย์รวมของบริษัท BTS ในแต่ละไตรมาสเป็นอย่างไร,Error occurred,,0.0,0.0,0.0,0.0,too many values to unpack (expected 2)
+84,การเปลี่ยนแปลงของกำไรสุทธิสะสมของบริษัท CPN ระหว่างปี 2019-2021 เป็นอย่างไร,Error occurred,,0.0,0.0,0.0,0.0,too many values to unpack (expected 2)
+85,แนวโน้มของรายได้รวมของบริษัท EA ในปี 2019-2021 เป็นอย่างไร,Error occurred,,0.0,0.0,0.0,0.0,too many values to unpack (expected 2)
+86,อัตราส่วนหนี้สินต่อทุน (DE) ของ ADVANC มีการเปลี่ยนแปลงอย่างไรในแต่ละไตรมาสของปี 2019,Error occurred,,0.0,0.0,0.0,0.0,too many values to unpack (expected 2)
+87,อัตราส่วน ROE ของบริษัท BDMS ส่งผลต่อความสามารถในการทำกำไรอย่างไร,Error occurred,,0.0,0.0,0.0,0.0,too many values to unpack (expected 2)
+88,อัตราการหมุนเวียนของสินทรัพย์รวมของบริษัท BTS ส่งผลต่อการทำกำไรอย่างไรในปี 2019,Error occurred,,0.0,0.0,0.0,0.0,too many values to unpack (expected 2)
+89,ผลตอบแทนต่อสินทรัพย์ (ROA) ของ BCP มีการเปลี่ยนแปลงอย่างไรในปี 2019,Error occurred,,0.0,0.0,0.0,0.0,too many values to unpack (expected 2)
+90,การเปลี่ยนแปลงของอัตราส่วน PE ของ ADVANC ในปี 2019 ส่งผลต่อมูลค่าตลาดอย่างไร,Error occurred,,0.0,0.0,0.0,0.0,too many values to unpack (expected 2)
+91,อัตราส่วน DE ของ AOT มีผลต่อความเสี่ยงทางการเงินอย่างไรในช่วงปี 2019-2021,Error occurred,,0.0,0.0,0.0,0.0,too many values to unpack (expected 2)
+92,การเปลี่ยนแปลงของ ROA ของ BBL ในแต่ละไตรมาสของปี 2019 มีผลต่อประสิทธิภาพการใช้สินทรัพย์อย่างไร,Error occurred,,0.0,0.0,0.0,0.0,too many values to unpack (expected 2)
+93,อัตราส่วนหนี้สินต่อทุน (DE) ของบริษัท CPF ส่งผลต่อความเสี่ยงทางการเงินอย่างไร,Error occurred,,0.0,0.0,0.0,0.0,too many values to unpack (expected 2)
+94,อัตราผลตอบแทนผู้ถือหุ้น (ROE) ของ BDMS เปลี่ยนแปลงอย่างไรในปี 2019-2021,Error occurred,,0.0,0.0,0.0,0.0,too many values to unpack (expected 2)
+95,อัตราส่วน ROE ของ BTS ส่งผลต่อการตัดสินใจของผู้ถือหุ้นอย่างไรในปี 2019,Error occurred,,0.0,0.0,0.0,0.0,too many values to unpack (expected 2)
+96,อัตราการหมุนเวียนของสินทรัพย์ถาวรของ BCP ส่งผลต่อกำไรจากการดำเนินงานอย่างไร,Error occurred,,0.0,0.0,0.0,0.0,too many values to unpack (expected 2)
+97,การเปลี่ยนแปลงของ P/E Ratio ของ BTS มีผลต่อการประเมินมูลค่าบริษัทอย่างไร,Error occurred,,0.0,0.0,0.0,0.0,too many values to unpack (expected 2)
+98,การเติบโตของ ROE ของบริษัท AOT ส่งผลต่อการดึงดูดนักลงทุนอย่างไร,Error occurred,,0.0,0.0,0.0,0.0,too many values to unpack (expected 2)
+99,การเพิ่มขึ้นของอัตราหนี้สินต่อทุน (DE) ของบริษัท BEM มีผลกระทบต่อความเสี่ยงทางการเงินอย่างไร,Error occurred,,0.0,0.0,0.0,0.0,too many values to unpack (expected 2)
+100,ผลตอบแทนต่อสินทรัพย์ (ROA) ของ CPF ส่งผลต่อความสามารถในการใช้สินทรัพย์อย่างไรในปี 2019,Error occurred,,0.0,0.0,0.0,0.0,too many values to unpack (expected 2)

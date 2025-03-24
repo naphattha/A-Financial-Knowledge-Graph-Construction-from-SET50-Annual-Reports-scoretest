@@ -1,0 +1,261 @@
+﻿Sequence,Question,Response,Query (SQL),Query Generation Time (s),Database Fetch Time (s),Response Generation Time (s),Total Time (s),Error
+1,What were ADVANC's total assets in Q1 2019?,"ADVANC's total assets in Q1 2019 were 296,633,567 THB.","MATCH (c:Company {symbol: 'ADVANC'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_ASSETS]->(a:Assets)
+RETURN a.totalAssets AS totalAssets",0.967189,0.00199103,2.039893,3.009073,
+2,What were AOT's total liabilities in Q1 2019?,"According to the observation, AOT's total liabilities in Q1 2019 were 37643003.03.","MATCH (c:Company {symbol: 'AOT'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_LIABILITIES]->(l:Liabilities)
+RETURN l.totalLiabilities AS TotalLiabilities",18.562387,0,32.417837,50.980225,
+3,What was BBL's net profit in Q1 2019?,"BBL's net profit in Q1 2019 was 8,770,201.","MATCH (c:Company {symbol: 'BBL'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_REVENUE]->(r:Revenue)
+MATCH (fs)-[:HAS_EXPENSES]->(e:Expenses)
+RETURN r.totalRevenueQuarter - e.totalExpensesQuarter AS netProfit",21.923583,0.00200725,32.631978,54.557569,
+4,What was BCP's Return on Equity (ROE) in Q1 2019?,BCP's Return on Equity (ROE) in Q1 2019 was 3.48%.,"MATCH (c:Company {symbol: 'BCP'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_RATIO]->(r:FinancialRatio {type: 'ROE'})
+RETURN r.value AS ROE",22.603341,0.00163126,32.248378,54.853351,
+5,What was BDMS's Debt-to-Equity ratio (D/E) in Q1 2019?,BDMS's Debt-to-Equity ratio (D/E) in Q1 2019 was 0.6667.,"MATCH (c:Company {symbol: 'BDMS'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_RATIO]->(r:FinancialRatio {type: 'DE'})
+RETURN r.value AS DebtToEquity",22.546107,0.00099063,32.459247,55.006344,
+6,What was BEM's total revenue in Q1 2019?,"BEM's total revenue in Q1 2019 was 4,078,247.","MATCH (c:Company {symbol: 'BEM'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_REVENUE]->(r:Revenue)
+RETURN r.totalRevenueQuarter AS TotalRevenue",22.538579,0.00206709,32.279066,54.819712,
+7,What was BGRIM's net profit in Q1 2019?,Agent stopped due to iteration limit or time limit.,"MATCH (c:Company {symbol: 'BGRIM'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_REVENUE]->(r:Revenue)
+MATCH (fs)-[:HAS_EXPENSES]->(e:Expenses)
+RETURN r.totalRevenueQuarter - e.totalExpensesQuarter AS netProfit",21.679365,0.00198674,140.675032,162.356384,
+8,What was BH's Net Profit Margin in Q1 2019?,BH's Net Profit Margin in Q1 2019 was 0.2868 or approximately 28.68%.,"MATCH (c:Company {symbol: 'BH'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_REVENUE]->(r:Revenue)
+MATCH (fs)-[:HAS_EXPENSES]->(e:Expenses)
+RETURN (r.totalRevenueQuarter - e.totalExpensesQuarter) / r.totalRevenueQuarter AS NetProfitMargin",23.701488,0.00299907,32.373159,56.077645,
+9,What was BJC's total revenue in Q1 2019?,"BJC's total revenue in Q1 2019 was $42,317,995.","MATCH (c:Company {symbol: 'BJC'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_REVENUE]->(r:Revenue)
+RETURN r.totalRevenueQuarter AS totalRevenue",21.698895,0.00199938,32.325969,54.026863,
+10,What were BTS's total expenses in Q1 2019?,BTS's total expenses in Q1 2019 were 8734096.38.,"MATCH (c:Company {symbol: 'BTS'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_EXPENSES]->(e:Expenses)
+RETURN e.totalExpensesQuarter AS totalExpenses",21.520841,0.00201964,32.379196,53.902056,
+11,What were CBG's total assets in Q1 2019?,"CBG's total assets in Q1 2019 were 14,462,513.0.","MATCH (c:Company {symbol: 'CBG'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_ASSETS]->(a:Assets)
+RETURN a.totalAssets AS TotalAssets",22.491908,0.00204682,31.394439,53.888394,
+12,What was CENTEL's net profit in Q1 2019?,"CENTEL's net profit in Q1 2019 was $1,079,884.","MATCH (c:Company {symbol: 'CENTEL'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_REVENUE]->(r:Revenue)
+MATCH (fs)-[:HAS_EXPENSES]->(e:Expenses)
+RETURN r.totalRevenueQuarter - e.totalExpensesQuarter AS NetProfit",22.728838,0.00192547,32.358998,55.089762,
+13,What was CPALL's Return on Assets (ROA) in Q1 2019?,"I apologize, but I couldn't find the specific Return on Assets (ROA) data for CPALL in Q1 2019. However, I can suggest some possible sources where you may be able to find this information, such as the company's official website, financial reports, or reputable financial databases. If you provide more context or clarify what you're looking for, I'll do my best to assist you.","MATCH (c:Company {symbol: 'CPALL'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_RATIO]->(r:FinancialRatio {type: 'ROA'})
+RETURN r.value AS ROA",21.703762,0.00205278,37.029227,58.735042,
+14,What were CPF's total expenses in Q1 2019?,"CPF's total expenses in Q1 2019 were 121,323,688.","MATCH (c:Company {symbol: 'CPF'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_EXPENSES]->(e:Expenses)
+RETURN e.totalExpensesQuarter AS TotalExpenses",22.594127,0.00209188,32.47201,55.068229,
+15,What was CPN's Debt-to-Equity ratio (D/E) in Q1 2019?,CPN's Debt-to-Equity ratio (D/E) in Q1 2019 was 1.116567454233774.,"MATCH (c:Company {symbol: 'CPN'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_RATIO]->(r:FinancialRatio {type: 'DE'})
+RETURN r.value AS DebtToEquity",21.797978,0.00196815,32.468847,54.268792,
+16,What was DELTA's Fixed Asset Turnover in Q1 2019?,"The Fixed Asset Turnover for DELTA in Q1 2019 is not directly available in the provided data. However, we can calculate it using the available data. The formula for Fixed Asset Turnover is: Total Revenue / Total Fixed Assets. We have the total revenue (13099466.0), but we don't have the total fixed assets. We can calculate the total assets (49517715.0) and total liabilities (14406232.0), but we need more information to calculate the total fixed assets. Therefore, we cannot calculate the Fixed Asset Turnover with the provided data.","MATCH (c:Company {symbol: 'DELTA'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_RATIO]->(r:FinancialRatio {type: 'Fixed Asset Turnover'})
+RETURN r.value AS FixedAssetTurnover",22.716542,0.0020349,56.082408,78.800986,
+17,What was EA's total revenue in Q1 2019?,Agent stopped due to iteration limit or time limit.,"MATCH (c:Company {symbol: 'EA'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_REVENUE]->(r:Revenue)
+RETURN r.totalRevenueQuarter AS TotalRevenue",27.570085,0.00199986,138.874153,166.446238,
+18,What was EGCO's net profit in Q1 2019?,"Unfortunately, the provided observation does not contain EGCO's net profit in Q1 2019. It seems the search company's data tool only returned a query and some metadata, but not the actual financial data. To get the net profit, we would need to execute the query or use a different tool that provides direct access to the company's financial statements.","MATCH (c:Company {symbol: 'EGCO'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_REVENUE]->(r:Revenue)
+MATCH (fs)-[:HAS_EXPENSES]->(e:Expenses)
+RETURN r.totalRevenueQuarter - e.totalExpensesQuarter AS NetProfit",22.775795,0.00199866,31.398275,54.176069,
+19,What was GLOBAL's total revenue in Q1 2019?,GLOBAL's total revenue in Q1 2019 was 7700765.0.,"MATCH (c:Company {symbol: 'GLOBAL'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_REVENUE]->(r:Revenue)
+RETURN r.totalRevenueQuarter AS TotalRevenue",22.449308,0.00193548,62.561902,85.013146,
+20,What was GPSC's Return on Equity (ROE) in Q1 2019?,GPSC's Return on Equity (ROE) in Q1 2019 was 8.41%.,"MATCH (c:Company {symbol: 'GPSC'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_RATIO]->(r:FinancialRatio {type: 'ROE'})
+RETURN r.value AS ROE",22.855377,0.00193214,31.815571,54.67288,
+21,What were GULF's total liabilities in Q1 2019?,Agent stopped due to iteration limit or time limit.,"MATCH (c:Company {symbol: 'GULF'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_LIABILITIES]->(l:Liabilities)
+RETURN l.totalLiabilities AS totalLiabilities",22.440715,0.00178981,144.800601,167.243106,
+22,What were HMPRO's total expenses in Q1 2019?,HMPRO's total expenses in Q1 2019 were 14695125.0.,"MATCH (c:Company {symbol: 'HMPRO'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_EXPENSES]->(e:Expenses)
+RETURN e.totalExpensesQuarter AS TotalExpenses",22.637396,0.00101113,32.229083,54.86749,
+23,What was INTUCH's Net Profit Margin in Q1 2019?,"According to the search results, INTUCH's Net Profit Margin in Q1 2019 was approximately 6.01%.","MATCH (c:Company {symbol: 'INTUCH'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_REVENUE]->(r:Revenue)
+MATCH (fs)-[:HAS_EXPENSES]->(e:Expenses)
+RETURN (r.totalRevenueQuarter - e.totalExpensesQuarter) / r.totalRevenueQuarter AS NetProfitMargin",22.698021,0.00143695,33.239357,55.938816,
+24,What was IVL's net profit in Q1 2019?,IVL's net profit in Q1 2019 was 5120828.0.,"MATCH (c:Company {symbol: 'IVL'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'})
+MATCH (fs)-[:HAS_REVENUE]->(r:Revenue)
+MATCH (fs)-[:HAS_EXPENSES]->(e:Expenses)
+RETURN r.totalRevenueQuarter - e.totalExpensesQuarter AS NetProfit",22.671305,0.00133562,32.226895,54.899535,
+25,What were KBANK's total assets in Q1 2019?,"KBANK's total assets in Q1 2019 were 3,150,640,953 THB.","MATCH (c:Company {symbol: 'KBANK'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2019', quarter: '1'}) 
+MATCH (fs)-[:HAS_ASSETS]->(a:Assets) 
+RETURN a.totalAssets AS TotalAssets",21.497794,0.00163341,32.181869,53.681297,
+26,"What was AWC's closing price on September 1, 2023?","The closing price of AWC on September 1, 2023, was $4.26.","MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_PRICE]->(p:Price{symbol: ""AWC""})
+RETURN p.close AS closingPrice",21.705116,0.00253201,32.267393,53.975041,
+27,"What was AOT's market capitalization on September 1, 2023?","As of September 1, 2023, AOT's market capitalization was approximately 1039284675000.0.","MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_MARKET_RATIO]->(mr:MarketRatio{symbol: ""AOT"",type: ""Market_Cap""})
+RETURN mr.value AS MarketCapitalization",22.524311,0.00206017,32.016826,54.543197,
+28,"What was BDMS's Price-to-Earnings (P/E) ratio on September 1, 2023?","Unfortunately, based on the provided data, I couldn't find the P/E ratio of BDMS on September 1, 2023. The observations from the tools used returned empty data. If you have any additional information or context, I'd be happy to help further.","MATCH (c:Company {symbol: 'BDMS'})-[:HAS_MARKET_DATA]->(md:MarketData {date: '2023-09-01'})-[:HAS_MARKET_RATIO]->(mr:MarketRatio {type: 'PE'})
+RETURN mr.value AS PERatio",21.936213,0.00454617,62.766544,84.707303,
+29,"What was BBL's Dividend Yield on September 1, 2023?","Unfortunately, I couldn't find any data for BBL's Dividend Yield on September 1, 2023. The observation from the search company's data tool returned an empty list, indicating that the data is not available.","MATCH (mr:MarketRatio{symbol: 'BBL',type: ""Dividend Yield"",date: ""2023-09-01""}) RETURN mr.value as DividendYield",22.669147,0.00837016,31.499015,54.176533,
+30,"What was BGRIM's Total Volume on September 1, 2023?","I apologize, but I couldn't provide the Total Volume of BGRIM on September 1, 2023. If you have any other questions or need help with something else, feel free to ask!","MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_VOLUME]->(v:Volume{symbol: ""BGRIM""}) RETURN v.totalVolume AS TotalVolume",21.413083,0.0013628,38.524069,59.938515,
+31,"What was BTS's closing price on September 1, 2023?","As per the observation, BTS's closing price on September 1, 2023, was 7.3.","MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_PRICE]->(p:Price{symbol: ""BTS""})
+RETURN p.close AS closingPrice",22.552752,0.00251818,31.187174,53.742444,
+32,"What was CPALL's market capitalization on September 1, 2023?","As of September 1, 2023, CPALL's market capitalization was approximately 586,147,362,957 THB.","MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_MARKET_RATIO]->(mr:MarketRatio{symbol: ""CPALL"", type: ""Market_Cap""})
+RETURN mr.value AS MarketCapitalization",22.488651,0.00281572,32.215722,54.707188,
+33,"What was BEM's Price-to-Earnings (P/E) ratio on September 1, 2023?","To calculate the P/E ratio, we need to know the company's earnings per share (EPS) and the current stock price. Unfortunately, the provided data does not include the stock price. However, I can guide you through the process.
+
+The P/E ratio is calculated by dividing the current stock price by the EPS.
+
+P/E Ratio = Current Stock Price / Earnings Per Share (EPS)
+
+To calculate the EPS, we would need the net income and the total number of outstanding shares. If you can provide the net income and the total number of outstanding shares, I can help you calculate the EPS and then the P/E ratio.","MATCH (mr:MarketRatio{symbol: 'BEM', type: 'PE', date: ""2023-09-01""}) RETURN mr.value AS PERatio",21.499439,0.00776196,44.721045,66.228246,
+34,"What was DELTA's lowest price on September 1, 2023?","According to the historical stock price data, DELTA's lowest price on September 1, 2023, was 108.5.","MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_PRICE]->(p:Price{symbol: ""DELTA""}) RETURN min(p.low) AS lowestPrice",22.474478,0.00252151,33.551953,56.028953,
+35,"What was BCP's Price-to-Book (P/BV) ratio on September 1, 2023?","The observation from the search company's data tool does not provide the Price-to-Book (P/BV) ratio directly. However, it provides the necessary data to calculate the P/BV ratio. The P/BV ratio is calculated by dividing the current stock price by the book value per share. 
+
+To calculate the P/BV ratio, we need the current stock price and the book value per share. The book value per share can be calculated by dividing the total shareholder equity by the total number of shares outstanding. 
+
+However, the observation does not provide the current stock price and the total number of shares outstanding. Therefore, I cannot provide the exact P/BV ratio on September 1, 2023.","MATCH (mr:MarketRatio{symbol: 'BCP', type: 'PB', date: ""2023-09-01""})
+RETURN mr.value AS PBV",22.364195,0.00752354,35.884334,58.256052,
+36,"What was GPSC's market capitalization on September 1, 2023?","As of September 1, 2023, GPSC's market capitalization was approximately 147.33 billion USD.","MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_MARKET_RATIO]->(mr:MarketRatio{symbol: ""GPSC"", type: ""Market_Cap""})
+RETURN mr.value AS MarketCapitalization",22.509212,0,32.518689,55.027902,
+37,"What was TOP's closing price on September 1, 2023?","TOP's closing price on September 1, 2023 was 51.5.","MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_PRICE]->(p:Price{symbol: ""TOP""})
+RETURN p.close AS closingPrice",21.468975,0.0019908,32.395062,53.866027,
+38,"What was LH's Total Volume on September 1, 2023?","Unfortunately, the observation from the search company's data tool did not return any data for LH's Total Volume on September 1, 2023. It's possible that the data is not available or the query did not fetch the required information.","MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_VOLUME]->(v:Volume{symbol: ""LH""}) RETURN v.totalVolume AS TotalVolume",21.547311,0.00098562,32.406636,53.954932,
+39,"What was KTC's Price-to-Book (P/BV) ratio on September 1, 2023?","As of September 1, 2023, KTC's Price-to-Book (P/BV) ratio was 3.88.","MATCH (c:Company {symbol: 'KTC'})-[:HAS_MARKET_DATA]->(md:MarketData {date: '2023-09-01'})-[:HAS_MARKET_RATIO]->(mr:MarketRatio {type: 'PB', symbol: 'KTC'})
+RETURN mr.value AS PriceToBookValueRatio",22.572899,0.00216079,32.289464,54.864524,
+40,"What was PTTEP's Price-to-Earnings (P/E) ratio on September 1, 2023?","The Price-to-Earnings (P/E) ratio of PTTEP on September 1, 2023, is 8.05.","MATCH (mr:MarketRatio{symbol: 'PTTEP',type: ""PE"",date: ""2023-09-01""})
+RETURN mr.value as PERatio",21.737407,0.00862503,69.095566,90.841598,
+41,"What was SCC's Dividend Yield on September 1, 2023?",Error occurred,,0,0,0,0,too many values to unpack (expected 2)
+42,"What was GULF's market capitalization on September 1, 2023?","As of September 1, 2023, GULF's market capitalization was approximately 560,257,912,404.5.","MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_MARKET_RATIO]->(mr:MarketRatio{symbol: ""GULF"", type: ""Market_Cap""})
+RETURN mr.value AS Market_Capitalization",22.705695,0.00277162,32.342016,55.050483,
+43,"What was CENTEL's closing price on September 1, 2023?","CENTEL's closing price on September 1, 2023 was $47.00.","MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_PRICE]->(p:Price{symbol: ""CENTEL""}) RETURN p.close AS closingPrice",22.413387,0.00231814,31.431043,53.846749,
+44,"What was IVL's highest price on September 1, 2023?","According to the retrieved data, IVL's highest price on September 1, 2023, was 29.25.","MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_PRICE]->(p:Price{symbol: ""IVL""}) RETURN p.high AS highestPrice",21.681345,0.00238562,33.488795,55.172526,
+45,"What was TIDLOR's Price-to-Book (P/BV) ratio on September 1, 2023?","TIDLOR's Price-to-Book (P/BV) ratio on September 1, 2023, was 2.46.","MATCH (m:MarketRatio{symbol: 'TIDLOR', type: 'PB', date: '2023-09-01'})
+RETURN m.value AS PriceToBookValueRatio",22.417508,0.01045275,32.36797,54.795931,
+46,"What was ADVANC's closing price on September 1, 2023?","ADVANC's closing price on September 1, 2023 was 215.0.","MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_PRICE]->(p:Price{symbol: ""ADVANC""})
+RETURN p.close AS closingPrice",22.390736,0.00252676,31.172191,53.565454,
+47,"What was CBG's market capitalization on September 1, 2023?","As of September 1, 2023, CBG's market capitalization was 85.75 billion.","MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_MARKET_RATIO]->(mr:MarketRatio{symbol: ""CBG"", type: ""Market_Cap""})
+RETURN mr.value AS MarketCapitalization",22.497583,0.0025115,32.247093,54.747188,
+48,"What was AOT's Total Volume on September 1, 2023?","Unfortunately, the query did not return any data for AOT's Total Volume on September 1, 2023. The observation result is an empty list, indicating that there is no available data for the specified date and symbol.","MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_VOLUME]->(v:Volume{symbol: ""AOT""})
+RETURN v.totalVolume AS TotalVolume",21.473483,0.00162029,31.488107,52.96321,
+49,"What was CRC's Price-to-Earnings (P/E) ratio on September 1, 2023?","CRC's Price-to-Earnings (P/E) ratio on September 1, 2023, is not explicitly stated in the provided data. The data contains multiple P/E ratios, but it's unclear which one is specific to September 1, 2023.","MATCH (m:MarketRatio{symbol: 'CRC', type: 'PE', date: ""2023-09-01""})
+RETURN m.value AS PE_Ratio",21.751579,0.00881982,37.577336,59.337735,
+50,"What was PTT's closing price on September 1, 2023?","PTT's closing price on September 1, 2023 was 35.0.","MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_PRICE]->(p:Price{symbol: ""PTT""})
+RETURN p.close AS closingPrice",23.424055,0.00219584,33.051838,56.478088,
+51,Compare ADVANC's total assets with AOT's total assets in 2019.,"Unfortunately, I was unable to retrieve the total assets of ADVANC and AOT for 2019 using the `search company's data` tool. It seems that there is an issue with the generated Cypher Statement, resulting in a syntax error. I will not be able to provide the comparison of total assets for these two companies.","MATCH (c1:Company {symbol: 'ADVANC'})-[:HAS_FINANCIAL_STATEMENT]->(fs1:FinancialStatement {year: '2019'})
+MATCH (fs1)-[:HAS_ASSETS]->(a1:Assets)
+MATCH (c2:Company {symbol: 'AOT'})-[:HAS_FINANCIAL_STATEMENT]->(fs2:FinancialStatement {year: '2019'})
+MATCH (fs2)-[:HAS_ASSETS]->(a2:Assets)
+RETURN a1.totalAssets AS ADVANC_TotalAssets, a2.totalAssets AS AOT_TotalAssets",23.899713,0.00247693,91.567748,115.469938,
+52,Compare ADVANC's total liabilities with BBL's total liabilities in 2019.,"Unfortunately, I was unable to extract the total liabilities for ADVANC and BBL in 2019 from the provided data. The `search company's data` tool returned financial data for both companies, but it did not directly provide the total liabilities. I would need more specific financial data, such as the balance sheets or annual reports, to extract the total liabilities. If you can provide more information or context, I would be happy to try again.","MATCH (c1:Company {symbol: 'ADVANC'})-[:HAS_FINANCIAL_STATEMENT]->(fs1:FinancialStatement {year: '2019'}) 
+MATCH (fs1)-[:HAS_LIABILITIES]->(l1:Liabilities) 
+MATCH (c2:Company {symbol: 'BBL'})-[:HAS_FINANCIAL_STATEMENT]->(fs2:FinancialStatement {year: '2019'}) 
+MATCH (fs2)-[:HAS_LIABILITIES]->(l2:Liabilities) 
+RETURN l1.totalLiabilities AS ADVANC_TotalLiabilities, l2.totalLiabilities AS BBL_TotalLiabilities",25.98032,0,100.700256,126.680575,
+53,Compare ADVANC's total revenue with CPALL's total revenue in Q3 2021.,"According to the retrieved data, ADVANC's total revenue in Q3 2021 was 42,555,359 THB, while CPALL's total revenue in Q3 2021 was 130,320,002 THB. This means CPALL's total revenue was approximately 3.06 times higher than ADVANC's total revenue in Q3 2021.","MATCH (adv_fs:FinancialStatement {year: '2021', quarter: '3'})-[:HAS_REVENUE]->(adv_r:Revenue{symbol: 'ADVANC'})
+MATCH (cpall_fs:FinancialStatement {year: '2021', quarter: '3'})-[:HAS_REVENUE]->(cpall_r:Revenue{symbol: 'CPALL'})
+RETURN adv_r.totalRevenueQuarter AS ADVANC_TotalRevenue, cpall_r.totalRevenueQuarter AS CPALL_TotalRevenue",25.725323,0.00299597,34.681513,60.409832,
+54,Compare ADVANC's total expenses with AOT's total expenses in Q2 2020.,"Unfortunately, I couldn't retrieve the total expenses of ADVANC and AOT for Q2 2020 using the provided tools. If you can provide the income statements of ADVANC and AOT for Q2 2020, I can assist you in comparing their total expenses.","MATCH (c1:Company {symbol: 'ADVANC'})-[:HAS_FINANCIAL_STATEMENT]->(fs1:FinancialStatement {year: '2020', quarter: '2'})
+MATCH (fs1)-[:HAS_EXPENSES]->(e1:Expenses)
+MATCH (c2:Company {symbol: 'AOT'})-[:HAS_FINANCIAL_STATEMENT]->(fs2:FinancialStatement {year: '2020', quarter: '2'})
+MATCH (fs2)-[:HAS_EXPENSES]->(e2:Expenses)
+RETURN e1.totalExpensesQuarter AS ADVANC_TotalExpenses, e2.totalExpensesQuarter AS AOT_TotalExpenses",24.068891,0.00199938,68.716516,92.787407,
+55,Compare ADVANC's cumulative net profit in 2020 with 2021.,"Based on the retrieved data, ADVANC's cumulative net profit for 2020 is 39134660.299999994 (sum of 8996751.299999997, 9537513.0, 9607108.0, and 10002096.0) and for 2021 is 40489906.409999996 (sum of 9610870.409999996, 9642182.0, 10262776.0, and 9790576.0).","MATCH (c:Company {symbol: 'ADVANC'})-[:HAS_FINANCIAL_STATEMENT]->(fs_2020:FinancialStatement {year: '2020'})-[:HAS_REVENUE]->(r_2020:Revenue)
+MATCH (c)-[:HAS_FINANCIAL_STATEMENT]->(fs_2021:FinancialStatement {year: '2021'})-[:HAS_REVENUE]->(r_2021:Revenue)
+RETURN r_2020.totalRevenueAccum AS ADVANC_CumulativeNetProfit_2020, r_2021.totalRevenueAccum AS ADVANC_CumulativeNetProfit_2021",25.963118,2.06838322,64.457883,92.489384,
+56,Compare ADVANC's operating cash flow with BBL's in Q1 2021.,"Unfortunately, I was unable to retrieve the operating cash flow data for ADVANC and BBL in Q1 2021 using the `search company's data` tool due to a syntax error in the generated Cypher statement. If you could provide the operating cash flow data for both companies in Q1 2021, I would be happy to help you compare them.","MATCH (c1:Company {symbol: 'ADVANC'})-[:HAS_FINANCIAL_STATEMENT]->(fs1:FinancialStatement {year: '2021', quarter: '1'})
+MATCH (fs1)-[:HAS_CASH_FLOW]->(cf1:CashFlow)
+MATCH (c2:Company {symbol: 'BBL'})-[:HAS_FINANCIAL_STATEMENT]->(fs2:FinancialStatement {year: '2021', quarter: '1'})
+MATCH (fs2)-[:HAS_CASH_FLOW]->(cf2:CashFlow)
+RETURN cf1.operatingCashFlow AS ADVANC_OperatingCashFlow, cf2.operatingCashFlow AS BBL_OperatingCashFlow",24.816585,0.00252056,105.136705,129.955811,
+57,Compare ADVANC's Return on Assets (ROA) with AOT's in 2021.,"I apologize, but I couldn't find the ROA data for ADVANC and AOT in 2021. If you can provide the ROA values for both companies in 2021, I can help you compare them. Alternatively, if you can provide more context or information about where to find the ROA data, I can try to assist you further.","MATCH (c1:Company {symbol: 'ADVANC'})-[:HAS_FINANCIAL_STATEMENT]->(fs1:FinancialStatement {year: '2021'})
+MATCH (fs1)-[:HAS_RATIO]->(roa1:FinancialRatio {type: 'ROA'})
+MATCH (c2:Company {symbol: 'AOT'})-[:HAS_FINANCIAL_STATEMENT]->(fs2:FinancialStatement {year: '2021'})
+MATCH (fs2)-[:HAS_RATIO]->(roa2:FinancialRatio {type: 'ROA'})
+RETURN roa1.value AS ADVANC_ROA, roa2.value AS AOT_ROA",24.908344,0.00223088,71.685433,96.596008,
+58,Compare ADVANC's Return on Equity (ROE) in 2019 with 2022.,"Based on the observation from the search company's data tool, the ROE values for ADVANC in 2019 and 2022 are not explicitly provided. However, the query generated by the tool suggests that the ROE values for both years can be retrieved from the database. Unfortunately, the values themselves are not returned in the observation. To provide a comparison of ADVANC's ROE in 2019 and 2022, I would need to re-run the query with the correct database connection to retrieve the actual ROE values.","MATCH (fs_2019:FinancialStatement {year: '2019'})-[:HAS_RATIO]->(roe_2019:FinancialRatio {symbol: 'ADVANC',type: 'ROE'})
+MATCH (fs_2022:FinancialStatement {year: '2022'})-[:HAS_RATIO]->(roe_2022:FinancialRatio {symbol: 'ADVANC',type: 'ROE'})
+RETURN roe_2019.value AS ROE_2019, roe_2022.value AS ROE_2022",25.843901,0.00557566,36.246874,62.09635,
+59,"Compare ADVANC's closing price on September 1, 2023, with September 4, 2023.","The closing price of ADVANC on September 1, 2023, was 215.0, and on September 4, 2023, it was 213.0. This represents a decrease of 2.0 points or approximately 0.93% over the three-day period.","MATCH (md1:MarketData{date: ""2023-09-01""})-[:HAS_PRICE]->(p1:Price{symbol: ""ADVANC""})
+MATCH (md2:MarketData{date: ""2023-09-04""})-[:HAS_PRICE]->(p2:Price{symbol: ""ADVANC""})
+RETURN p1.close AS ClosingPrice_Sept1, p2.close AS ClosingPrice_Sept4",23.71778,0.00153232,34.929645,58.648957,
+60,"Compare ADVANC's PE ratio with CPALL's PE ratio on September 1, 2023.","Based on the data retrieved, on September 1, 2023, ADVANC's PE ratio is 23.4 and CPALL's PE ratio is 38.12. This indicates that CPALL has a higher PE ratio compared to ADVANC.","MATCH (m_adv:MarketRatio {symbol: 'ADVANC', type: 'PE', date: '2023-09-01'})
+MATCH (m_cpall:MarketRatio {symbol: 'CPALL', type: 'PE', date: '2023-09-01'})
+RETURN m_adv.value AS ADVANC_PE, m_cpall.value AS CPALL_PE",22.926812,0.0175817,34.662617,57.607011,
+61,"Compare ADVANC's market capitalization with AOT's on September 1, 2023.","As of September 1, 2023, ADVANC's market capitalization is 639,455,093,240 THB, and AOT's market capitalization is 1,039,284,675,000 THB. Therefore, AOT's market capitalization is approximately 1.62 times larger than ADVANC's market capitalization.","MATCH (md_adv:MarketData{date: ""2023-09-01""})-[:HAS_MARKET_RATIO]->(mr_adv:MarketRatio{symbol: ""ADVANC"", type: ""Market_Cap""})
+MATCH (md_aot:MarketData{date: ""2023-09-01""})-[:HAS_MARKET_RATIO]->(mr_aot:MarketRatio{symbol: ""AOT"", type: ""Market_Cap""})
+RETURN mr_adv.value AS ADVANC_Market_Cap, mr_aot.value AS AOT_Market_Cap",23.69477,0.00200701,35.613187,59.309964,
+62,Compare BBL's total assets with AOT's total assets in 2020.,"Unfortunately, I was unable to retrieve the total assets data for BBL and AOT in 2020 using the provided tools. The `search company's data` tool encountered syntax errors in the generated Cypher Statement, and the `General Chat` tool did not provide the necessary data. If you can provide the annual reports or balance sheets for BBL and AOT in 2020, I would be happy to assist you in comparing their total assets.","MATCH (c1:Company {symbol: 'BBL'})-[:HAS_FINANCIAL_STATEMENT]->(fs1:FinancialStatement {year: '2020'})
+MATCH (fs1)-[:HAS_ASSETS]->(a1:Assets)
+MATCH (c2:Company {symbol: 'AOT'})-[:HAS_FINANCIAL_STATEMENT]->(fs2:FinancialStatement {year: '2020'})
+MATCH (fs2)-[:HAS_ASSETS]->(a2:Assets)
+RETURN a1.totalAssets AS BBL_TotalAssets, a2.totalAssets AS AOT_TotalAssets",23.957821,0.00250506,102.995895,126.956221,
+63,Compare ADVANC's investment cash flow in Q3 2021 with Q4 2021.,"Based on the observation, ADVANC's investment cash flow in Q3 2021 was -34,278,787 THB and in Q4 2021 was -45,351,937.25 THB. Therefore, the investment cash flow in Q4 2021 was 13,073,150.25 THB more negative than in Q3 2021.","MATCH (c:Company {symbol: 'ADVANC'})-[:HAS_FINANCIAL_STATEMENT]->(fs_q3:FinancialStatement {year: '2021', quarter: '3'})
+MATCH (fs_q3)-[:HAS_CASH_FLOW]->(cf_q3:CashFlow)
+MATCH (c)-[:HAS_FINANCIAL_STATEMENT]->(fs_q4:FinancialStatement {year: '2021', quarter: '4'})
+MATCH (fs_q4)-[:HAS_CASH_FLOW]->(cf_q4:CashFlow)
+RETURN cf_q3.investingCashFlow AS Q3_InvestingCashFlow, cf_q4.investingCashFlow AS Q4_InvestingCashFlow",23.844199,0.00200033,34.830773,58.676972,
+64,Compare ADVANC's Earnings Per Share (EPS) with BBL's in Q1 2020.,"Unfortunately, the data retrieved does not contain the Earnings Per Share (EPS) ratio for either ADVANC or BBL in Q1 2020. The data provided includes various financial ratios such as Total Asset Turnover, Fixed Asset Turnover, Debt-to-Equity (DE), Net Profit Margin, Return on Assets (ROA), and Return on Equity (ROE) for both companies, but EPS is not among them.","MATCH (c:Company {symbol: 'ADVANC'})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {year: '2020', quarter: '1'})
+MATCH (fs)-[:HAS_RATIO]->(r:FinancialRatio {symbol: 'ADVANC', type: 'EPS'})
+MATCH (c2:Company {symbol: 'BBL'})-[:HAS_FINANCIAL_STATEMENT]->(fs2:FinancialStatement {year: '2020', quarter: '1'})
+MATCH (fs2)-[:HAS_RATIO]->(r2:FinancialRatio {symbol: 'BBL', type: 'EPS'})
+RETURN r.value AS ADVANC_EPS, r2.value AS BBL_EPS",23.826843,0.0021596,69.48102,93.310023,
+65,Compare ADVANC's Debt-to-Equity (D/E) ratio with CPALL's in 2020.,"Based on the observation, the Debt-to-Equity (D/E) ratio of ADVANC in 2020 varies from 3.626417021257665 to 4.785170353378956, while CPALL's D/E ratio in 2020 varies from 2.732795287218678 to 3.6897637824138387. On average, ADVANC's D/E ratio is higher than CPALL's in 2020.","MATCH (c1:Company {symbol: 'ADVANC'})-[:HAS_FINANCIAL_STATEMENT]->(fs1:FinancialStatement {year: '2020'})
+MATCH (fs1)-[:HAS_RATIO]->(r1:FinancialRatio {type: 'DE'})
+MATCH (c2:Company {symbol: 'CPALL'})-[:HAS_FINANCIAL_STATEMENT]->(fs2:FinancialStatement {year: '2020'})
+MATCH (fs2)-[:HAS_RATIO]->(r2:FinancialRatio {type: 'DE'})
+RETURN r1.value AS ADVANC_DE, r2.value AS CPALL_DE",26.796479,0.0023253,41.200701,67.999505,
+66,Compare ADVANC's Total Asset Turnover in 2021 with 2022.,Error occurred,,0,0,0,0,too many values to unpack (expected 2)
+67,Compare ADVANC's Fixed Asset Turnover with BBL's in 2020.,"Based on the provided data, we can calculate the Fixed Asset Turnover for both ADVANC and BBL in 2020.
+
+Fixed Asset Turnover = Sales / Average Fixed Assets
+
+From the provided data, we can extract the necessary financial information to calculate the Fixed Asset Turnover.
+
+After calculating, we get:
+
+ADVANC's Fixed Asset Turnover in 2020: 4.21
+BBL's Fixed Asset Turnover in 2020: 3.51
+
+Comparing the two, ADVANC's Fixed Asset Turnover is higher than BBL's in 2020, indicating that ADVANC is more efficient in utilizing its fixed assets to generate sales.","MATCH (c1:Company {symbol: 'ADVANC'})-[:HAS_FINANCIAL_STATEMENT]->(fs1:FinancialStatement {year: '2020'})
+MATCH (fs1)-[:HAS_RATIO]->(r1:FinancialRatio {type: 'Fixed Asset Turnover'})
+MATCH (c2:Company {symbol: 'BBL'})-[:HAS_FINANCIAL_STATEMENT]->(fs2:FinancialStatement {year: '2020'})
+MATCH (fs2)-[:HAS_RATIO]->(r2:FinancialRatio {type: 'Fixed Asset Turnover'})
+RETURN r1.value AS ADVANC_FixedAssetTurnover, r2.value AS BBL_FixedAssetTurnover",28.867528,0.00243998,47.493651,76.363619,
+68,Compare ADVANC's net profit with AOT's in Q4 2021.,"Based on the observation, I can see that the tool provided the financial statements for ADVANC and AOT for Q4 2021. However, the exact net profit figures are not directly available in the observation. To provide a comparison of the net profit, I would need to access the financial statements and extract the net profit data. Unfortunately, the tool did not provide the detailed financial statements. I would recommend searching for the financial statements of ADVANC and AOT for Q4 2021 through other means, such as the companies' websites or financial databases, to obtain the exact net profit figures for comparison.","MATCH (c1:Company {symbol: 'ADVANC'})-[:HAS_FINANCIAL_STATEMENT]->(fs1:FinancialStatement {year: '2021', quarter: '4'})
+MATCH (fs1)-[:HAS_REVENUE]->(r1:Revenue)
+MATCH (fs1)-[:HAS_EXPENSES]->(e1:Expenses)
+MATCH (c2:Company {symbol: 'AOT'})-[:HAS_FINANCIAL_STATEMENT]->(fs2:FinancialStatement {year: '2021', quarter: '4'})
+MATCH (fs2)-[:HAS_REVENUE]->(r2:Revenue)
+MATCH (fs2)-[:HAS_EXPENSES]->(e2:Expenses)
+RETURN (r1.totalRevenueQuarter - e1.totalExpensesQuarter) AS ADVANC_NetProfit, (r2.totalRevenueQuarter - e2.totalExpensesQuarter) AS AOT_NetProfit",28.164302,0.00150204,65.503448,93.669253,
+69,"Compare ADVANC's Total Volume with BBL's on September 4, 2023.","According to the data, the total volume of ADVANC on September 4, 2023, is ADVANC_TotalVolume, and the total volume of BBL on September 4, 2023, is BBL_TotalVolume.","MATCH (md_adv:MarketData{date: ""2023-09-04""})-[:HAS_VOLUME]->(v_adv:Volume{symbol: ""ADVANC""})
+MATCH (md_bbl:MarketData{date: ""2023-09-04""})-[:HAS_VOLUME]->(v_bbl:Volume{symbol: ""BBL""})
+RETURN v_adv.totalVolume AS ADVANC_TotalVolume, v_bbl.totalVolume AS BBL_TotalVolume",23.780296,0,33.684765,57.465061,
+70,"Compare ADVANC's highest price with CPALL's on September 1, 2023.","According to the historical stock prices on September 1, 2023, ADVANC's highest price was 215.0, and CPALL's highest price was 65.25.","MATCH (md:MarketData{date: ""2023-09-01""})-[:HAS_PRICE]->(adv_p:Price{symbol: ""ADVANC""}),(md:MarketData{date: ""2023-09-01""})-[:HAS_PRICE]->(cpall_p:Price{symbol: ""CPALL""})
+RETURN adv_p.high AS ADVANC_HighestPrice, cpall_p.high AS CPALL_HighestPrice",22.858317,0.00200272,34.603142,57.463461,
+71,Compare ADVANC's Total Asset Turnover in Q2 2021 with Q4 2021.,"Based on the retrieved data, ADVANC's Total Asset Turnover in Q2 2021 is [insert value from Q2 2021] and in Q4 2021 is [insert value from Q4 2021]. To accurately compare the two values, I would need the actual numbers from the observation. If you provide the values, I can assist you in comparing and interpreting the results.","MATCH (c:Company {symbol: 'ADVANC'})-[:HAS_FINANCIAL_STATEMENT]->(fs_q2:FinancialStatement {year: '2021', quarter: '2'})
+MATCH (fs_q2)-[:HAS_RATIO]->(r_q2:FinancialRatio {type: 'Asset Turnover'})
+MATCH (c)-[:HAS_FINANCIAL_STATEMENT]->(fs_q4:FinancialStatement {year: '2021', quarter: '4'})
+MATCH (fs_q4)-[:HAS_RATIO]->(r_q4:FinancialRatio {type: 'Asset Turnover'})
+RETURN r_q2.value AS Q2_Asset_Turnover, r_q4.value AS Q4_Asset_Turnover",22.7281,0.00099063,33.865827,56.594918,
+72,"Compare AOT's lowest price with BBL's on September 1, 2023.",Error occurred,,0,0,0,0,too many values to unpack (expected 2)
+73,"Compare AOT's closing price with CPALL's on September 4, 2023.",Error occurred,,0,0,0,0,too many values to unpack (expected 2)
+74,"Compare CPALL's market capitalization with ADVANC's on September 4, 2023.",Error occurred,,0,0,0,0,too many values to unpack (expected 2)
+75,Compare CPALL's Fixed Asset Turnover with AOT's in 2021.,Error occurred,,0,0,0,0,too many values to unpack (expected 2)
+76,How did ADVANC's total revenue trend change from 2019 to 2021?,Error occurred,,0,0,0,0,too many values to unpack (expected 2)
+77,How did AOT's total assets change from 2019 to 2021?,Error occurred,,0,0,0,0,too many values to unpack (expected 2)
+78,How did BBL's cumulative net profit change from 2019 to 2021?,Error occurred,,0,0,0,0,too many values to unpack (expected 2)
+79,How did BDMS's EPS trend change quarterly in 2019?,Error occurred,,0,0,0,0,too many values to unpack (expected 2)
+80,How did BGRIM's operating cash flow trend change from 2019 to 2021?,Error occurred,,0,0,0,0,too many values to unpack (expected 2)
+81,How did BH's EPS growth in 2019?,Error occurred,,0,0,0,0,too many values to unpack (expected 2)
+82,How did BCP's total expenses change quarterly in 2019?,Error occurred,,0,0,0,0,too many values to unpack (expected 2)
+83,How did BTS's Total Asset Turnover trend quarterly?,Error occurred,,0,0,0,0,too many values to unpack (expected 2)
+84,How did CPN's cumulative net profit change from 2019 to 2021?,Error occurred,,0,0,0,0,too many values to unpack (expected 2)
+85,How did EA's total revenue trend change from 2019 to 2021?,Error occurred,,0,0,0,0,too many values to unpack (expected 2)
+86,How did ADVANC's Debt-to-Equity (D/E) ratio change quarterly in 2019?,Error occurred,,0,0,0,0,too many values to unpack (expected 2)
+87,How did BDMS's ROE affect its profitability?,Error occurred,,0,0,0,0,too many values to unpack (expected 2)
+88,How did BTS's Total Asset Turnover affect profitability in 2019?,Error occurred,,0,0,0,0,too many values to unpack (expected 2)
+89,How did BCP's Return on Assets (ROA) change in 2019?,Error occurred,,0,0,0,0,too many values to unpack (expected 2)
+90,How did changes in ADVANC's PE ratio in 2019 affect market capitalization?,Error occurred,,0,0,0,0,too many values to unpack (expected 2)
+91,How did AOT's Debt-to-Equity (D/E) ratio affect financial risk from 2019 to 2021?,Error occurred,,0,0,0,0,too many values to unpack (expected 2)
+92,How did changes in BBL's ROA each quarter in 2019 affect asset efficiency?,Error occurred,,0,0,0,0,too many values to unpack (expected 2)
+93,How did CPF's Debt-to-Equity (D/E) ratio affect financial risk?,Error occurred,,0,0,0,0,too many values to unpack (expected 2)
+94,How did BDMS's ROE change from 2019 to 2021?,Error occurred,,0,0,0,0,too many values to unpack (expected 2)
+95,How did BTS's ROE affect shareholder decisions in 2019?,Error occurred,,0,0,0,0,too many values to unpack (expected 2)
+96,How did BCP's Fixed Asset Turnover affect operating profit?,Error occurred,,0,0,0,0,too many values to unpack (expected 2)
+97,How did changes in BTS's P/E ratio affect company valuation?,Error occurred,,0,0,0,0,too many values to unpack (expected 2)
+98,How did AOT's ROE growth attract investors?,Error occurred,,0,0,0,0,too many values to unpack (expected 2)
+99,How did BEM's rising Debt-to-Equity (D/E) ratio impact financial risk?,Error occurred,,0,0,0,0,too many values to unpack (expected 2)
+100,How did CPF's ROA affect asset utilization efficiency in 2019?,Error occurred,,0,0,0,0,too many values to unpack (expected 2)
