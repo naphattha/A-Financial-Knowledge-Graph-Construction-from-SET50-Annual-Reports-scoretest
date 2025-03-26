@@ -1,47 +1,46 @@
 from llm import llm
 from llm import embeddings
 from db import database
-from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.prompts import PromptTemplate
-from langchain.schema import StrOutputParser
 from langchain.tools import Tool
-from langchain_community.chat_message_histories import Neo4jChatMessageHistory
 from langchain.agents import AgentExecutor, create_react_agent
-from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain import hub
 # from tools.vector import get_company_industry
 from tools.mysql_qa import mysql_qa_function
-
+from tools.analysis import analysis_function
+from tools.comparisons import comparisons_function
+from tools.financial_statements import financial_statements_function
+from tools.market_prices import market_prices_function
 
 import streamlit as st
-from llama_index.core import ServiceContext, StorageContext, VectorStoreIndex, load_index_from_storage
-from langchain_groq import ChatGroq
-from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from langchain_core.prompts import PromptTemplate
-from utils import get_session_id
 
 # Initialize the LLM and embedding models
 embed_model = embeddings
 
-from langchain.schema import SystemMessage, HumanMessage
-
-# Define the simple function
-def simple_function(input_text):
-    return f"Received input: {input_text}"
-
-# Create the Tool instance
-General_Chat = Tool.from_function(
-    name="General Chat",
-    description="For general conversations about financial information not covered by other tools",
-    func=simple_function
+financial_statements_Tool = Tool.from_function(
+    name="Financial Statements",
+    description="Retrieve company financial figures such as revenue, profit, assets, and liabilities.",
+    func=financial_statements_function
 )
 
-# company_industry_Tool = Tool.from_function(
-#     name="company industry Search",
-#     description="Use to find out which industry a company belongs to",
-#     func=get_company_industry
-# )
+market_prices_Tool = Tool.from_function(
+    name="Market Prices & Info",
+    description="Fetch stock prices, P/E ratios, and other market-related data.",
+    func=market_prices_function
+)
 
+comparisons_Tool = Tool.from_function(
+    name="Comparisons",
+    description="Compare financial ratios, trends, and figures across companies or time periods.",
+    func=comparisons_function
+)
+
+analysis_Tool = Tool.from_function(
+    name="Financial Analysis",
+    description="Perform deeper financial analysis based on historical data and trends.",
+    func=analysis_function
+)
 
 mysql_qa_Tool = Tool.from_function(
     name="search company's data",
@@ -51,7 +50,10 @@ mysql_qa_Tool = Tool.from_function(
 
 
 tools = [
-    General_Chat,
+    financial_statements_Tool,
+    market_prices_Tool,
+    comparisons_Tool,
+    analysis_Tool,
     mysql_qa_Tool
 ]
 # company_industry_Tool,
@@ -72,11 +74,7 @@ You can use the following tools, but avoid using General_Chat if possible:
 
 {tools}
 
-To use a tool, please follow these steps:
-
-1. Determine if the information needed to answer the question is available in the context.
-2. If the information is not available, decide if the tool is appropriate for retrieving it.
-3. If the tool should be used, follow this format:
+Use them when necessary. Follow this format:
 
 ```
 Thought: Is it necessary to use a tool? Yes
@@ -91,11 +89,6 @@ When you have an answer to provide to the user or if it's unnecessary to use a t
 Thought: Is it necessary to use a tool? No
 Final Answer: [Your answer here]
 ```
-
-Begin!
-
-Previous conversation history:
-{chat_history}
 
 New message: {input}
 {agent_scratchpad}
