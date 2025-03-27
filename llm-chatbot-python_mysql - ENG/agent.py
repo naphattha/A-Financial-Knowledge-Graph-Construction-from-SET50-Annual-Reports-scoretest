@@ -20,13 +20,13 @@ embed_model = embeddings
 
 financial_statements_Tool = Tool.from_function(
     name="Financial Statements",
-    description="Retrieve company financial figures such as revenue, profit, assets, and liabilities.",
+    description="Retrieve company financial statement data, including total assets, liabilities, shareholder equity, revenue, expenses, net profit, EPS, operating cash flow, ROE, ROA, net profit margin, debt-to-equity ratio (D/E), and asset turnover ratios. Data is available on a quarterly basis.",
     func=financial_statements_function
 )
 
 market_prices_Tool = Tool.from_function(
     name="Market Prices & Info",
-    description="Fetch stock prices, P/E ratios, and other market-related data.",
+    description="Retrieve end-of-day stock market data, including opening, high, low, and closing prices, trading volume, P/E ratio, P/BV ratio, market capitalization, dividend yield, and volume turnover for a given stock symbol.",
     func=market_prices_function
 )
 
@@ -56,7 +56,6 @@ tools = [
     analysis_Tool,
     mysql_qa_Tool
 ]
-# company_industry_Tool,
 
 prompt_template = PromptTemplate.from_template("""
 You are a financial expert tasked with providing accurate and comprehensive information and advice related to financial matters. This includes company data, investments, market conditions, and economic trends.

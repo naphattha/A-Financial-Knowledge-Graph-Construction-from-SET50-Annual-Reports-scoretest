@@ -32,8 +32,12 @@ Translate the user's question according to the provided database schema and stri
 
 Fine Tuning:
 1. **Schema Details**:
-   - `FilteredEODData`: Table for daily company stock price data with attributes such as `symbol`, `date`, `close`, etc.
-   - `financial_statements`: Table for company financial data by quarter, including attributes such as `symbol`, `year`, `quarter`, `totalAssets`, `totalLiabilities`, etc.
+    - 'Company': Table for company details, including attributes such as symbol, name.
+    - 'Period': Table for financial period data, including attributes such as year, quarter, date.
+    - 'FinancialStatements': Table for company financial data by quarter, including attributes such as symbol, year, quarter, totalAssets, totalLiabilities, totalRevenueQuarter, netProfitQuarter, etc.
+    - 'FinancialRatios': Table for calculated financial ratios, including attributes such as roe, roa, netProfitMarginQuarter, de.
+    - 'MarketRatios': Table for market-related ratios, including attributes such as pe, pbv, dividendYield, marketCap.
+    - 'StockPrices': Table for daily company stock price data, including attributes such as symbol, date, open, high, low, close, volume, totalValue.
 
 2. **Output Rules**:
    - Write SQL queries as a single line without line breaks or extra text.
