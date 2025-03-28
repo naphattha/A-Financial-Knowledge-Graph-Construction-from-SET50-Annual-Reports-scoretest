@@ -67,17 +67,6 @@ tools = [
     cypher_qa_Tool
 ]
 
-cypher_qa_Tool = Tool.from_function(
-    name="search company's data",
-    description="Use to find company's financial ratios and financial information using queries.",
-    func=cypher_qa_function
-)
-
-tools = [
-    General_Chat,
-    cypher_qa_Tool
-]
-
 # company_industry_Tool,
 
 prompt_template = PromptTemplate.from_template("""
