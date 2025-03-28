@@ -28,18 +28,44 @@ from langchain.schema import SystemMessage, HumanMessage
 def simple_function(input_text):
     return f"Received input: {input_text}"
 
-General_Chat = Tool.from_function(
-    name="General Chat",
-    description="For general conversations about financial information not covered by other tools",
-    func=simple_function
+financial_statements_Tool = Tool.from_function(
+    name="Financial Statements",
+    description="Retrieve company financial statement data, including total assets, liabilities, shareholder equity, revenue, expenses, net profit, EPS, operating cash flow, ROE, ROA, net profit margin, debt-to-equity ratio (D/E), and asset turnover ratios. Data is available on a quarterly basis.",
+    func=financial_statements_function
 )
 
-# company_industry_Tool = Tool.from_function(
-#     name="company industry Search",
-#     description="Use to find out which industry a company belongs to",
-#     func=get_company_industry
-# )
+market_prices_Tool = Tool.from_function(
+    name="Market Prices & Info",
+    description="Retrieve end-of-day stock market data, including opening, high, low, and closing prices, trading volume, P/E ratio, P/BV ratio, market capitalization, dividend yield, and volume turnover for a given stock symbol.",
+    func=market_prices_function
+)
 
+comparisons_Tool = Tool.from_function(
+    name="Comparisons",
+    description="Compare financial ratios, trends, and figures across companies or time periods.",
+    func=comparisons_function
+)
+
+analysis_Tool = Tool.from_function(
+    name="Financial Analysis",
+    description="Perform deeper financial analysis based on historical data and trends.",
+    func=analysis_function
+)
+
+cypher_qa_Tool = Tool.from_function(
+    name="search company's data",
+    description="Use to find company's financial ratios and financial information using queries.",
+    func=cypher_qa_function
+)
+
+
+tools = [
+    financial_statements_Tool,
+    market_prices_Tool,
+    comparisons_Tool,
+    analysis_Tool,
+    cypher_qa_Tool
+]
 
 cypher_qa_Tool = Tool.from_function(
     name="search company's data",
