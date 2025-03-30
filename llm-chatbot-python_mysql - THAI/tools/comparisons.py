@@ -27,35 +27,31 @@ engine = create_engine(db_url)
 database = SQLDatabase(engine)
 
 MYSQL_GENERATION_TEMPLATE = """
-You are an expert in MySQL who translates user questions into SQL queries to find answers about company data in the database.
-Translate the user's questions according to the database schema.
-Use only the types of relationships and properties that exist in the given schema. Do not use other types of relationships or properties that are not in the provided schema.
+You are an expert in MySQL who translates user questions into SQL queries to retrieve company data from the database. 
+Translate the user's question according to the provided database schema and strictly adhere to these rules:
 
 Fine Tuning:
-1.FilteredEODData: table for company financial statement data, available quarterly (de, ebitAccum, ebitQuarter, epsAccum, epsQuarter, financingCashFlow, fixedAssetTurnover, hasQuarter, hasYear, investingCashFlow, netProfitAccum, netProfitMarginAccum, netProfitMarginQuarter, netProfitQuarter, operatingCashFlow, paidupShareCapital, roa, roe, shareholderEquity, totalAssetTurnover, totalAssets, totalEquity, totalExpensesAccum, totalExpensesQuarter, totalLiabilities, totalRevenueAccum, totalRevenueQuarter)
-    financial_statements: tablefor daily company stock price data (average, close, high, low, open, prior, totalVolume), with the date information in the URI, e.g., uri: http://example.org/stock_value_CPALL_2024-01-25.
-2. The SQL query must be written on a single line without any line breaks. Avoid using `\n` or multi-line formatting.
-3.Example Questions and Translations:
-    3.1. คำถาม: บริษัท ADVANC มีสินทรัพย์รวมในไตรมาสที่ 1 ปี 2019 เท่าไหร่
-        SQL Query: `SELECT totalAssets FROM financial_statements WHERE symbol = 'ADVANC' AND year = 2019 AND quarter = 1 LIMIT 1;`
-    3.2. คำถาม: บริษัท AOT มีหนี้สินรวมในไตรมาสที่ 1 ปี 2019 เท่าไหร่
-        SQL Query: `SELECT totalLiabilities FROM financial_statements WHERE symbol = 'AOT' AND year = 2019 AND quarter = 1 LIMIT 1;`
-    3.3. คำถาม: กำไรสุทธิของบริษัท BBL ในไตรมาสที่ 1 ปี 2019 คือเท่าไหร่
-        SQL Query: `SELECT netProfitQuarter FROM financial_statements WHERE symbol = 'BBL' AND year = 2019 AND quarter = 1 LIMIT 1;`
-    3.4. คำถาม: อัตราผลตอบแทนต่อผู้ถือหุ้น (ROE) ของบริษัท BCP ในไตรมาสที่ 1 ปี 2019 คือเท่าไหร่
-        SQL Query: `SELECT roe FROM financial_statements WHERE symbol = 'BCP' AND year = 2019 AND quarter = 1 LIMIT 1;`
-    3.5. คำถาม: สัดส่วนหนี้สินต่อทุน (D/E) ของบริษัท BDMS ในไตรมาสที่ 1 ปี 2019 คือเท่าไหร่
-        SQL Query: `SELECT de FROM financial_statements WHERE symbol = 'BDMS' AND year = 2019 AND quarter = 1 LIMIT 1;`
-    3.6. คำถาม: รายได้รวมของบริษัท BEM ในไตรมาสที่ 1 ปี 2019 เท่าไหร่
-        SQL Query: `SELECT totalRevenueQuarter FROM financial_statements WHERE symbol = 'BEM' AND year = 2019 AND quarter = 1 LIMIT 1;`
-    3.7. คำถาม: เปรียบเทียบสินทรัพย์รวมของบริษัท ADVANC กับบริษัท AOT ในปี 2019
-        SQL Query: `SELECT symbol, Quarter, totalAssets FROM financial_statements WHERE symbol IN ('ADVANC', 'AOT') AND year = 2019;`
-    3.8. คำถาม: เปรียบเทียบหนี้สินรวมของบริษัท ADVANC กับบริษัท BBL ในปี 2019
-        SQL Query: `SELECT symbol, Quarter, totalLiabilities FROM financial_statements WHERE symbol IN ('ADVANC', 'BBL') AND year = 2019;`
-    3.9. คำถาม: เปรียบเทียบรายได้รวมในไตรมาสของบริษัท ADVANC กับบริษัท CPALL ในไตรมาสที่ 3 ปี 2021
-        SQL Query: `SELECT symbol, totalRevenueQuarter FROM financial_statements WHERE symbol IN ('ADVANC', 'CPALL') AND year = 2021 AND quarter = 3;`
-    3.10. คำถาม: ราคาปิดของหุ้น AWC ในวันที่ 1 กันยายน 2023 คือเท่าไหร่
-        SQL Query: `SELECT close FROM filteredEODData WHERE symbol = 'AWC' AND date = '2023-09-01' LIMIT 1;`
+1. **Schema Details**:
+    - 'company': Table for company details, including attributes such as id, symbol, name.
+    - 'period': Table for financial period data, including attributes such as id, year, quarter, date.
+    - 'financialmetrics': financialmetrics: Table for company financial data by quarter, including attributes such as id, company_id, period_id, total_assets, total_liabilities, total_revenue_quarter, net_profit_quarter, etc.
+    - 'financialratios': Table for calculated financial ratios, including attributes such as id, company_id, period_id, and types like ROE, ROA, NetProfitMarginQuarter, NetProfitMarginAccum, DE, FixedAssetTurnover, TotalAssetTurnover.
+    - 'marketratios': Table for market-related ratios, including attributes such as id, company_id, period_id, and types like PE, PBV, BVPS, DividendYield, MarketCap, VolumeTurnover.
+    - 'marketdata': Table for daily company stock price data, including attributes such as id, company_id, period_id, open, high, low, close, volume, total_value.
+
+2. **Output Rules**:
+   - Write SQL queries as a single line without line breaks or extra text.
+   - Do not include additional explanations or preamble.
+
+3. **Example Questions and Queries**:
+    - Question: เปรียบเทียบอัตราส่วน PE ของหุ้น ADVANC กับหุ้น CPALL ในวันที่ 1 กันยายน 2023
+      SQL Query: `SELECT c.symbol, f.eps_quarter FROM financialmetrics f JOIN company c ON f.company_id = c.id JOIN period p ON f.period_id = p.id WHERE p.year = 2020 AND p.quarter = 1 AND c.symbol IN ('ADVANC', 'BBL');`
+    - Question: เปรียบเทียบผลตอบแทนต่อสินทรัพย์ (ROA) ของบริษัท ADVANC กับ AOT ในปี 2021
+      SQL Query: `SELECT c.symbol, p.quarter, r.value FROM financialratios r JOIN company c ON r.company_id = c.id JOIN period p ON r.period_id = p.id WHERE p.year = 2021 AND c.symbol IN ('ADVANC', 'AOT') AND r.type = 'ROA';`
+    - Question: เปรียบเทียบราคาปิดของหุ้น AOT กับหุ้น CPALL ในวันที่ 4 กันยายน 2023
+      SQL Query: `SELECT c.symbol, m.close FROM marketdata m JOIN company c ON m.company_id = c.id JOIN period p ON m.period_id = p.id WHERE p.date = '2023-09-04' AND c.symbol IN ('AOT', 'CPALL');`
+    - Question: เปรียบเทียบอัตราส่วน PE ของหุ้น ADVANC กับหุ้น CPALL ในวันที่ 1 กันยายน 2023
+      SQL Query: `SELECT c.symbol,m.value FROM marketratios m JOIN company c ON m.company_id = c.id JOIN period p ON m.period_id = p.id WHERE p.date = '2023-09-01' AND c.symbol IN ('ADVANC', 'CPALL') AND m.type = 'PE';`
 
 Schema:
 {schema}
@@ -109,7 +105,7 @@ import time
 import pandas as pd
 from sqlalchemy import text
 
-def mysql_qa_function(input_text):
+def comparisons_function(input_text):
     """
     Executes an SQL query generated for the input text and logs its execution details.
     Collects the following times:
@@ -128,6 +124,12 @@ def mysql_qa_function(input_text):
         generated_result = mysql_qa.invoke({"question": input_text, "schema": schema_str})
         end_query_gen_time = time.time()
 
+        # print('asdasdasdadc:',generated_result)
+        
+        # # Extract the query from the generated result
+        # query_start = generated_result.find("```\n")
+        # query_end = generated_result.find("\n```", query_start)
+        # query = generated_result[query_start:query_end].strip()
 
         # Ensure the query is in one line
         query = " ".join(generated_result.split())
@@ -174,5 +176,5 @@ def mysql_qa_function(input_text):
         )
 
 # Export the tool
-__all__ = ["mysql_qa_function"]
+__all__ = ["comparisons_function"]
 

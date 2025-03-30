@@ -1,24 +1,18 @@
 from llm import llm
 from llm import embeddings
 from db import database
-from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.prompts import PromptTemplate
-from langchain.schema import StrOutputParser
 from langchain.tools import Tool
-from langchain_community.chat_message_histories import Neo4jChatMessageHistory
 from langchain.agents import AgentExecutor, create_react_agent
-from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain import hub
 # from tools.vector import get_company_industry
-from tools.mysql_qa import mysql_qa_function
-
+from tools.analysis import analysis_function
+from tools.comparisons import comparisons_function
+from tools.financial_statements import financial_statements_function
+from tools.market_prices import market_prices_function
 
 import streamlit as st
-from llama_index.core import ServiceContext, StorageContext, VectorStoreIndex, load_index_from_storage
-from langchain_groq import ChatGroq
-from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from langchain_core.prompts import PromptTemplate
-from utils import get_session_id
 
 # Initialize the LLM and embedding models
 embed_model = embeddings
@@ -28,13 +22,6 @@ from langchain.schema import SystemMessage, HumanMessage
 # Define the simple function
 def simple_function(input_text):
     return f"Received input: {input_text}"
-
-# Create the Tool instance
-General_Chat = Tool.from_function(
-    name="General Chat",
-    description="For general conversations about financial information not covered by other tools",
-    func=simple_function
-)
 
 financial_statements_Tool = Tool.from_function(
     name="Financial Statements",
@@ -60,19 +47,11 @@ analysis_Tool = Tool.from_function(
     func=analysis_function
 )
 
-mysql_qa_Tool = Tool.from_function(
-    name="search company's data",
-    description="Use to find company's financial ratios and financial information using queries.",
-    func=mysql_qa_function
-)
-
-
 tools = [
     financial_statements_Tool,
     market_prices_Tool,
     comparisons_Tool,
-    analysis_Tool,
-    mysql_qa_Tool
+    analysis_Tool
 ]
 
 prompt_template = PromptTemplate.from_template("""
@@ -139,6 +118,26 @@ agent_executor = AgentExecutor(
 import time
 import streamlit as st
 
+# Function mapping
+function_map = {
+    "financial_statements": financial_statements_function,
+    "market_prices": market_prices_function,
+    "comparisons": comparisons_function,
+    "analysis": analysis_function
+}
+
+def get_query_execution_details(user_input):
+    """
+    Selects the appropriate function to execute and returns query execution details.
+    """
+    # Determine which function to call (you might need better criteria here)
+    selected_function = function_map.get("financial_statements")  # Default to financial_statements_function
+
+    # Call the function and capture output
+    df, query, query_gen_time, db_fetch_time, error = selected_function(user_input)
+    
+    return df, query, query_gen_time, db_fetch_time, error
+
 def generate_response(user_input):
     """
     Generates a response from the agent and includes metadata.
@@ -146,8 +145,8 @@ def generate_response(user_input):
     try:
         print(f"Raw user input: {user_input}")
         
-        # Call mysql_qa_function to get query execution details
-        df, query, query_gen_time, db_fetch_time, error = mysql_qa_function(user_input)
+        # Call get_query_execution_details to get query execution details
+        df, query, query_gen_time, db_fetch_time, error = get_query_execution_details(user_input)
 
         # Start measuring response generation time
         start_time = time.time()
@@ -196,46 +195,4 @@ def generate_response(user_input):
         }
         return None, metadata, f"Error: Unable to generate response due to {str(e)}"
 
-
-
-# def generate_response(user_input):
-#     """
-#     Generates a response from the agent and includes metadata.
-#     Collects response generation time and integrates query execution details.
-#     """
-#     try:
-#         print(f"Raw user input: {user_input}")
-        
-#         # Start measuring response generation time
-#         start_response_time = time.time()
-
-#         # Call the mysql_qa_function
-#         df, query, query_gen_time, db_fetch_time, error = mysql_qa_function(user_input)
-
-#         # End measuring response generation time
-#         end_response_time = time.time()
-
-#         # Calculate response generation time
-#         response_generation_time = end_response_time - start_response_time
-
-#         # Combine metadata
-#         metadata = {
-#             "query": query,
-#             "query_generation_time": query_gen_time,
-#             "database_fetch_time": db_fetch_time,
-#             "response_generation_time": response_generation_time,
-#             "error": error,
-#         }
-
-#         # If error occurred, return metadata with no response
-#         if error:
-#             return None, metadata, error
-
-#         # Final response
-#         final_response = f"Query results:\n{df.to_string(index=False)}" if not df.empty else "No data found."
-        
-#         return final_response, metadata, None
-#     except Exception as e:
-#         print(f"Error in generate_response: {e}")
-#         return None, {}, str(e)
 

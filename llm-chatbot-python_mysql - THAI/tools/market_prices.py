@@ -34,8 +34,6 @@ Fine Tuning:
 1. **Schema Details**:
     - 'company': Table for company details, including attributes such as id, symbol, name.
     - 'period': Table for financial period data, including attributes such as id, year, quarter, date.
-    - 'financialmetrics': financialmetrics: Table for company financial data by quarter, including attributes such as id, company_id, period_id, total_assets, total_liabilities, total_revenue_quarter, net_profit_quarter, etc.
-    - 'financialratios': Table for calculated financial ratios, including attributes such as id, company_id, period_id, and types like ROE, ROA, NetProfitMarginQuarter, NetProfitMarginAccum, DE, FixedAssetTurnover, TotalAssetTurnover.
     - 'marketratios': Table for market-related ratios, including attributes such as id, company_id, period_id, and types like PE, PBV, BVPS, DividendYield, MarketCap, VolumeTurnover.
     - 'marketdata': Table for daily company stock price data, including attributes such as id, company_id, period_id, open, high, low, close, volume, total_value.
 
@@ -44,12 +42,10 @@ Fine Tuning:
    - Do not include additional explanations or preamble.
 
 3. **Example Questions and Queries**:
-    - Question: What was the total assets of ADVANC in Q1 2019?
-      SQL Query: `SELECT totalAssets FROM financial_statements WHERE symbol = 'ADVANC' AND year = 2019 AND quarter = 1 LIMIT 1;`
-    - Question: Compare the total liabilities of ADVANC and BBL in 2019.
-      SQL Query: `SELECT symbol, quarter, totalLiabilities FROM financial_statements WHERE symbol IN ('ADVANC', 'BBL') AND year = 2019;`
-    - Question: What was the closing price of AWC stock on September 1, 2023?
-      SQL Query: `SELECT close FROM FilteredEODData WHERE symbol = 'AWC' AND date = '2023-09-01' LIMIT 1;`
+    - Question: อัตราส่วนราคาต่อกำไร (P/E) ของหุ้น BDMS ในวันที่ 1 กันยายน 2023 คือเท่าไหร่
+      SQL Query: `SELECT value FROM marketratios WHERE company_id = (SELECT id FROM company WHERE symbol = 'BDMS') AND period_id = (SELECT id FROM period WHERE date = '2023-09-01') AND type = 'PE';`
+    - Question: ราคาเฉลี่ยของหุ้น SCB ในวันที่ 1 กันยายน 2023 คือเท่าไหร่
+      SQL Query: `SELECT average FROM marketdata WHERE company_id = (SELECT id FROM company WHERE symbol = 'SCB') AND period_id = (SELECT id FROM period WHERE date = '2023-09-01');`
 
 Schema:
 {schema}
@@ -103,7 +99,7 @@ import time
 import pandas as pd
 from sqlalchemy import text
 
-def mysql_qa_function(input_text):
+def market_prices_function(input_text):
     """
     Executes an SQL query generated for the input text and logs its execution details.
     Collects the following times:
@@ -174,5 +170,5 @@ def mysql_qa_function(input_text):
         )
 
 # Export the tool
-__all__ = ["mysql_qa_function"]
+__all__ = ["market_prices_function"]
 

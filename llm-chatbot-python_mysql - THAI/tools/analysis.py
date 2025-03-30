@@ -44,11 +44,11 @@ Fine Tuning:
    - Do not include additional explanations or preamble.
 
 3. **Example Questions and Queries**:
-    - Question: How did BCP's Fixed Asset Turnover affect operating profit?
+    - Question: อัตราการหมุนเวียนของสินทรัพย์ถาวรของ BCP ส่งผลต่อกำไรจากการดำเนินงานอย่างไร
       SQL Query: `SELECT p.year, p.quarter, r.value AS fixed_asset_turnover, f.operating_cash_flow FROM financialmetrics f JOIN financialratios r ON f.company_id = r.company_id AND f.period_id = r.period_id JOIN company c ON f.company_id = c.id JOIN period p ON f.period_id = p.id WHERE c.symbol = 'BCP' AND r.type = 'fixedAssetTurnover';`
-    - Question: How did BGRIM's operating cash flow trend change from 2019 to 2021?
+    - Question: แนวโน้มของกระแสเงินสดจากการดำเนินงานของ BGRIM ระหว่างปี 2019-2021 เป็นอย่างไร
       SQL Query: `SELECT p.year, p.quarter, f.operating_cash_flow FROM financialmetrics f JOIN company c ON f.company_id = c.id JOIN period p ON f.period_id = p.id WHERE c.symbol = 'BGRIM' AND p.year BETWEEN 2019 AND 2021 ORDER BY p.year, p.quarter;`
-    - Question: How did ADVANC's Debt-to-Equity (D/E) ratio change quarterly in 2019?
+    - Question: อัตราส่วนหนี้สินต่อทุน (DE) ของ ADVANC มีการเปลี่ยนแปลงอย่างไรในแต่ละไตรมาสของปี 2019
       SQL Query: `SELECT p.quarter, r.value AS de_ratio FROM financialratios r JOIN company c ON r.company_id = c.id JOIN period p ON r.period_id = p.id WHERE c.symbol = 'ADVANC' AND r.type = 'DE' AND p.year = 2019 ORDER BY p.quarter;`
 
 
