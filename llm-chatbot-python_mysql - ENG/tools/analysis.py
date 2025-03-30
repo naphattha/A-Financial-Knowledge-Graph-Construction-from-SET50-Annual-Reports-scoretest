@@ -32,24 +32,25 @@ Translate the user's question according to the provided database schema and stri
 
 Fine Tuning:
 1. **Schema Details**:
-    - 'company': Table for company details, including attributes such as symbol, name.
-    - 'period': Table for financial period data, including attributes such as year, quarter, date.
-    - 'financialmetrics': Table for company financial data by quarter, including attributes such as symbol, year, quarter, totalAssets, totalLiabilities, totalRevenueQuarter, netProfitQuarter, etc.
-    - 'financialratios': Table for calculated financial ratios, including attributes such as roe, roa, netProfitMarginQuarter, de.
-    - 'marketratios': Table for market-related ratios, including attributes such as pe, pbv, dividendYield, marketCap.
-    - 'marketdata': Table for daily company stock price data, including attributes such as symbol, date, open, high, low, close, volume, totalValue.
+    - 'company': Table for company details, including attributes such as id, symbol, name.
+    - 'period': Table for financial period data, including attributes such as id, year, quarter, date.
+    - 'financialmetrics': financialmetrics: Table for company financial data by quarter, including attributes such as id, company_id, period_id, total_assets, total_liabilities, total_revenue_quarter, net_profit_quarter, etc.
+    - 'financialratios': Table for calculated financial ratios, including attributes such as id, company_id, period_id, and types like ROE, ROA, NetProfitMarginQuarter, NetProfitMarginAccum, DE, FixedAssetTurnover, TotalAssetTurnover.
+    - 'marketratios': Table for market-related ratios, including attributes such as id, company_id, period_id, and types like PE, PBV, BVPS, DividendYield, MarketCap, VolumeTurnover.
+    - 'marketdata': Table for daily company stock price data, including attributes such as id, company_id, period_id, open, high, low, close, volume, total_value.
 
 2. **Output Rules**:
    - Write SQL queries as a single line without line breaks or extra text.
    - Do not include additional explanations or preamble.
-   - If the user's question cannot be answered with the schema provided, respond only with: `I don't know`.
 
 3. **Example Questions and Queries**:
-    - Question: What was the total assets of ADVANC in Q1 2019?
-      SQL Query: `SELECT totalAssets FROM financial_statements WHERE symbol = 'ADVANC' AND year = 2019 AND quarter = 1 LIMIT 1;`
-    - Question: Compare the total liabilities of ADVANC and BBL in 2019.
-      SQL Query: `SELECT symbol, quarter, totalLiabilities FROM financial_statements WHERE symbol IN ('ADVANC', 'BBL') AND year = 2019;`
-    - Question: What was the closing price of AWC stock on September 1, 2023?
+    - Question: How did BCP's Fixed Asset Turnover affect operating profit?
+      SQL Query: `SELECT p.year, p.quarter, r.value AS fixed_asset_turnover, f.operating_cash_flow FROM financialmetrics f JOIN financialratios r ON f.company_id = r.company_id AND f.period_id = r.period_id JOIN company c ON f.company_id = c.id JOIN period p ON f.period_id = p.id WHERE c.symbol = 'BCP' AND r.type = 'fixedAssetTurnover';`
+    - Question: How did BGRIM's operating cash flow trend change from 2019 to 2021?
+      SQL Query: `SELECT p.year, p.quarter, f.operating_cash_flow FROM financialmetrics f JOIN company c ON f.company_id = c.id JOIN period p ON f.period_id = p.id WHERE c.symbol = 'BGRIM' AND p.year BETWEEN 2019 AND 2021 ORDER BY p.year, p.quarter;`
+    - Question: How did changes in ADVANC's PE ratio in 2019 affect market capitalization?
+      SQL Query: `SELECT close FROM FilteredEODData WHERE symbol = 'AWC' AND date = '2023-09-01' LIMIT 1;`
+    - Question: How did BTS's ROE affect shareholder decisions in 2019?
       SQL Query: `SELECT close FROM FilteredEODData WHERE symbol = 'AWC' AND date = '2023-09-01' LIMIT 1;`
 
 Schema:

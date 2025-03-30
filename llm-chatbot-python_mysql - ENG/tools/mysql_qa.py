@@ -32,17 +32,16 @@ Translate the user's question according to the provided database schema and stri
 
 Fine Tuning:
 1. **Schema Details**:
-    - 'Company': Table for company details, including attributes such as symbol, name.
-    - 'Period': Table for financial period data, including attributes such as year, quarter, date.
-    - 'FinancialStatements': Table for company financial data by quarter, including attributes such as symbol, year, quarter, totalAssets, totalLiabilities, totalRevenueQuarter, netProfitQuarter, etc.
-    - 'FinancialRatios': Table for calculated financial ratios, including attributes such as roe, roa, netProfitMarginQuarter, de.
-    - 'MarketRatios': Table for market-related ratios, including attributes such as pe, pbv, dividendYield, marketCap.
-    - 'StockPrices': Table for daily company stock price data, including attributes such as symbol, date, open, high, low, close, volume, totalValue.
+    - 'company': Table for company details, including attributes such as id, symbol, name.
+    - 'period': Table for financial period data, including attributes such as id, year, quarter, date.
+    - 'financialmetrics': financialmetrics: Table for company financial data by quarter, including attributes such as id, company_id, period_id, total_assets, total_liabilities, total_revenue_quarter, net_profit_quarter, etc.
+    - 'financialratios': Table for calculated financial ratios, including attributes such as id, company_id, period_id, and types like ROE, ROA, NetProfitMarginQuarter, NetProfitMarginAccum, DE, FixedAssetTurnover, TotalAssetTurnover.
+    - 'marketratios': Table for market-related ratios, including attributes such as id, company_id, period_id, and types like PE, PBV, BVPS, DividendYield, MarketCap, VolumeTurnover.
+    - 'marketdata': Table for daily company stock price data, including attributes such as id, company_id, period_id, open, high, low, close, volume, total_value.
 
 2. **Output Rules**:
    - Write SQL queries as a single line without line breaks or extra text.
    - Do not include additional explanations or preamble.
-   - If the user's question cannot be answered with the schema provided, respond only with: `I don't know`.
 
 3. **Example Questions and Queries**:
     - Question: What was the total assets of ADVANC in Q1 2019?
