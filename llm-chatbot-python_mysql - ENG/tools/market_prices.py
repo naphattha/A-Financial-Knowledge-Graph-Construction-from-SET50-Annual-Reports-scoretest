@@ -34,8 +34,6 @@ Fine Tuning:
 1. **Schema Details**:
     - 'company': Table for company details, including attributes such as symbol, name.
     - 'period': Table for financial period data, including attributes such as year, quarter, date.
-    - 'financialmetrics': Table for company financial data by quarter, including attributes such as symbol, year, quarter, totalAssets, totalLiabilities, totalRevenueQuarter, netProfitQuarter, etc.
-    - 'financialratios': Table for calculated financial ratios, including attributes such as roe, roa, netProfitMarginQuarter, de.
     - 'marketratios': Table for market-related ratios, including attributes such as pe, pbv, dividendYield, marketCap.
     - 'marketdata': Table for daily company stock price data, including attributes such as symbol, date, open, high, low, close, volume, totalValue.
 
@@ -45,12 +43,10 @@ Fine Tuning:
    - If the user's question cannot be answered with the schema provided, respond only with: `I don't know`.
 
 3. **Example Questions and Queries**:
-    - Question: What was the total assets of ADVANC in Q1 2019?
-      SQL Query: `SELECT totalAssets FROM financial_statements WHERE symbol = 'ADVANC' AND year = 2019 AND quarter = 1 LIMIT 1;`
-    - Question: Compare the total liabilities of ADVANC and BBL in 2019.
-      SQL Query: `SELECT symbol, quarter, totalLiabilities FROM financial_statements WHERE symbol IN ('ADVANC', 'BBL') AND year = 2019;`
-    - Question: What was the closing price of AWC stock on September 1, 2023?
-      SQL Query: `SELECT close FROM FilteredEODData WHERE symbol = 'AWC' AND date = '2023-09-01' LIMIT 1;`
+    - Question: What was the Price-to-Earnings (P/E) ratio of BDMS on September 1, 2023?
+      SQL Query: `SELECT value FROM marketratios WHERE company_id = (SELECT id FROM company WHERE symbol = 'BDMS') AND period_id = (SELECT id FROM period WHERE date = '2023-09-01') AND type = 'PE';`
+    - Question: What was SCB's average price on September 1, 2023?
+      SQL Query: `SELECT average FROM marketdata WHERE company_id = (SELECT id FROM company WHERE symbol = 'SCB') AND period_id = (SELECT id FROM period WHERE date = '2023-09-01');`
 
 Schema:
 {schema}

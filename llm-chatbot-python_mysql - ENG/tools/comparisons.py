@@ -45,12 +45,14 @@ Fine Tuning:
    - If the user's question cannot be answered with the schema provided, respond only with: `I don't know`.
 
 3. **Example Questions and Queries**:
-    - Question: What was the total assets of ADVANC in Q1 2019?
-      SQL Query: `SELECT totalAssets FROM financial_statements WHERE symbol = 'ADVANC' AND year = 2019 AND quarter = 1 LIMIT 1;`
-    - Question: Compare the total liabilities of ADVANC and BBL in 2019.
-      SQL Query: `SELECT symbol, quarter, totalLiabilities FROM financial_statements WHERE symbol IN ('ADVANC', 'BBL') AND year = 2019;`
-    - Question: What was the closing price of AWC stock on September 1, 2023?
-      SQL Query: `SELECT close FROM FilteredEODData WHERE symbol = 'AWC' AND date = '2023-09-01' LIMIT 1;`
+    - Question: Compare ADVANC's total assets with AOT's total assets in 2019.
+      SQL Query: `SELECT c.symbol, p.quarter ,f.total_assets FROM financialmetrics f JOIN company c ON f.company_id = c.id JOIN period p ON f.period_id = p.id WHERE p.year = 2019 AND c.symbol IN ('ADVANC', 'AOT');`
+    - Question: Compare ADVANC's Return on Assets (ROA) with AOT's in 2021.
+      SQL Query: `SELECT c.symbol, p.quarter, r.value FROM financialratios r JOIN company c ON r.company_id = c.id JOIN period p ON r.period_id = p.id WHERE p.year = 2021 AND c.symbol IN ('ADVANC', 'AOT') AND r.type = 'ROA';`
+    - Question: Compare ADVANC's Earnings Per Share (EPS) with BBL's in Q1 2020.
+      SQL Query: ``
+    - Question: Compare ADVANC's PE ratio with CPALL's PE ratio on September 1, 2023.
+      SQL Query: ``
 
 Schema:
 {schema}

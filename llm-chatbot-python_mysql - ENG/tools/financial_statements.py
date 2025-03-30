@@ -36,8 +36,6 @@ Fine Tuning:
     - 'period': Table for financial period data, including attributes such as year, quarter, date.
     - 'financialmetrics': Table for company financial data by quarter, including attributes such as symbol, year, quarter, totalAssets, totalLiabilities, totalRevenueQuarter, netProfitQuarter, etc.
     - 'financialratios': Table for calculated financial ratios, including attributes such as roe, roa, netProfitMarginQuarter, de.
-    - 'marketratios': Table for market-related ratios, including attributes such as pe, pbv, dividendYield, marketCap.
-    - 'marketdata': Table for daily company stock price data, including attributes such as symbol, date, open, high, low, close, volume, totalValue.
 
 2. **Output Rules**:
    - Write SQL queries as a single line without line breaks or extra text.
@@ -45,12 +43,10 @@ Fine Tuning:
    - If the user's question cannot be answered with the schema provided, respond only with: `I don't know`.
 
 3. **Example Questions and Queries**:
-    - Question: What was the total assets of ADVANC in Q1 2019?
-      SQL Query: `SELECT totalAssets FROM financial_statements WHERE symbol = 'ADVANC' AND year = 2019 AND quarter = 1 LIMIT 1;`
-    - Question: Compare the total liabilities of ADVANC and BBL in 2019.
-      SQL Query: `SELECT symbol, quarter, totalLiabilities FROM financial_statements WHERE symbol IN ('ADVANC', 'BBL') AND year = 2019;`
-    - Question: What was the closing price of AWC stock on September 1, 2023?
-      SQL Query: `SELECT close FROM FilteredEODData WHERE symbol = 'AWC' AND date = '2023-09-01' LIMIT 1;`
+    - Question: What was the total assets of AOT in Q1 2019?
+      SQL Query: `SELECT total_assets FROM financialmetrics WHERE company_id = (SELECT id FROM company WHERE symbol = 'AOT') AND period_id = (SELECT id FROM period WHERE year = 2019 AND quarter = 1);`
+    - Question: What was PTT's net profit margin in Q1 2019?
+      SQL Query: `SELECT value FROM financialratios WHERE company_id = (SELECT id FROM company WHERE symbol = 'PTT') AND period_id = (SELECT id FROM period WHERE year = 2019 AND quarter = 1) AND type = 'netProfitMarginQuarter';`
 
 Schema:
 {schema}
