@@ -51,9 +51,9 @@ Only output the Cypher query without any explanation or additional text.
 Fine Tuning:
     1.data in knowledge graph :
         Node Types
-        - `Company`**: Node for company details, including attributes such as `symbol`, `name`.
-        - `MarketData`**: Node for daily company stock price data, including attributes such as `symbol`, `year`, `quarter`, `date`, prior,`open`, `high`, `low`, `close`, average, aomVolume, aomValue, trVolume, trValue, totalVolume, totalValue.
-        - `FinancialMetrics`**: Node for company financial data by quarter, including attributes such as `symbol`, `year`, `quarter`, `date`, `type`, and `value`. type values: TotalAssets, TotalLiabilities, PaidupShareCapital, ShareholderEquity, TotalEquity, TotalRevenueQuarter, TotalRevenueAccum, TotalExpensesQuarter, TotalExpensesAccum, EBITQuarter, EBITAccum, NetProfitQuarter, NetProfitAccum,EPSQuarter,EPSAccum,OperatingCashFlow,InvestingCashFlow,FinancingCashFlow.
+        - `Company`: Node for company details, including attributes such as `symbol`, `name`.
+        - `MarketData`: Node for daily company stock price data, including attributes such as `symbol`, `year`, `quarter`, `date`, prior,`open`, `high`, `low`, `close`, average, aomVolume, aomValue, trVolume, trValue, totalVolume, totalValue.
+        - `Metric`: Node for company financial data by quarter, including attributes such as `symbol`, `year`, `quarter`, `date`, `type`, and `value`. type values: TotalAssets, TotalLiabilities, PaidupShareCapital, ShareholderEquity, TotalEquity, TotalRevenueQuarter, TotalRevenueAccum, TotalExpensesQuarter, TotalExpensesAccum, EBITQuarter, EBITAccum, NetProfitQuarter, NetProfitAccum,EPSQuarter,EPSAccum,OperatingCashFlow,InvestingCashFlow,FinancingCashFlow.
         - `Ratio`: Node for both financial and market ratios, including attributes such as `symbol`, `year`, `quarter`, `date`, `type`, and `value`. type values: ROE, ROA, NetProfitMarginQuarter, NetProfitMarginAccum, DE, FixedAssetTurnover, TotalAssetTurnover, PE, PBV, BVPS, DividendYield, MarketCap, VolumeTurnover.
 
         Relationships
@@ -73,30 +73,29 @@ Fine Tuning:
     3.Example Cypher Statements:
         - Question: Compare ADVANC's PE ratio with CPALL's PE ratio on September 1, 2023.
           Cypher Query:     ```
-            MATCH (c:Company {{symbol: 'ADVANC'}})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {{year: '2019', quarter: '1'}})
-            MATCH (fs)-[:HAS_RATIO]->(r:FinancialRatio {{type: 'ROE'}})
-            RETURN r.value AS ROE
+            MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_RATIO]->(adv_ratio:Ratio {type: 'PE', date: '2023-09-01'}),
+                (cpall:Company {symbol: 'CPALL'})-[:HAS_RATIO]->(cpall_ratio:Ratio {type: 'PE', date: '2023-09-01'})
+            RETURN adv_ratio.value AS ADVANC_PERatio, cpall_ratio.value AS CPALL_PERatio
             ```
-
         - Question: Compare ADVANC's Return on Assets (ROA) with AOT's in 2021.
           Cypher Query:     ```
-            MATCH (c:Company {{symbol: 'ADVANC'}})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {{year: '2019', quarter: '1'}})
-            MATCH (fs)-[:HAS_RATIO]->(r:FinancialRatio {{type: 'ROE'}})
-            RETURN r.value AS ROE
+            MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_RATIO]->(adv_roa:Ratio {type: 'ROA', year: '2021'}),
+                (aot:Company {symbol: 'AOT'})-[:HAS_RATIO]->(aot_roa:Ratio {type: 'ROA', year: '2021'})
+            WHERE adv_roa.quarter = aot_roa.quarter
+            RETURN adv_roa.quarter AS Quarter, adv_roa.value AS ADVANC_ROA, aot_roa.value AS AOT_ROA
+            ORDER BY adv_roa.quarter
             ```
-
         - Question: Compare AOT's closing price with CPALL's on September 4, 2023.
           Cypher Query:     ```
-            MATCH (c:Company {{symbol: 'ADVANC'}})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {{year: '2019', quarter: '1'}})
-            MATCH (fs)-[:HAS_RATIO]->(r:FinancialRatio {{type: 'ROE'}})
-            RETURN r.value AS ROE
+            MATCH (aot:Company {symbol: 'AOT'})-[:HAS_MARKET_DATA]->(aot_market:MarketData {date: '2023-09-04'}),
+                (cpall:Company {symbol: 'CPALL'})-[:HAS_MARKET_DATA]->(cpall_market:MarketData {date: '2023-09-04'})
+            RETURN aot_market.close AS AOT_ClosingPrice, cpall_market.close AS CPALL_ClosingPrice
             ```
-
         - Question: Compare ADVANC's PE ratio with CPALL's PE ratio on September 1, 2023.
           Cypher Query:     ```
-            MATCH (c:Company {{symbol: 'ADVANC'}})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {{year: '2019', quarter: '1'}})
-            MATCH (fs)-[:HAS_RATIO]->(r:FinancialRatio {{type: 'ROE'}})
-            RETURN r.value AS ROE
+            MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_RATIO]->(adv_ratio:Ratio {type: 'PE', date: '2023-09-01'}),
+                (cpall:Company {symbol: 'CPALL'})-[:HAS_RATIO]->(cpall_ratio:Ratio {type: 'PE', date: '2023-09-01'})
+            RETURN adv_ratio.value AS ADVANC_PERatio, cpall_ratio.value AS CPALL_PERatio
             ```
 
 Schema:

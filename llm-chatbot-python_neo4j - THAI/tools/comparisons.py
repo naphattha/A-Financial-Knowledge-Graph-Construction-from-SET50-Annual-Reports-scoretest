@@ -71,26 +71,31 @@ Fine Tuning:
         - Ensure the query is valid and aligned with the provided schema. If the query cannot be generated, return an explanation instead of leaving it blank.
         
     3.Example Cypher Statements:
-        - Question: How did BCP's Fixed Asset Turnover affect operating profit?
+        - Question: เปรียบเทียบอัตราส่วน PE ของหุ้น ADVANC กับหุ้น CPALL ในวันที่ 1 กันยายน 2023
           Cypher Query:     ```
-            MATCH (bcp:Company {symbol: 'BCP'})-[:HAS_RATIO]->(fat:Ratio {type: 'FixedAssetTurnover'}),
-                (bcp)-[:HAS_METRIC]->(op:Metric {type: 'EBITQuarter'})
-            WHERE fat.year = op.year AND fat.quarter = op.quarter
-            RETURN fat.year AS Year, fat.quarter AS Quarter, fat.value AS FixedAssetTurnover, op.value AS OperatingProfit
-            ORDER BY fat.year, fat.quarter
+            MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_RATIO]->(adv_ratio:Ratio {type: 'PE', date: '2023-09-01'}),
+                (cpall:Company {symbol: 'CPALL'})-[:HAS_RATIO]->(cpall_ratio:Ratio {type: 'PE', date: '2023-09-01'})
+            RETURN adv_ratio.value AS ADVANC_PERatio, cpall_ratio.value AS CPALL_PERatio
             ```
-        - Question: How did BGRIM's operating cash flow trend change from 2019 to 2021?
+        - Question: เปรียบเทียบผลตอบแทนต่อสินทรัพย์ (ROA) ของบริษัท ADVANC กับ AOT ในปี 2021
           Cypher Query:     ```
-            MATCH (bgrim:Company {symbol: 'BGRIM'})-[:HAS_METRIC]->(ocf:Metric {type: 'OperatingCashFlow'})
-            WHERE ocf.year IN ['2019', '2020', '2021']
-            RETURN ocf.year AS Year, ocf.quarter AS Quarter, ocf.value AS OperatingCashFlow
-            ORDER BY ocf.year, ocf.quarter
+            MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_RATIO]->(adv_roa:Ratio {type: 'ROA', year: '2021'}),
+                (aot:Company {symbol: 'AOT'})-[:HAS_RATIO]->(aot_roa:Ratio {type: 'ROA', year: '2021'})
+            WHERE adv_roa.quarter = aot_roa.quarter
+            RETURN adv_roa.quarter AS Quarter, adv_roa.value AS ADVANC_ROA, aot_roa.value AS AOT_ROA
+            ORDER BY adv_roa.quarter
             ```
-        - Question: How did ADVANC's Debt-to-Equity (D/E) ratio change quarterly in 2019?
+        - Question: เปรียบเทียบราคาปิดของหุ้น AOT กับหุ้น CPALL ในวันที่ 4 กันยายน 2023
           Cypher Query:     ```
-            MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_RATIO]->(de:Ratio {type: 'DE', year: '2019'})
-            RETURN de.quarter AS Quarter, de.value AS DE_Ratio
-            ORDER BY de.quarter
+            MATCH (aot:Company {symbol: 'AOT'})-[:HAS_MARKET_DATA]->(aot_market:MarketData {date: '2023-09-04'}),
+                (cpall:Company {symbol: 'CPALL'})-[:HAS_MARKET_DATA]->(cpall_market:MarketData {date: '2023-09-04'})
+            RETURN aot_market.close AS AOT_ClosingPrice, cpall_market.close AS CPALL_ClosingPrice
+            ```
+        - Question: เปรียบเทียบอัตราส่วน PE ของหุ้น ADVANC กับหุ้น CPALL ในวันที่ 1 กันยายน 2023
+          Cypher Query:     ```
+            MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_RATIO]->(adv_ratio:Ratio {type: 'PE', date: '2023-09-01'}),
+                (cpall:Company {symbol: 'CPALL'})-[:HAS_RATIO]->(cpall_ratio:Ratio {type: 'PE', date: '2023-09-01'})
+            RETURN adv_ratio.value AS ADVANC_PERatio, cpall_ratio.value AS CPALL_PERatio
             ```
 
 Schema:

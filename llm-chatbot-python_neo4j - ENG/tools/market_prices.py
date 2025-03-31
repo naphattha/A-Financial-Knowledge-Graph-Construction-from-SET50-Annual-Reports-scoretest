@@ -51,9 +51,9 @@ Only output the Cypher query without any explanation or additional text.
 Fine Tuning:
     1.data in knowledge graph :
         Node Types
-        - `Company`**: Node for company details, including attributes such as `symbol`, `name`.
-        - `MarketData`**: Node for daily company stock price data, including attributes such as `symbol`, `year`, `quarter`, `date`, prior,`open`, `high`, `low`, `close`, average, aomVolume, aomValue, trVolume, trValue, totalVolume, totalValue.
-        - `FinancialMetrics`**: Node for company financial data by quarter, including attributes such as `symbol`, `year`, `quarter`, `date`, `type`, and `value`. type values: TotalAssets, TotalLiabilities, PaidupShareCapital, ShareholderEquity, TotalEquity, TotalRevenueQuarter, TotalRevenueAccum, TotalExpensesQuarter, TotalExpensesAccum, EBITQuarter, EBITAccum, NetProfitQuarter, NetProfitAccum,EPSQuarter,EPSAccum,OperatingCashFlow,InvestingCashFlow,FinancingCashFlow.
+        - `Company`: Node for company details, including attributes such as `symbol`, `name`.
+        - `MarketData`: Node for daily company stock price data, including attributes such as `symbol`, `year`, `quarter`, `date`, prior,`open`, `high`, `low`, `close`, average, aomVolume, aomValue, trVolume, trValue, totalVolume, totalValue.
+        - `Metric`: Node for company financial data by quarter, including attributes such as `symbol`, `year`, `quarter`, `date`, `type`, and `value`. type values: TotalAssets, TotalLiabilities, PaidupShareCapital, ShareholderEquity, TotalEquity, TotalRevenueQuarter, TotalRevenueAccum, TotalExpensesQuarter, TotalExpensesAccum, EBITQuarter, EBITAccum, NetProfitQuarter, NetProfitAccum,EPSQuarter,EPSAccum,OperatingCashFlow,InvestingCashFlow,FinancingCashFlow.
         - `Ratio`: Node for both financial and market ratios, including attributes such as `symbol`, `year`, `quarter`, `date`, `type`, and `value`. type values: ROE, ROA, NetProfitMarginQuarter, NetProfitMarginAccum, DE, FixedAssetTurnover, TotalAssetTurnover, PE, PBV, BVPS, DividendYield, MarketCap, VolumeTurnover.
 
         Relationships
@@ -73,16 +73,13 @@ Fine Tuning:
     3.Example Cypher Statements:
         - Question: What was the Price-to-Earnings (P/E) ratio of BDMS on September 1, 2023?
           Cypher Query:     ```
-            MATCH (c:Company {{symbol: 'ADVANC'}})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {{year: '2019', quarter: '1'}})
-            MATCH (fs)-[:HAS_RATIO]->(r:FinancialRatio {{type: 'ROE'}})
-            RETURN r.value AS ROE
+            MATCH (c:Company {symbol: 'BDMS'})-[:HAS_RATIO]->(r:Ratio {type: 'PE', date: '2023-09-01'})
+            RETURN r.value AS PERatio
             ```
-
         - Question: What was SCB's average price on September 1, 2023?
           Cypher Query:     ```
-            MATCH (c:Company {{symbol: 'ADVANC'}})-[:HAS_FINANCIAL_STATEMENT]->(fs:FinancialStatement {{year: '2019', quarter: '1'}})
-            MATCH (fs)-[:HAS_RATIO]->(r:FinancialRatio {{type: 'ROE'}})
-            RETURN r.value AS ROE
+            MATCH (c:Company {symbol: 'SCB'})-[:HAS_MARKET_DATA]->(m:MarketData {date: '2023-09-01'})
+            RETURN m.average AS AveragePrice
             ```
 
 Schema:

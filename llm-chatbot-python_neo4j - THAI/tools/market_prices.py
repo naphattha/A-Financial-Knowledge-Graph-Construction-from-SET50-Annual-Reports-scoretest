@@ -71,26 +71,15 @@ Fine Tuning:
         - Ensure the query is valid and aligned with the provided schema. If the query cannot be generated, return an explanation instead of leaving it blank.
         
     3.Example Cypher Statements:
-        - Question: How did BCP's Fixed Asset Turnover affect operating profit?
+        - Question: อัตราส่วนราคาต่อกำไร (P/E) ของหุ้น BDMS ในวันที่ 1 กันยายน 2023 คือเท่าไหร่
           Cypher Query:     ```
-            MATCH (bcp:Company {symbol: 'BCP'})-[:HAS_RATIO]->(fat:Ratio {type: 'FixedAssetTurnover'}),
-                (bcp)-[:HAS_METRIC]->(op:Metric {type: 'EBITQuarter'})
-            WHERE fat.year = op.year AND fat.quarter = op.quarter
-            RETURN fat.year AS Year, fat.quarter AS Quarter, fat.value AS FixedAssetTurnover, op.value AS OperatingProfit
-            ORDER BY fat.year, fat.quarter
+            MATCH (c:Company {symbol: 'BDMS'})-[:HAS_RATIO]->(r:Ratio {type: 'PE', date: '2023-09-01'})
+            RETURN r.value AS PERatio
             ```
-        - Question: How did BGRIM's operating cash flow trend change from 2019 to 2021?
+        - Question: ราคาเฉลี่ยของหุ้น SCB ในวันที่ 1 กันยายน 2023 คือเท่าไหร่
           Cypher Query:     ```
-            MATCH (bgrim:Company {symbol: 'BGRIM'})-[:HAS_METRIC]->(ocf:Metric {type: 'OperatingCashFlow'})
-            WHERE ocf.year IN ['2019', '2020', '2021']
-            RETURN ocf.year AS Year, ocf.quarter AS Quarter, ocf.value AS OperatingCashFlow
-            ORDER BY ocf.year, ocf.quarter
-            ```
-        - Question: How did ADVANC's Debt-to-Equity (D/E) ratio change quarterly in 2019?
-          Cypher Query:     ```
-            MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_RATIO]->(de:Ratio {type: 'DE', year: '2019'})
-            RETURN de.quarter AS Quarter, de.value AS DE_Ratio
-            ORDER BY de.quarter
+            MATCH (c:Company {symbol: 'SCB'})-[:HAS_MARKET_DATA]->(m:MarketData {date: '2023-09-01'})
+            RETURN m.average AS AveragePrice
             ```
 
 Schema:

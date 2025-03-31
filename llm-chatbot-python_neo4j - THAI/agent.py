@@ -10,7 +10,6 @@ from langchain.agents import AgentExecutor, create_react_agent
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain import hub
 # from tools.vector import get_company_industry
-from tools.cypher_qa import cypher_qa_function
 
 import streamlit as st
 from llama_index.core import ServiceContext, StorageContext, VectorStoreIndex, load_index_from_storage
@@ -24,15 +23,10 @@ embed_model = embeddings
 
 from langchain.schema import SystemMessage, HumanMessage
 
-
-def simple_function(input_text):
-    return f"Received input: {input_text}"
-
-General_Chat = Tool.from_function(
-    name="General Chat",
-    description="For general conversations about financial information not covered by other tools",
-    func=simple_function
-)
+from tools.analysis import analysis_function
+from tools.comparisons import comparisons_function
+from tools.financial_statements import financial_statements_function
+from tools.market_prices import market_prices_function
 
 financial_statements_Tool = Tool.from_function(
     name="Financial Statements",
@@ -58,21 +52,12 @@ analysis_Tool = Tool.from_function(
     func=analysis_function
 )
 
-cypher_qa_Tool = Tool.from_function(
-    name="search company's data",
-    description="Use to find company's financial ratios and financial information using queries.",
-    func=cypher_qa_function
-)
-
-
 tools = [
     financial_statements_Tool,
     market_prices_Tool,
     comparisons_Tool,
-    analysis_Tool,
-    cypher_qa_Tool
+    analysis_Tool
 ]
-
 
 # company_industry_Tool,
 
@@ -138,6 +123,26 @@ agent_executor = AgentExecutor(
     handle_parsing_errors=True  # Enable error handling for parsing issues
 )
 
+# Function mapping
+function_map = {
+    "financial_statements": financial_statements_function,
+    "market_prices": market_prices_function,
+    "comparisons": comparisons_function,
+    "analysis": analysis_function
+}
+
+def get_query_execution_details(user_input):
+    """
+    Selects the appropriate function to execute and returns query execution details.
+    """
+    # Determine which function to call (you might need better criteria here)
+    selected_function = function_map.get("financial_statements")  # Default to financial_statements_function
+
+    # Call the function and capture output
+    df, query, query_gen_time, db_fetch_time, error = selected_function(user_input)
+    
+    return df, query, query_gen_time, db_fetch_time, error
+
 import time  # Import the time module
 
 # Function to generate response
@@ -148,7 +153,7 @@ def generate_response(user_input):
     try:
         print(f"Raw user input: {user_input}")
         
-        output= cypher_qa_function(user_input)
+        output= get_query_execution_details(user_input)
 
         data = output.get('data')
         query = output.get('query')  # Extract the query
