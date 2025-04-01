@@ -1,0 +1,285 @@
+﻿query_index,query,result,time,ram
+1,"MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_METRIC]->(adv_metric:Metric {type: 'TotalAssets', year: '2019', quarter: '1'})
+RETURN adv_metric.value AS ADVANC_TotalAssets","{""ADVANC_TotalAssets"": 296633567.0}",0.2052520513534546,-1.0859375
+2,"MATCH (aot:Company {symbol: 'AOT'})-[:HAS_METRIC]->(aot_metric:Metric {type: 'TotalLiabilities', year: '2019', quarter: '1'})
+RETURN aot_metric.value AS AOT_TotalLiabilities","{""AOT_TotalLiabilities"": 37643003.03}",0.0008603334426879883,0.00390625
+3,"MATCH (bbl:Company {symbol: 'BBL'})-[:HAS_METRIC]->(bbl_metric:Metric {type: 'NetProfitQuarter', year: '2019', quarter: '1'})
+RETURN bbl_metric.value AS BBL_NetProfit","{""BBL_NetProfit"": 9028296.0}",0.0008351802825927734,0.0078125
+4,"MATCH (bcp:Company {symbol: 'BCP'})-[:HAS_RATIO]->(bcp_ratio:Ratio {type: 'ROE', year: '2019', quarter: '1'})
+RETURN bcp_ratio.value AS BCP_ROE","{""BCP_ROE"": 3.4809742874856684}",0.0011512041091918945,0.0
+5,"MATCH (bdms:Company {symbol: 'BDMS'})-[:HAS_RATIO]->(bdms_ratio:Ratio {type: 'DE', year: '2019', quarter: '1'})
+RETURN bdms_ratio.value AS BDMS_DE_Ratio","{""BDMS_DE_Ratio"": 0.6667299132438345}",0.001101207733154297,0.0
+6,"MATCH (bem:Company {symbol: 'BEM'})-[:HAS_METRIC]->(bem_metric:Metric {type: 'TotalRevenueQuarter', year: '2019', quarter: '1'})
+RETURN bem_metric.value AS BEM_TotalRevenue","{""BEM_TotalRevenue"": 4078247.0}",0.0007748842239379883,0.0
+7,"MATCH (bgrim:Company {symbol: 'BGRIM'})-[:HAS_METRIC]->(bgrim_metric:Metric {type: 'NetProfitQuarter', year: '2019', quarter: '1'})
+RETURN bgrim_metric.value AS BGRIM_NetProfit","{""BGRIM_NetProfit"": 532405.0}",0.0007989645004272461,0.0
+8,"MATCH (bh:Company {symbol: 'BH'})-[:HAS_RATIO]->(bh_ratio:Ratio {type: 'NetProfitMarginQuarter', year: '2019', quarter: '1'})
+RETURN bh_ratio.value AS BH_NetProfitMargin","{""BH_NetProfitMargin"": 22.85438170740107}",0.0010219573974609374,0.0
+9,"MATCH (bjc:Company {symbol: 'BJC'})-[:HAS_METRIC]->(bjc_metric:Metric {type: 'TotalRevenueQuarter', year: '2019', quarter: '1'})
+RETURN bjc_metric.value AS BJC_TotalRevenue","{""BJC_TotalRevenue"": 42317995.0}",0.0007108688354492187,0.0
+10,"MATCH (bts:Company {symbol: 'BTS'})-[:HAS_METRIC]->(bts_metric:Metric {type: 'TotalExpensesQuarter', year: '2019', quarter: '1'})
+RETURN bts_metric.value AS BTS_TotalExpenses","{""BTS_TotalExpenses"": 8734096.38}",0.0007143497467041015,0.0
+11,"MATCH (cbg:Company {symbol: 'CBG'})-[:HAS_METRIC]->(cbg_metric:Metric {type: 'TotalAssets', year: '2019', quarter: '1'})
+RETURN cbg_metric.value AS CBG_TotalAssets","{""CBG_TotalAssets"": 14462513.0}",0.0007001161575317383,0.0
+12,"MATCH (centel:Company {symbol: 'CENTEL'})-[:HAS_METRIC]->(centel_metric:Metric {type: 'NetProfitQuarter', year: '2019', quarter: '1'})
+RETURN centel_metric.value AS CENTEL_NetProfit","{""CENTEL_NetProfit"": 825914.0}",0.0007785797119140625,0.0
+13,"MATCH (cpall:Company {symbol: 'CPALL'})-[:HAS_RATIO]->(cpall_ratio:Ratio {type: 'ROA', year: '2019', quarter: '1'})
+RETURN cpall_ratio.value AS CPALL_ROA","{""CPALL_ROA"": 8.770896697235937}",0.0012917518615722656,0.0
+14,"MATCH (cpf:Company {symbol: 'CPF'})-[:HAS_METRIC]->(cpf_metric:Metric {type: 'TotalExpensesQuarter', year: '2019', quarter: '1'})
+RETURN cpf_metric.value AS CPF_TotalExpenses","{""CPF_TotalExpenses"": 121323688.0}",0.0007920265197753906,0.0
+15,"MATCH (cpn:Company {symbol: 'CPN'})-[:HAS_RATIO]->(cpn_ratio:Ratio {type: 'DE', year: '2019', quarter: '1'})
+RETURN cpn_ratio.value AS CPN_DE_Ratio","{""CPN_DE_Ratio"": 1.116567454233774}",0.0013285398483276368,0.0
+16,"MATCH (delta:Company {symbol: 'DELTA'})-[:HAS_RATIO]->(delta_ratio:Ratio {type: 'FixedAssetTurnover', year: '2019', quarter: '1'})
+RETURN delta_ratio.value AS DELTA_FixedAssetTurnover","{""DELTA_FixedAssetTurnover"": 6.627197631020622}",0.0010054588317871093,0.0
+17,"MATCH (ea:Company {symbol: 'EA'})-[:HAS_METRIC]->(ea_metric:Metric {type: 'TotalRevenueQuarter', year: '2019', quarter: '1'})
+RETURN ea_metric.value AS EA_TotalRevenue","{""EA_TotalRevenue"": 3088448.0}",0.0007294654846191406,0.0
+18,"MATCH (egco:Company {symbol: 'EGCO'})-[:HAS_METRIC]->(egco_metric:Metric {type: 'NetProfitQuarter', year: '2019', quarter: '1'})
+RETURN egco_metric.value AS EGCO_NetProfit","{""EGCO_NetProfit"": 3749223.0}",0.0008577823638916016,0.0
+19,"MATCH (global:Company {symbol: 'GLOBAL'})-[:HAS_METRIC]->(global_metric:Metric {type: 'TotalRevenueQuarter', year: '2019', quarter: '1'})
+RETURN global_metric.value AS GLOBAL_TotalRevenue","{""GLOBAL_TotalRevenue"": 7700765.0}",0.001190519332885742,0.0
+20,"MATCH (gpsc:Company {symbol: 'GPSC'})-[:HAS_RATIO]->(gpsc_ratio:Ratio {type: 'ROE', year: '2019', quarter: '1'})
+RETURN gpsc_ratio.value AS GPSC_ROE","{""GPSC_ROE"": 8.407815978278295}",0.0006914615631103515,0.0
+21,"MATCH (gulf:Company {symbol: 'GULF'})-[:HAS_METRIC]->(gulf_metric:Metric {type: 'TotalLiabilities', year: '2019', quarter: '1'})
+RETURN gulf_metric.value AS GULF_TotalLiabilities","{""GULF_TotalLiabilities"": 83528294.95}",0.0012679815292358399,0.0
+22,"MATCH (hmpro:Company {symbol: 'HMPRO'})-[:HAS_METRIC]->(hmpro_metric:Metric {type: 'TotalExpensesQuarter', year: '2019', quarter: '1'})
+RETURN hmpro_metric.value AS HMPRO_TotalExpenses","{""HMPRO_TotalExpenses"": 14695125.0}",0.000686478614807129,0.0
+23,"MATCH (intuch:Company {symbol: 'INTUCH'})-[:HAS_RATIO]->(intuch_ratio:Ratio {type: 'NetProfitMarginQuarter', year: '2019', quarter: '1'})
+RETURN intuch_ratio.value AS INTUCH_NetProfitMargin","{""INTUCH_NetProfitMargin"": 205.5568849481893}",0.0006473779678344727,0.0
+24,"MATCH (ivl:Company {symbol: 'IVL'})-[:HAS_METRIC]->(ivl_metric:Metric {type: 'NetProfitQuarter', year: '2019', quarter: '1'})
+RETURN ivl_metric.value AS IVL_NetProfit","{""IVL_NetProfit"": 3707724.0}",0.0007016181945800782,0.0
+25,"MATCH (kbank:Company {symbol: 'KBANK'})-[:HAS_METRIC]->(kbank_metric:Metric {type: 'TotalAssets', year: '2019', quarter: '1'})
+RETURN kbank_metric.value AS KBANK_TotalAssets","{""KBANK_TotalAssets"": 3150640953.0}",0.0007663726806640625,0.0
+26,"MATCH (c:Company {symbol: 'AWC'})-[:HAS_MARKET_DATA]->(m:MarketData {date: '2023-09-01'})
+RETURN m.close AS ClosingPrice;","{""ClosingPrice"": 4.26}",0.0007637739181518555,0.0
+27,"MATCH (c:Company {symbol: 'AOT'})-[:HAS_RATIO]->(r:Ratio {type: 'MarketCap', date: '2023-09-01'})
+RETURN r.value AS MarketCapitalization;","{""MarketCapitalization"": 1039284675000.0}",0.0012331485748291015,0.0
+28,"MATCH (c:Company {symbol: 'BDMS'})-[:HAS_RATIO]->(r:Ratio {type: 'PE', date: '2023-09-01'})
+RETURN r.value AS PERatio;","{""PERatio"": 33.84}",0.0007107734680175781,0.0
+29,"MATCH (c:Company {symbol: 'BBL'})-[:HAS_RATIO]->(r:Ratio {type: 'DividendYield', date: '2023-09-01'})
+RETURN r.value AS DividendYield;","{""DividendYield"": 2.6600000858306885}",0.0009877204895019532,0.0
+30,"MATCH (c:Company {symbol: 'BGRIM'})-[:HAS_MARKET_DATA]->(m:MarketData {date: '2023-09-01'})
+RETURN m.totalVolume AS TotalVolume;","{""TotalVolume"": 19088318.0}",0.000681924819946289,0.0
+31,"MATCH (c:Company {symbol: 'BTS'})-[:HAS_MARKET_DATA]->(m:MarketData {date: '2023-09-01'})
+RETURN m.close AS ClosingPrice;","{""ClosingPrice"": 7.3}",0.0006825447082519532,0.0
+32,"MATCH (c:Company {symbol: 'CPALL'})-[:HAS_RATIO]->(r:Ratio {type: 'MarketCap', date: '2023-09-01'})
+RETURN r.value AS MarketCapitalization;","{""MarketCapitalization"": 586147362957.0}",0.001042938232421875,0.0
+33,"MATCH (c:Company {symbol: 'BEM'})-[:HAS_RATIO]->(r:Ratio {type: 'PE', date: '2023-09-01'})
+RETURN r.value AS PERatio;","{""PERatio"": 42.68}",0.0009302139282226562,0.0
+34,"MATCH (c:Company {symbol: 'DELTA'})-[:HAS_MARKET_DATA]->(m:MarketData {date: '2023-09-01'})
+RETURN m.low AS LowestPrice;","{""LowestPrice"": 108.5}",0.0006305932998657227,0.0
+35,"MATCH (c:Company {symbol: 'BCP'})-[:HAS_RATIO]->(r:Ratio {type: 'PBV', date: '2023-09-01'})
+RETURN r.value AS PBVRatio;","{""PBVRatio"": 0.83}",0.0010393857955932617,0.0
+36,"MATCH (c:Company {symbol: 'GPSC'})-[:HAS_RATIO]->(r:Ratio {type: 'MarketCap', date: '2023-09-01'})
+RETURN r.value AS MarketCapitalization;","{""MarketCapitalization"": 147330859425.75}",0.0010520458221435548,0.0
+37,"MATCH (c:Company {symbol: 'TOP'})-[:HAS_MARKET_DATA]->(m:MarketData {date: '2023-09-01'})
+RETURN m.close AS ClosingPrice;","{""ClosingPrice"": 51.5}",0.000649571418762207,0.0
+38,"MATCH (c:Company {symbol: 'LH'})-[:HAS_MARKET_DATA]->(m:MarketData {date: '2023-09-01'})
+RETURN m.totalVolume AS TotalVolume;","{""TotalVolume"": 47720524.0}",0.0005460500717163086,0.0
+39,"MATCH (c:Company {symbol: 'KTC'})-[:HAS_RATIO]->(r:Ratio {type: 'PBV', date: '2023-09-01'})
+RETURN r.value AS PBVRatio;","{""PBVRatio"": 3.88}",0.0012342214584350586,0.0
+40,"MATCH (c:Company {symbol: 'PTTEP'})-[:HAS_RATIO]->(r:Ratio {type: 'PE', date: '2023-09-01'})
+RETURN r.value AS PERatio;","{""PERatio"": 8.05}",0.0006538152694702149,0.0
+41,"MATCH (c:Company {symbol: 'SCC'})-[:HAS_RATIO]->(r:Ratio {type: 'DividendYield', date: '2023-09-01'})
+RETURN r.value AS DividendYield;","{""DividendYield"": 2.559999942779541}",0.0007913351058959961,0.0
+42,"MATCH (c:Company {symbol: 'GULF'})-[:HAS_RATIO]->(r:Ratio {type: 'MarketCap', date: '2023-09-01'})
+RETURN r.value AS MarketCapitalization;","{""MarketCapitalization"": 560257912404.5}",0.0009206056594848633,0.0
+43,"MATCH (c:Company {symbol: 'CENTEL'})-[:HAS_MARKET_DATA]->(m:MarketData {date: '2023-09-01'})
+RETURN m.close AS ClosingPrice;","{""ClosingPrice"": 47.0}",0.0006815195083618164,0.0
+44,"MATCH (c:Company {symbol: 'IVL'})-[:HAS_MARKET_DATA]->(m:MarketData {date: '2023-09-01'})
+RETURN m.high AS HighestPrice;","{""HighestPrice"": 29.25}",0.0006839275360107422,0.0
+45,"MATCH (c:Company {symbol: 'TIDLOR'})-[:HAS_RATIO]->(r:Ratio {type: 'PBV', date: '2023-09-01'})
+RETURN r.value AS PBVRatio;","{""PBVRatio"": 2.46}",0.0006864547729492187,0.0
+46,"MATCH (c:Company {symbol: 'ADVANC'})-[:HAS_MARKET_DATA]->(m:MarketData {date: '2023-09-01'})
+RETURN m.close AS ClosingPrice;","{""ClosingPrice"": 215.0}",0.0001255035400390625,0.0
+47,"MATCH (c:Company {symbol: 'CBG'})-[:HAS_RATIO]->(r:Ratio {type: 'MarketCap', date: '2023-09-01'})
+RETURN r.value AS MarketCapitalization;","{""MarketCapitalization"": 85750000000.0}",0.0007691383361816406,0.0
+48,"MATCH (c:Company {symbol: 'AOT'})-[:HAS_MARKET_DATA]->(m:MarketData {date: '2023-09-01'})
+RETURN m.totalVolume AS TotalVolume;","{""TotalVolume"": 13649846.0}",0.0007430315017700195,0.0
+49,"MATCH (c:Company {symbol: 'CRC'})-[:HAS_RATIO]->(r:Ratio {type: 'PE', date: '2023-09-01'})
+RETURN r.value AS PERatio;","{""PERatio"": 29.9}",0.0011585474014282227,0.0
+50,"MATCH (c:Company {symbol: 'PTT'})-[:HAS_MARKET_DATA]->(m:MarketData {date: '2023-09-01'})
+RETURN m.close AS ClosingPrice;","{""ClosingPrice"": 35.0}",0.0006106138229370117,0.0
+51,"MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_METRIC]->(adv_assets:Metric {type: 'TotalAssets', year: '2019'}), 
+      (aot:Company {symbol: 'AOT'})-[:HAS_METRIC]->(aot_assets:Metric {type: 'TotalAssets', year: '2019'})
+WHERE adv_assets.quarter = aot_assets.quarter
+RETURN adv_assets.quarter AS Quarter, adv_assets.value AS ADVANC_TotalAssets, aot_assets.value AS AOT_TotalAssets
+ORDER BY adv_assets.quarter;","{""Quarter"": ""1"", ""ADVANC_TotalAssets"": 296633567.0, ""AOT_TotalAssets"": 181143997.77}",0.0014357328414916991,0.015625
+52,"MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_METRIC]->(adv_liabilities:Metric {type: 'TotalLiabilities', year: '2019'}), 
+      (bbl:Company {symbol: 'BBL'})-[:HAS_METRIC]->(bbl_liabilities:Metric {type: 'TotalLiabilities', year: '2019'})
+WHERE adv_liabilities.quarter = bbl_liabilities.quarter
+RETURN adv_liabilities.quarter AS Quarter, adv_liabilities.value AS ADVANC_TotalLiabilities, bbl_liabilities.value AS BBL_TotalLiabilities
+ORDER BY adv_liabilities.quarter;","{""Quarter"": ""1"", ""ADVANC_TotalLiabilities"": 239864965.0, ""BBL_TotalLiabilities"": 2723140802.0}",0.0013203382492065429,0.03125
+53,"MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_METRIC]->(adv_revenue:Metric {type: 'TotalRevenueQuarter', year: '2021', quarter: '3'}), 
+      (cpall:Company {symbol: 'CPALL'})-[:HAS_METRIC]->(cpall_revenue:Metric {type: 'TotalRevenueQuarter', year: '2021', quarter: '3'})
+RETURN adv_revenue.value AS ADVANC_TotalRevenue, cpall_revenue.value AS CPALL_TotalRevenue;","{""ADVANC_TotalRevenue"": 42555359.0, ""CPALL_TotalRevenue"": 130320002.0}",0.0007981061935424805,0.0
+54,"MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_METRIC]->(adv_expenses:Metric {type: 'TotalExpensesQuarter', year: '2020', quarter: '2'}), 
+      (aot:Company {symbol: 'AOT'})-[:HAS_METRIC]->(aot_expenses:Metric {type: 'TotalExpensesQuarter', year: '2020', quarter: '2'})
+RETURN adv_expenses.value AS ADVANC_TotalExpenses, aot_expenses.value AS AOT_TotalExpenses;","{""ADVANC_TotalExpenses"": 32832811.0, ""AOT_TotalExpenses"": 5309990.08}",0.0008255243301391602,0.0
+55,"MATCH (adv_2020:Company {symbol: 'ADVANC'})-[:HAS_METRIC]->(adv_net_2020:Metric {type: 'NetProfitAccum', year: '2020'}),
+      (adv_2021:Company {symbol: 'ADVANC'})-[:HAS_METRIC]->(adv_net_2021:Metric {type: 'NetProfitAccum', year: '2021'})
+WHERE adv_net_2020.quarter = adv_net_2021.quarter
+RETURN adv_net_2020.quarter AS Quarter, adv_net_2020.value AS ADVANC_NetProfit_2020, adv_net_2021.value AS ADVANC_NetProfit_2021
+ORDER BY adv_net_2020.quarter;","{""Quarter"": ""1"", ""ADVANC_NetProfit_2020"": 6756194.0, ""ADVANC_NetProfit_2021"": 6643889.0}",0.001405954360961914,0.0078125
+56,"MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_METRIC]->(adv_ocf:Metric {type: 'OperatingCashFlow', year: '2021', quarter: '1'}), 
+      (bbl:Company {symbol: 'BBL'})-[:HAS_METRIC]->(bbl_ocf:Metric {type: 'OperatingCashFlow', year: '2021', quarter: '1'})
+RETURN adv_ocf.value AS ADVANC_OperatingCashFlow, bbl_ocf.value AS BBL_OperatingCashFlow;","{""ADVANC_OperatingCashFlow"": 20764808.0, ""BBL_OperatingCashFlow"": -89356740.0}",0.0013455867767333985,0.0
+57,"MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_RATIO]->(adv_roa:Ratio {type: 'ROA', year: '2021'}), 
+      (aot:Company {symbol: 'AOT'})-[:HAS_RATIO]->(aot_roa:Ratio {type: 'ROA', year: '2021'})
+WHERE adv_roa.quarter = aot_roa.quarter
+RETURN adv_roa.quarter AS Quarter, adv_roa.value AS ADVANC_ROA, aot_roa.value AS AOT_ROA
+ORDER BY adv_roa.quarter;","{""Quarter"": ""1"", ""ADVANC_ROA"": 10.3963641547378, ""AOT_ROA"": -8.077394874718907}",0.002088117599487305,0.0
+58,"MATCH (adv_2019:Company {symbol: 'ADVANC'})-[:HAS_RATIO]->(adv_roe_2019:Ratio {type: 'ROE', year: '2019'}),
+      (adv_2022:Company {symbol: 'ADVANC'})-[:HAS_RATIO]->(adv_roe_2022:Ratio {type: 'ROE', year: '2022'})
+WHERE adv_roe_2019.quarter = adv_roe_2022.quarter
+RETURN adv_roe_2019.quarter AS Quarter, adv_roe_2019.value AS ADVANC_ROE_2019, adv_roe_2022.value AS ADVANC_ROE_2022
+ORDER BY adv_roe_2019.quarter;","{""Quarter"": ""1"", ""ADVANC_ROE_2019"": 55.99240704846936, ""ADVANC_ROE_2022"": 36.140498267470385}",0.002099490165710449,0.00390625
+59,"MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_MARKET_DATA]->(adv_market_1:MarketData {date: '2023-09-01'}),
+      (adv)-[:HAS_MARKET_DATA]->(adv_market_4:MarketData {date: '2023-09-04'})
+RETURN adv_market_1.close AS ADVANC_ClosingPrice_Sept1, adv_market_4.close AS ADVANC_ClosingPrice_Sept4;","{""ADVANC_ClosingPrice_Sept1"": 215.0, ""ADVANC_ClosingPrice_Sept4"": 213.0}",0.0006929159164428711,0.0
+60,"MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_RATIO]->(adv_pe:Ratio {type: 'PE', date: '2023-09-01'}),
+      (cpall:Company {symbol: 'CPALL'})-[:HAS_RATIO]->(cpall_pe:Ratio {type: 'PE', date: '2023-09-01'})
+RETURN adv_pe.value AS ADVANC_PERatio, cpall_pe.value AS CPALL_PERatio;","{""ADVANC_PERatio"": 23.4, ""CPALL_PERatio"": 38.12}",0.0020760297775268555,0.0
+61,"MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_RATIO]->(adv_mc:Ratio {type: 'MarketCap', date: '2023-09-01'}),
+      (aot:Company {symbol: 'AOT'})-[:HAS_RATIO]->(aot_mc:Ratio {type: 'MarketCap', date: '2023-09-01'})
+RETURN adv_mc.value AS ADVANC_MarketCap, aot_mc.value AS AOT_MarketCap;","{""ADVANC_MarketCap"": 639455093240.0, ""AOT_MarketCap"": 1039284675000.0}",0.0020075321197509767,0.0
+62,"MATCH (bbl:Company {symbol: 'BBL'})-[:HAS_METRIC]->(bbl_assets:Metric {type: 'TotalAssets', year: '2020'}), 
+      (aot:Company {symbol: 'AOT'})-[:HAS_METRIC]->(aot_assets:Metric {type: 'TotalAssets', year: '2020'})
+WHERE bbl_assets.quarter = aot_assets.quarter
+RETURN bbl_assets.quarter AS Quarter, bbl_assets.value AS BBL_TotalAssets, aot_assets.value AS AOT_TotalAssets
+ORDER BY bbl_assets.quarter;","{""Quarter"": ""1"", ""BBL_TotalAssets"": 3395290082.0, ""AOT_TotalAssets"": 185978838.24}",0.0013817071914672852,0.0
+63,"MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_METRIC]->(inv_q3:Metric {type: 'InvestingCashFlow', year: '2021', quarter: '3'}),
+      (adv)-[:HAS_METRIC]->(inv_q4:Metric {type: 'InvestingCashFlow', year: '2021', quarter: '4'})
+RETURN inv_q3.value AS ADVANC_InvestmentCashFlow_Q3, inv_q4.value AS ADVANC_InvestmentCashFlow_Q4;","{""ADVANC_InvestmentCashFlow_Q3"": -34278787.0, ""ADVANC_InvestmentCashFlow_Q4"": -45351937.25}",0.0013223886489868164,0.0
+64,"MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_METRIC]->(adv_eps:Metric {type: 'EPSQuarter', year: '2020', quarter: '1'}), 
+      (bbl:Company {symbol: 'BBL'})-[:HAS_METRIC]->(bbl_eps:Metric {type: 'EPSQuarter', year: '2020', quarter: '1'})
+RETURN adv_eps.value AS ADVANC_EPS, bbl_eps.value AS BBL_EPS;","{""ADVANC_EPS"": 2.27, ""BBL_EPS"": 4.02}",0.0012705087661743163,0.0
+65,"MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_RATIO]->(adv_de:Ratio {type: 'DE', year: '2020'}), 
+      (cpall:Company {symbol: 'CPALL'})-[:HAS_RATIO]->(cpall_de:Ratio {type: 'DE', year: '2020'})
+WHERE adv_de.quarter = cpall_de.quarter
+RETURN adv_de.quarter AS Quarter, adv_de.value AS ADVANC_DE, cpall_de.value AS CPALL_DE
+ORDER BY adv_de.quarter;","{""Quarter"": ""1"", ""ADVANC_DE"": 4.785170353378956, ""CPALL_DE"": 2.732795287218678}",0.0020796537399291994,0.0
+66,"MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_RATIO]->(adv_tat_2021:Ratio {type: 'TotalAssetTurnover', year: '2021'}),
+      (adv)-[:HAS_RATIO]->(adv_tat_2022:Ratio {type: 'TotalAssetTurnover', year: '2022'})
+WHERE adv_tat_2021.quarter = adv_tat_2022.quarter
+RETURN adv_tat_2021.quarter AS Quarter, adv_tat_2021.value AS ADVANC_TAT_2021, adv_tat_2022.value AS ADVANC_TAT_2022
+ORDER BY adv_tat_2021.quarter;","{""Quarter"": ""1"", ""ADVANC_TAT_2021"": 0.4786567341202083, ""ADVANC_TAT_2022"": 0.5059229249631785}",0.0021840810775756838,0.00390625
+67,"MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_RATIO]->(adv_fat:Ratio {type: 'FixedAssetTurnover', year: '2020'}), 
+      (bbl:Company {symbol: 'BBL'})-[:HAS_RATIO]->(bbl_fat:Ratio {type: 'FixedAssetTurnover', year: '2020'})
+RETURN adv_fat.value AS ADVANC_FixedAssetTurnover, bbl_fat.value AS BBL_FixedAssetTurnover;",NULL,0.001387643814086914,0.0
+68,"MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_MARKET_DATA]->(adv_market:MarketData {date: '2023-09-01'}),
+      (cpall:Company {symbol: 'CPALL'})-[:HAS_MARKET_DATA]->(cpall_market:MarketData {date: '2023-09-01'})
+RETURN adv_market.high AS ADVANC_HighestPrice, cpall_market.high AS CPALL_HighestPrice;","{""ADVANC_HighestPrice"": 217.0, ""CPALL_HighestPrice"": 65.5}",0.0007620811462402344,0.0
+69,"MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_MARKET_DATA]->(adv_market:MarketData {date: '2023-09-04'}),
+      (bbl:Company {symbol: 'BBL'})-[:HAS_MARKET_DATA]->(bbl_market:MarketData {date: '2023-09-04'})
+RETURN adv_market.totalVolume AS ADVANC_TotalVolume, bbl_market.totalVolume AS BBL_TotalVolume;","{""ADVANC_TotalVolume"": 4376820.0, ""BBL_TotalVolume"": 3263653.0}",0.0048501014709472655,0.00390625
+70,"MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_MARKET_DATA]->(adv_market:MarketData {date: '2023-09-01'}),
+      (cpall:Company {symbol: 'CPALL'})-[:HAS_MARKET_DATA]->(cpall_market:MarketData {date: '2023-09-01'})
+RETURN adv_market.high AS ADVANC_HighestPrice, cpall_market.high AS CPALL_HighestPrice;","{""ADVANC_HighestPrice"": 217.0, ""CPALL_HighestPrice"": 65.5}",0.0006330013275146484,0.0
+71,"MATCH (adv_q2:Company {symbol: 'ADVANC'})-[:HAS_RATIO]->(tat_q2:Ratio {type: 'TotalAssetTurnover', year: '2021', quarter: '2'}),
+      (adv_q4:Company {symbol: 'ADVANC'})-[:HAS_RATIO]->(tat_q4:Ratio {type: 'TotalAssetTurnover', year: '2021', quarter: '4'})
+RETURN tat_q2.value AS ADVANC_TAT_Q2, tat_q4.value AS ADVANC_TAT_Q4;","{""ADVANC_TAT_Q2"": 0.48143160542502056, ""ADVANC_TAT_Q4"": 0.5170088351813013}",0.0015286684036254882,0.0
+72,"MATCH (aot:Company {symbol: 'AOT'})-[:HAS_MARKET_DATA]->(aot_market:MarketData {date: '2023-09-01'}),
+      (bbl:Company {symbol: 'BBL'})-[:HAS_MARKET_DATA]->(bbl_market:MarketData {date: '2023-09-01'})
+RETURN aot_market.low AS AOT_LowestPrice, bbl_market.low AS BBL_LowestPrice;","{""AOT_LowestPrice"": 72.25, ""BBL_LowestPrice"": 168.5}",0.0006749868392944336,0.0
+73,"MATCH (aot:Company {symbol: 'AOT'})-[:HAS_MARKET_DATA]->(aot_market:MarketData {date: '2023-09-04'}),
+      (cpall:Company {symbol: 'CPALL'})-[:HAS_MARKET_DATA]->(cpall_market:MarketData {date: '2023-09-04'})
+RETURN aot_market.close AS AOT_ClosingPrice, cpall_market.close AS CPALL_ClosingPrice;","{""AOT_ClosingPrice"": 72.0, ""CPALL_ClosingPrice"": 64.5}",0.0007336139678955078,0.0
+74,"MATCH (cpall:Company {symbol: 'CPALL'})-[:HAS_RATIO]->(cpall_mc:Ratio {type: 'MarketCap', date: '2023-09-04'}),
+      (adv:Company {symbol: 'ADVANC'})-[:HAS_RATIO]->(adv_mc:Ratio {type: 'MarketCap', date: '2023-09-04'})
+RETURN cpall_mc.value AS CPALL_MarketCap, adv_mc.value AS ADVANC_MarketCap;","{""CPALL_MarketCap"": 579410036946.0, ""ADVANC_MarketCap"": 633506673768.0}",0.0014868497848510743,0.0
+75,"MATCH (cpall:Company {symbol: 'CPALL'})-[:HAS_RATIO]->(cpall_fat:Ratio {type: 'FixedAssetTurnover', year: '2021'}),
+      (aot:Company {symbol: 'AOT'})-[:HAS_RATIO]->(aot_fat:Ratio {type: 'FixedAssetTurnover', year: '2021'})
+RETURN cpall_fat.value AS CPALL_FixedAssetTurnover, aot_fat.value AS AOT_FixedAssetTurnover;","{""CPALL_FixedAssetTurnover"": 2.87135583116267, ""AOT_FixedAssetTurnover"": 0.06132188792067888}",0.0020732879638671875,0.0
+76,"MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_METRIC]->(revenue:Metric {type: 'TotalRevenueAccum'})
+WHERE revenue.year IN ['2019', '2020', '2021']
+RETURN revenue.year AS Year, revenue.quarter AS Quarter, revenue.value AS TotalRevenue
+ORDER BY revenue.year, revenue.quarter;","{""Year"": ""2019"", ""Quarter"": ""1"", ""TotalRevenue"": 43516543.0}",0.0014189720153808595,0.0
+77,"MATCH (aot:Company {symbol: 'AOT'})-[:HAS_METRIC]->(assets:Metric {type: 'TotalAssets'})
+WHERE assets.year IN ['2019', '2020', '2021']
+RETURN assets.year AS Year, assets.quarter AS Quarter, assets.value AS TotalAssets
+ORDER BY assets.year, assets.quarter;","{""Year"": ""2019"", ""Quarter"": ""1"", ""TotalAssets"": 181143997.77}",0.0006736993789672851,0.0
+78,"MATCH (bbl:Company {symbol: 'BBL'})-[:HAS_METRIC]->(netprofit:Metric {type: 'NetProfitAccum'})
+WHERE netprofit.year IN ['2019', '2020', '2021']
+RETURN netprofit.year AS Year, netprofit.quarter AS Quarter, netprofit.value AS CumulativeNetProfit
+ORDER BY netprofit.year, netprofit.quarter;","{""Year"": ""2019"", ""Quarter"": ""1"", ""CumulativeNetProfit"": 9028296.0}",0.0006901264190673828,0.0
+79,"MATCH (bdms:Company {symbol: 'BDMS'})-[:HAS_METRIC]->(eps:Metric {type: 'EPSQuarter', year: '2019'})
+RETURN eps.quarter AS Quarter, eps.value AS EPS
+ORDER BY eps.quarter;","{""Quarter"": ""1"", ""EPS"": 0.54}",0.0012888193130493164,0.0
+80,"MATCH (bgrim:Company {symbol: 'BGRIM'})-[:HAS_METRIC]->(ocf:Metric {type: 'OperatingCashFlow'})
+WHERE ocf.year IN ['2019', '2020', '2021']
+RETURN ocf.year AS Year, ocf.quarter AS Quarter, ocf.value AS OperatingCashFlow
+ORDER BY ocf.year, ocf.quarter;","{""Year"": ""2019"", ""Quarter"": ""1"", ""OperatingCashFlow"": 2144119.0}",0.0007235527038574219,-0.04296875
+81,"MATCH (bh:Company {symbol: 'BH'})-[:HAS_METRIC]->(eps:Metric {type: 'EPSQuarter', year: '2019'})
+RETURN eps.quarter AS Quarter, eps.value AS EPS
+ORDER BY eps.quarter;","{""Quarter"": ""1"", ""EPS"": 1.48}",0.0012100934982299805,0.0
+82,"MATCH (bcp:Company {symbol: 'BCP'})-[:HAS_METRIC]->(expenses:Metric {type: 'TotalExpensesQuarter', year: '2019'})
+RETURN expenses.quarter AS Quarter, expenses.value AS TotalExpenses
+ORDER BY expenses.quarter;","{""Quarter"": ""1"", ""TotalExpenses"": 45080174.0}",0.0007120370864868164,0.0
+83,"MATCH (bts:Company {symbol: 'BTS'})-[:HAS_RATIO]->(tat:Ratio {type: 'TotalAssetTurnover'})
+RETURN tat.year AS Year, tat.quarter AS Quarter, tat.value AS TotalAssetTurnover
+ORDER BY tat.year, tat.quarter;","{""Year"": ""2019"", ""Quarter"": ""1"", ""TotalAssetTurnover"": 0.3883678975275942}",0.0013723373413085938,0.0
+84,"MATCH (cpn:Company {symbol: 'CPN'})-[:HAS_METRIC]->(netprofit:Metric {type: 'NetProfitAccum'})
+WHERE netprofit.year IN ['2019', '2020', '2021']
+RETURN netprofit.year AS Year, netprofit.quarter AS Quarter, netprofit.value AS CumulativeNetProfit
+ORDER BY netprofit.year, netprofit.quarter;","{""Year"": ""2019"", ""Quarter"": ""1"", ""CumulativeNetProfit"": 2846979.0}",0.001005864143371582,0.0
+85,"MATCH (ea:Company {symbol: 'EA'})-[:HAS_METRIC]->(revenue:Metric {type: 'TotalRevenueAccum'})
+WHERE revenue.year IN ['2019', '2020', '2021']
+RETURN revenue.year AS Year, revenue.quarter AS Quarter, revenue.value AS TotalRevenue
+ORDER BY revenue.year, revenue.quarter;","{""Year"": ""2019"", ""Quarter"": ""1"", ""TotalRevenue"": 3088448.0}",0.0012238025665283203,0.0
+86,"MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_RATIO]->(de:Ratio {type: 'DE', year: '2019'})
+RETURN de.quarter AS Quarter, de.value AS DE_Ratio
+ORDER BY de.quarter;","{""Quarter"": ""1"", ""DE_Ratio"": 4.225310410145383}",0.0014643430709838866,0.0
+87,"MATCH (bdms:Company {symbol: 'BDMS'})-[:HAS_RATIO]->(roe:Ratio {type: 'ROE'}),
+      (bdms)-[:HAS_METRIC]->(profit:Metric {type: 'NetProfitQuarter'})
+WHERE roe.year = profit.year AND roe.quarter = profit.quarter
+RETURN roe.year AS Year, roe.quarter AS Quarter, roe.value AS ROE, profit.value AS NetProfit
+ORDER BY roe.year, roe.quarter;","{""Year"": ""2019"", ""Quarter"": ""1"", ""ROE"": 20.42528778083018, ""NetProfit"": 8438971.0}",0.0024566173553466795,0.0078125
+88,"MATCH (bts:Company {symbol: 'BTS'})-[:HAS_RATIO]->(tat:Ratio {type: 'TotalAssetTurnover', year: '2019'}),
+      (bts)-[:HAS_METRIC]->(profit:Metric {type: 'NetProfitQuarter', year: '2019'})
+WHERE tat.quarter = profit.quarter
+RETURN tat.quarter AS Quarter, tat.value AS TotalAssetTurnover, profit.value AS NetProfit
+ORDER BY tat.quarter;","{""Quarter"": ""1"", ""TotalAssetTurnover"": 0.3883678975275942, ""NetProfit"": 627223.14}",0.001664423942565918,0.0
+89,"MATCH (bcp:Company {symbol: 'BCP'})-[:HAS_RATIO]->(roa:Ratio {type: 'ROA', year: '2019'})
+RETURN roa.quarter AS Quarter, roa.value AS ROA
+ORDER BY roa.quarter;","{""Quarter"": ""1"", ""ROA"": 3.589926063891691}",0.0012681007385253907,0.0
+90,"MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_RATIO]->(pe:Ratio {type: 'PE', year: '2019'}),
+      (adv)-[:HAS_RATIO]->(mc:Ratio {type: 'MarketCap', year: '2019'})
+WHERE pe.quarter = mc.quarter
+RETURN pe.quarter AS Quarter, pe.value AS PE, mc.value AS MarketCap
+ORDER BY pe.quarter;",NULL,0.0010836124420166016,0.0
+91,"MATCH (aot:Company {symbol: 'AOT'})-[:HAS_RATIO]->(de:Ratio {type: 'DE'})
+WHERE de.year IN ['2019', '2020', '2021']
+RETURN de.year AS Year, de.quarter AS Quarter, de.value AS DE_Ratio
+ORDER BY de.year, de.quarter;","{""Year"": ""2019"", ""Quarter"": ""1"", ""DE_Ratio"": 0.2623187602345619}",0.0012232065200805664,0.0
+92,"MATCH (bbl:Company {symbol: 'BBL'})-[:HAS_RATIO]->(roa:Ratio {type: 'ROA', year: '2019'}),
+      (bbl)-[:HAS_RATIO]->(tat:Ratio {type: 'TotalAssetTurnover', year: '2019'})
+WHERE roa.quarter = tat.quarter
+RETURN roa.quarter AS Quarter, roa.value AS ROA, tat.value AS TotalAssetTurnover
+ORDER BY roa.quarter;","{""Quarter"": ""1"", ""ROA"": 2.657317017802743, ""TotalAssetTurnover"": 0.049008892175058605}",0.0017904520034790039,0.0
+93,"MATCH (cpf:Company {symbol: 'CPF'})-[:HAS_RATIO]->(de:Ratio {type: 'DE'})
+RETURN de.year AS Year, de.quarter AS Quarter, de.value AS DE_Ratio
+ORDER BY de.year, de.quarter;","{""Year"": ""2019"", ""Quarter"": ""1"", ""DE_Ratio"": 1.8333628367252288}",0.001392698287963867,0.0
+94,"MATCH (bdms:Company {symbol: 'BDMS'})-[:HAS_RATIO]->(roe:Ratio {type: 'ROE'})
+WHERE roe.year IN ['2019', '2020', '2021']
+RETURN roe.year AS Year, roe.quarter AS Quarter, roe.value AS ROE
+ORDER BY roe.year, roe.quarter;","{""Year"": ""2019"", ""Quarter"": ""1"", ""ROE"": 20.42528778083018}",0.001373147964477539,0.0
+95,"MATCH (bts:Company {symbol: 'BTS'})-[:HAS_RATIO]->(roe:Ratio {type: 'ROE', year: '2019'})
+RETURN roe.quarter AS Quarter, roe.value AS ROE
+ORDER BY roe.quarter;","{""Quarter"": ""1"", ""ROE"": 7.241022903361389}",0.001406097412109375,0.0
+96,"MATCH (bcp:Company {symbol: 'BCP'})-[:HAS_RATIO]->(fat:Ratio {type: 'FixedAssetTurnover'}),
+      (bcp)-[:HAS_METRIC]->(profit:Metric {type: 'EBITQuarter'})
+WHERE fat.year = profit.year AND fat.quarter = profit.quarter
+RETURN fat.year AS Year, fat.quarter AS Quarter, fat.value AS FixedAssetTurnover, profit.value AS OperatingProfit
+ORDER BY fat.year, fat.quarter;","{""Year"": ""2019"", ""Quarter"": ""1"", ""FixedAssetTurnover"": 3.7727346424888246, ""OperatingProfit"": 806047.0}",0.0019205331802368164,0.0
+97,"MATCH (bts:Company {symbol: 'BTS'})-[:HAS_RATIO]->(pe:Ratio {type: 'PE'})
+RETURN pe.year AS Year, pe.quarter AS Quarter, pe.value AS PE
+ORDER BY pe.year, pe.quarter;","{""Year"": 2023, ""Quarter"": 3, ""PE"": 180.78}",0.003326606750488281,0.0
+98,"MATCH (aot:Company {symbol: 'AOT'})-[:HAS_RATIO]->(roe:Ratio {type: 'ROE'})
+RETURN roe.year AS Year, roe.quarter AS Quarter, roe.value AS ROE
+ORDER BY roe.year, roe.quarter;","{""Year"": ""2019"", ""Quarter"": ""1"", ""ROE"": 18.678367571921264}",0.001402568817138672,0.0
+99,"MATCH (bem:Company {symbol: 'BEM'})-[:HAS_RATIO]->(de:Ratio {type: 'DE'})
+RETURN de.year AS Year, de.quarter AS Quarter, de.value AS DE_Ratio
+ORDER BY de.year, de.quarter;","{""Year"": ""2019"", ""Quarter"": ""1"", ""DE_Ratio"": 1.9058319209184862}",0.0013492822647094727,0.0
+100,"MATCH (cpf:Company {symbol: 'CPF'})-[:HAS_RATIO]->(roa:Ratio {type: 'ROA', year: '2019'})
+RETURN roa.quarter AS Quarter, roa.value AS ROA
+ORDER BY roa.quarter;","{""Quarter"": ""1"", ""ROA"": 6.8561729944843135}",0.0006748437881469727,0.0
