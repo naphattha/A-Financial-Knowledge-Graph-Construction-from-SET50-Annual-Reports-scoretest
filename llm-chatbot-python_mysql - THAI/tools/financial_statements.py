@@ -138,7 +138,7 @@ def financial_statements_function(input_text):
         start_db_time = time.time()
 
         with engine.connect() as connection:
-            connection.execute(text("USE financials;"))
+            connection.execute(text("USE set50;"))  # edit this to the name of database
             result = connection.execute(text(query))
             data = result.fetchall()
 
