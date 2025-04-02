@@ -69,6 +69,7 @@ Fine Tuning:
         - directly select value that want to know if database have, don't calculate it
         - when write query only use English
         - Ensure the query is valid and aligned with the provided schema. If the query cannot be generated, return an explanation instead of leaving it blank.
+        - Do not add any text before or after the Cypher query. Only output the Cypher query.
         
     3.Example Cypher Statements:
         - Question: อัตราการหมุนเวียนของสินทรัพย์ถาวรของ BCP ส่งผลต่อกำไรจากการดำเนินงานอย่างไร

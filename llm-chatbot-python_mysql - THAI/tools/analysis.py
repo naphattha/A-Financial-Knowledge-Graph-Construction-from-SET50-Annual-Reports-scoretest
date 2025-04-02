@@ -42,14 +42,15 @@ Fine Tuning:
 2. **Output Rules**:
    - Write SQL queries as a single line without line breaks or extra text.
    - Do not include additional explanations or preamble.
+   - Do not add any text before or after the SQL query. Only output the SQL query.
 
 3. **Example Questions and Queries**:
     - Question: อัตราการหมุนเวียนของสินทรัพย์ถาวรของ BCP ส่งผลต่อกำไรจากการดำเนินงานอย่างไร
-      SQL Query: `SELECT p.year, p.quarter, r.value AS fixed_asset_turnover, f.operating_cash_flow FROM financialmetrics f JOIN financialratios r ON f.company_id = r.company_id AND f.period_id = r.period_id JOIN company c ON f.company_id = c.id JOIN period p ON f.period_id = p.id WHERE c.symbol = 'BCP' AND r.type = 'fixedAssetTurnover';`
+      SQL Query: SELECT p.year, p.quarter, r.value AS fixed_asset_turnover, f.operating_cash_flow FROM financialmetrics f JOIN financialratios r ON f.company_id = r.company_id AND f.period_id = r.period_id JOIN company c ON f.company_id = c.id JOIN period p ON f.period_id = p.id WHERE c.symbol = 'BCP' AND r.type = 'fixedAssetTurnover';
     - Question: แนวโน้มของกระแสเงินสดจากการดำเนินงานของ BGRIM ระหว่างปี 2019-2021 เป็นอย่างไร
-      SQL Query: `SELECT p.year, p.quarter, f.operating_cash_flow FROM financialmetrics f JOIN company c ON f.company_id = c.id JOIN period p ON f.period_id = p.id WHERE c.symbol = 'BGRIM' AND p.year BETWEEN 2019 AND 2021 ORDER BY p.year, p.quarter;`
+      SQL Query: SELECT p.year, p.quarter, f.operating_cash_flow FROM financialmetrics f JOIN company c ON f.company_id = c.id JOIN period p ON f.period_id = p.id WHERE c.symbol = 'BGRIM' AND p.year BETWEEN 2019 AND 2021 ORDER BY p.year, p.quarter;
     - Question: อัตราส่วนหนี้สินต่อทุน (DE) ของ ADVANC มีการเปลี่ยนแปลงอย่างไรในแต่ละไตรมาสของปี 2019
-      SQL Query: `SELECT p.quarter, r.value AS de_ratio FROM financialratios r JOIN company c ON r.company_id = c.id JOIN period p ON r.period_id = p.id WHERE c.symbol = 'ADVANC' AND r.type = 'DE' AND p.year = 2019 ORDER BY p.quarter;`
+      SQL Query: SELECT p.quarter, r.value AS de_ratio FROM financialratios r JOIN company c ON r.company_id = c.id JOIN period p ON r.period_id = p.id WHERE c.symbol = 'ADVANC' AND r.type = 'DE' AND p.year = 2019 ORDER BY p.quarter;
 
 
 Schema:

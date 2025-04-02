@@ -40,12 +40,13 @@ Fine Tuning:
 2. **Output Rules**:
    - Write SQL queries as a single line without line breaks or extra text.
    - Do not include additional explanations or preamble.
+   - Do not add any text before or after the SQL query. Only output the SQL query.
 
 3. **Example Questions and Queries**:
     - Question: What was the total assets of AOT in Q1 2019?
-      SQL Query: `SELECT total_assets FROM financialmetrics WHERE company_id = (SELECT id FROM company WHERE symbol = 'AOT') AND period_id = (SELECT id FROM period WHERE year = 2019 AND quarter = 1);`
+      SQL Query: SELECT total_assets FROM financialmetrics WHERE company_id = (SELECT id FROM company WHERE symbol = 'AOT') AND period_id = (SELECT id FROM period WHERE year = 2019 AND quarter = 1);
     - Question: What was PTT's net profit margin in Q1 2019?
-      SQL Query: `SELECT value FROM financialratios WHERE company_id = (SELECT id FROM company WHERE symbol = 'PTT') AND period_id = (SELECT id FROM period WHERE year = 2019 AND quarter = 1) AND type = 'netProfitMarginQuarter';`
+      SQL Query: SELECT value FROM financialratios WHERE company_id = (SELECT id FROM company WHERE symbol = 'PTT') AND period_id = (SELECT id FROM period WHERE year = 2019 AND quarter = 1) AND type = 'netProfitMarginQuarter';
 
 Schema:
 {schema}

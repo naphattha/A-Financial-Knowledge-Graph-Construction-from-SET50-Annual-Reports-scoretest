@@ -40,12 +40,13 @@ Fine Tuning:
 2. **Output Rules**:
    - Write SQL queries as a single line without line breaks or extra text.
    - Do not include additional explanations or preamble.
+   - Do not add any text before or after the SQL query. Only output the SQL query.
 
 3. **Example Questions and Queries**:
     - Question: อัตราส่วนราคาต่อกำไร (P/E) ของหุ้น BDMS ในวันที่ 1 กันยายน 2023 คือเท่าไหร่
-      SQL Query: `SELECT value FROM marketratios WHERE company_id = (SELECT id FROM company WHERE symbol = 'BDMS') AND period_id = (SELECT id FROM period WHERE date = '2023-09-01') AND type = 'PE';`
+      SQL Query: SELECT value FROM marketratios WHERE company_id = (SELECT id FROM company WHERE symbol = 'BDMS') AND period_id = (SELECT id FROM period WHERE date = '2023-09-01') AND type = 'PE';
     - Question: ราคาเฉลี่ยของหุ้น SCB ในวันที่ 1 กันยายน 2023 คือเท่าไหร่
-      SQL Query: `SELECT average FROM marketdata WHERE company_id = (SELECT id FROM company WHERE symbol = 'SCB') AND period_id = (SELECT id FROM period WHERE date = '2023-09-01');`
+      SQL Query: SELECT average FROM marketdata WHERE company_id = (SELECT id FROM company WHERE symbol = 'SCB') AND period_id = (SELECT id FROM period WHERE date = '2023-09-01');
 
 Schema:
 {schema}

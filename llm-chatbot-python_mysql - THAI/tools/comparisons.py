@@ -42,16 +42,17 @@ Fine Tuning:
 2. **Output Rules**:
    - Write SQL queries as a single line without line breaks or extra text.
    - Do not include additional explanations or preamble.
+   - Do not add any text before or after the SQL query. Only output the SQL query.
 
 3. **Example Questions and Queries**:
     - Question: เปรียบเทียบอัตราส่วน PE ของหุ้น ADVANC กับหุ้น CPALL ในวันที่ 1 กันยายน 2023
-      SQL Query: `SELECT c.symbol, f.eps_quarter FROM financialmetrics f JOIN company c ON f.company_id = c.id JOIN period p ON f.period_id = p.id WHERE p.year = 2020 AND p.quarter = 1 AND c.symbol IN ('ADVANC', 'BBL');`
+      SQL Query: SELECT c.symbol, f.eps_quarter FROM financialmetrics f JOIN company c ON f.company_id = c.id JOIN period p ON f.period_id = p.id WHERE p.year = 2020 AND p.quarter = 1 AND c.symbol IN ('ADVANC', 'BBL');
     - Question: เปรียบเทียบผลตอบแทนต่อสินทรัพย์ (ROA) ของบริษัท ADVANC กับ AOT ในปี 2021
-      SQL Query: `SELECT c.symbol, p.quarter, r.value FROM financialratios r JOIN company c ON r.company_id = c.id JOIN period p ON r.period_id = p.id WHERE p.year = 2021 AND c.symbol IN ('ADVANC', 'AOT') AND r.type = 'ROA';`
+      SQL Query: SELECT c.symbol, p.quarter, r.value FROM financialratios r JOIN company c ON r.company_id = c.id JOIN period p ON r.period_id = p.id WHERE p.year = 2021 AND c.symbol IN ('ADVANC', 'AOT') AND r.type = 'ROA';
     - Question: เปรียบเทียบราคาปิดของหุ้น AOT กับหุ้น CPALL ในวันที่ 4 กันยายน 2023
-      SQL Query: `SELECT c.symbol, m.close FROM marketdata m JOIN company c ON m.company_id = c.id JOIN period p ON m.period_id = p.id WHERE p.date = '2023-09-04' AND c.symbol IN ('AOT', 'CPALL');`
+      SQL Query: SELECT c.symbol, m.close FROM marketdata m JOIN company c ON m.company_id = c.id JOIN period p ON m.period_id = p.id WHERE p.date = '2023-09-04' AND c.symbol IN ('AOT', 'CPALL');
     - Question: เปรียบเทียบอัตราส่วน PE ของหุ้น ADVANC กับหุ้น CPALL ในวันที่ 1 กันยายน 2023
-      SQL Query: `SELECT c.symbol,m.value FROM marketratios m JOIN company c ON m.company_id = c.id JOIN period p ON m.period_id = p.id WHERE p.date = '2023-09-01' AND c.symbol IN ('ADVANC', 'CPALL') AND m.type = 'PE';`
+      SQL Query: SELECT c.symbol,m.value FROM marketratios m JOIN company c ON m.company_id = c.id JOIN period p ON m.period_id = p.id WHERE p.date = '2023-09-01' AND c.symbol IN ('ADVANC', 'CPALL') AND m.type = 'PE';
 
 Schema:
 {schema}
