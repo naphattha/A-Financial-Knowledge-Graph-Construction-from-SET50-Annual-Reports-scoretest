@@ -139,9 +139,9 @@ def get_query_execution_details(user_input):
     selected_function = function_map.get("financial_statements")  # Default to financial_statements_function
 
     # Call the function and capture output
-    df, query, query_gen_time, db_fetch_time, error = selected_function(user_input)
+    data, query, query_gen_time, db_fetch_time, error = selected_function(user_input)
     
-    return df, query, query_gen_time, db_fetch_time, error
+    return data, query, query_gen_time, db_fetch_time, error
 
 import time  # Import the time module
 
@@ -157,8 +157,8 @@ def generate_response(user_input):
 
         data = output.get('data')
         query = output.get('query')  # Extract the query
-        query_gen_time = output.get('query_generation_time')  # Extract query generation time
-        db_fetch_time = output.get('database_fetch_time')  # Extract database fetch time
+        query_gen_time = output.get('query_gen_time')  # Extract query generation time
+        db_fetch_time = output.get('db_fetch_time')  # Extract database fetch time
         error = output.get('error')  # Extract error, if any
 
         if error:
@@ -197,7 +197,7 @@ def generate_response(user_input):
             "error": error,
         }
 
-        return metadata, None
+        return final_response, metadata, None
     except Exception as e:
         print(f"Error generating response: {e}")
         metadata = {
@@ -208,4 +208,6 @@ def generate_response(user_input):
             "response_generation_time": None,
             "error": str(e),
         }
+        
         return None, metadata, f"Error: Unable to generate response due to {str(e)}"
+

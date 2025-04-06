@@ -83,8 +83,6 @@ Fine Tuning:
             RETURN r.value AS NetProfitMargin
             ```
 
-Schema:
-{schema}
 Question:
 {question}
 
@@ -95,14 +93,18 @@ Cypher query:
 from langchain_core.runnables import RunnablePassthrough
 from langchain.schema import StrOutputParser
 
-# Create the prompt template for Cypher query generation
-cypher_prompt = PromptTemplate(template=CYPHER_GENERATION_TEMPLATE,input_variables=["question"])
 # Fetch schema from the Neo4j databas
 schema_str = format_schema(schema)
 
-from langchain_core.runnables import RunnablePassthrough
-from operator import itemgetter
+cypher_prompt = PromptTemplate(
+    template=CYPHER_GENERATION_TEMPLATE,
+    input_variables=["question"]
+)
 
+# 2. Format schema string
+schema_str = format_schema(schema)
+
+# 3. Create LangChain chain
 cypher_qa = GraphCypherQAChain.from_llm(
     llm,
     graph=graph, 
@@ -111,37 +113,41 @@ cypher_qa = GraphCypherQAChain.from_llm(
     cypher_prompt=cypher_prompt
 )
 
-
-
-# Define a function to handle Cypher queries
+# Main function
 def financial_statements_function(input_text):
     try:
-        # Fetch schema from the Neo4j databas
-        schema_str = format_schema(schema)
-
+        print(f"\n🟡 Processing question: {input_text}")
+        
         start_query_gen_time = time.time()
-        generated_result = cypher_qa.invoke({"schema": schema_str, "query": input_text})
+        # Use LangChain chain to invoke generation
+        generated_result = cypher_qa.invoke({"query": input_text})
         end_query_gen_time = time.time()
 
-        query = generated_result['intermediate_steps'][0]['query'].strip()
+        print("\n🔎 LangChain output:")
+        print(generated_result)
+        print("🔚")
+
+        # Safely extract query
+        intermediate = generated_result.get("intermediate_steps", [])
+        if not intermediate or "query" not in intermediate[0]:
+            raise ValueError("Error in cypher query generation: no 'query' found in intermediate steps.")
+
+        query = intermediate[0]["query"].strip()
+        print("✅ Generated Cypher query:\n", query)
 
         if not query:
-            return {
-                "data": pd.DataFrame(),
-                "query": None,
-                "query_generation_time": end_query_gen_time - start_query_gen_time,
-                "database_fetch_time": 0.0,
-                "error": "Generated query is empty.",
-            }
+            raise ValueError("Generated query is empty.")
 
+        # Execute Cypher query
         start_db_time = time.time()
         with driver.session() as session:
             result = session.run(query)
             data = [record.data() for record in result]
         end_db_time = time.time()
 
+        print("🟢 Query result:", data)
+
         return {
-            "data": data,
             "query": query,
             "query_generation_time": end_query_gen_time - start_query_gen_time,
             "database_fetch_time": end_db_time - start_db_time,
@@ -150,8 +156,8 @@ def financial_statements_function(input_text):
 
     except Exception as e:
         error_message = str(e)
+        print("❌ Exception occurred:", error_message)
         return {
-            "data": pd.DataFrame(),
             "query": query if 'query' in locals() else None,
             "query_generation_time": end_query_gen_time - start_query_gen_time if 'end_query_gen_time' in locals() else 0.0,
             "database_fetch_time": end_db_time - start_db_time if 'end_db_time' in locals() else 0.0,
@@ -159,6 +165,6 @@ def financial_statements_function(input_text):
         }
 
 
-# Export the function
+
 __all__ = ["financial_statements_function"]
 

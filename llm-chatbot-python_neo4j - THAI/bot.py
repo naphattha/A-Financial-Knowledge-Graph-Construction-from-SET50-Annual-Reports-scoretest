@@ -19,20 +19,18 @@ def handle_submit(message):
     try:
         with st.spinner("Processing..."):
             # Generate response using the agent
-            metadata, error = generate_response(message)
+            response, metadata, error = generate_response(message)
 
             # Validate and return response, metadata, and error
             if error:
                 # If there's an error, return metadata and the error
-                return metadata, error
+                return None, metadata, error
             else:
                 # If successful, return the response and metadata
-                return metadata, None
+                return response, metadata, None
     except Exception as e:
         # In case of unexpected error, log and return empty response and metadata
-        return None, str(e)
-        
-
+        return None, {}, str(e)
 
 # Display messages in Session State
 for message in st.session_state.messages:

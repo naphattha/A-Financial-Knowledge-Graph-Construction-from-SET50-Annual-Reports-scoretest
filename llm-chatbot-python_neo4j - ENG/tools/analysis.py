@@ -150,6 +150,8 @@ def analysis_function(input_text):
             result = session.run(query)
             data = [record.data() for record in result]
         end_db_time = time.time()
+        
+        print("asdasdasdasdasdasd"+data)
 
         return {
             "data": data,
@@ -158,9 +160,10 @@ def analysis_function(input_text):
             "database_fetch_time": end_db_time - start_db_time,
             "error": None,
         }
-
+    
     except Exception as e:
         error_message = str(e)
+        print(error_message)
         return {
             "data": pd.DataFrame(),
             "query": query if 'query' in locals() else None,
@@ -168,7 +171,6 @@ def analysis_function(input_text):
             "database_fetch_time": end_db_time - start_db_time if 'end_db_time' in locals() else 0.0,
             "error": error_message,
         }
-
 
 # Export the function
 __all__ = ["analysis_function"]

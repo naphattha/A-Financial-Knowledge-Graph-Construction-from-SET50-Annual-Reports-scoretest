@@ -1,2 +1,2 @@
 ﻿Sequence,Question,Response,Query (SQL),Query Generation Time (s),Database Fetch Time (s),Response Generation Time (s),Total Time (s),Error
-1,What were ADVANC's total assets in Q1 2019?,Error occurred,,0.0,0.0,0.0,0.0,too many values to unpack (expected 2)
+1,What were ADVANC's total assets in Q1 2019?,Error generating response,,0.0,0.0,0.0,0.0,"not enough values to unpack (expected 5, got 4)"

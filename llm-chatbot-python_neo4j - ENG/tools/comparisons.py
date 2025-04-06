@@ -156,6 +156,7 @@ def comparisons_function(input_text):
             data = [record.data() for record in result]
         end_db_time = time.time()
 
+        print("asdasdasdasdasdasd"+data)
         return {
             "data": data,
             "query": query,

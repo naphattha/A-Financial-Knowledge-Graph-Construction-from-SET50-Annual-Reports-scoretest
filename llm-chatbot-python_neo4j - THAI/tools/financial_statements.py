@@ -151,7 +151,7 @@ def financial_statements_function(input_text):
     except Exception as e:
         error_message = str(e)
         return {
-            "data": pd.DataFrame(),
+            "data": data,
             "query": query if 'query' in locals() else None,
             "query_generation_time": end_query_gen_time - start_query_gen_time if 'end_query_gen_time' in locals() else 0.0,
             "database_fetch_time": end_db_time - start_db_time if 'end_db_time' in locals() else 0.0,
