@@ -114,7 +114,7 @@ cypher_qa = GraphCypherQAChain.from_llm(
 
 
 # Define a function to handle Cypher queries
-def cypher_qa_function(input_text):
+def financial_statements_function(input_text):
     try:
         # Fetch schema from the Neo4j databas
         schema_str = format_schema(schema)
@@ -160,5 +160,5 @@ def cypher_qa_function(input_text):
 
 
 # Export the function
-__all__ = ["cypher_qa_function"]
+__all__ = ["financial_statements_function"]
 
