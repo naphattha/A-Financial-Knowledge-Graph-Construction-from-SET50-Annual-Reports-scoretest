@@ -149,7 +149,6 @@ def get_query_execution_details(user_input):
     return df, query, query_gen_time, db_fetch_time, error
 
 import time  # Import the time module
-
 # Function to generate response
 def generate_response(user_input):
     """
@@ -158,9 +157,13 @@ def generate_response(user_input):
     try:
         print(f"Raw user input: {user_input}")
         
-        df, query, query_gen_time, db_fetch_time, error= get_query_execution_details(user_input)
+        output= get_query_execution_details(user_input)
 
-        #print("output:"+query)
+        data = output.get('data')
+        query = output.get('query')  # Extract the query
+        query_gen_time = output.get('query_gen_time')  # Extract query generation time
+        db_fetch_time = output.get('db_fetch_time')  # Extract database fetch time
+        error = output.get('error')  # Extract error, if any
 
         if error:
             raise ValueError(f"Error in cypher query generation: {error}")
@@ -198,7 +201,7 @@ def generate_response(user_input):
             "error": error,
         }
 
-        return metadata, None
+        return final_response, metadata, None
     except Exception as e:
         print(f"Error generating response: {e}")
         metadata = {
@@ -210,4 +213,4 @@ def generate_response(user_input):
             "error": str(e),
         }
         
-        return metadata, str(e)
+        return None, metadata, f"Error: Unable to generate response due to {str(e)}"

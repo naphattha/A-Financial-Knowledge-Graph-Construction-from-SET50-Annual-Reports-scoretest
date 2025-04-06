@@ -122,7 +122,9 @@ def financial_statements_function(input_text):
         start_query_gen_time = time.time()
         generated_result = cypher_qa.invoke({"schema": schema_str, "query": input_text})
         end_query_gen_time = time.time()
-
+        
+        print(generated_result)
+        
         query = generated_result['intermediate_steps'][0]['query'].strip()
 
         if not query:

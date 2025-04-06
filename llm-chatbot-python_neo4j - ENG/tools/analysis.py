@@ -150,8 +150,6 @@ def analysis_function(input_text):
             result = session.run(query)
             data = [record.data() for record in result]
         end_db_time = time.time()
-        
-        print("asdasdasdasdasdasd"+data)
 
         return {
             "data": data,

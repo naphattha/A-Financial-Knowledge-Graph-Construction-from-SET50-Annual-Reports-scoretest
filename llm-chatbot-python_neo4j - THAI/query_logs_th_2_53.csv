@@ -1,2 +1,0 @@
-﻿Sequence,Question,Response,Query (SQL),Query Generation Time (s),Database Fetch Time (s),Response Generation Time (s),Total Time (s),Error
-1,บริษัท ADVANC มีสินทรัพย์รวมในไตรมาสที่ 1 ปี 2019 เท่าไหร่,Error occurred,,0.0,0.0,0.0,0.0,type NoneType doesn't define __round__ method
