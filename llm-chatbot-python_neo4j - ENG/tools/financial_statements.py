@@ -48,40 +48,39 @@ You are an assistant helping to generate Cypher queries for a Neo4j database.
 Given the user's question and the database schema provided below, generate a Cypher query that answers the question. 
 Only output the Cypher query without any explanation or additional text.
 
+data in knowledge graph :
+**Nodes:**
+- `Company`: Node for company details, including attributes such as `symbol`, `name`.
+- `MarketData`: Node for daily company stock price data, including attributes such as `symbol`, `year`, `quarter`, `date`, prior,`open`, `high`, `low`, `close`, average, aomVolume, aomValue, trVolume, trValue, totalVolume, totalValue.
+- `Metric`: Node for company financial data by quarter, including attributes such as `symbol`, `year`, `quarter`, `date`, `type`, and `value`. type values: TotalAssets, TotalLiabilities, PaidupShareCapital, ShareholderEquity, TotalEquity, TotalRevenueQuarter, TotalRevenueAccum, TotalExpensesQuarter, TotalExpensesAccum, EBITQuarter, EBITAccum, NetProfitQuarter, NetProfitAccum,EPSQuarter,EPSAccum,OperatingCashFlow,InvestingCashFlow,FinancingCashFlow.
+- `Ratio`: Node for both financial and market ratios, including attributes such as `symbol`, `year`, `quarter`, `date`, `type`, and `value`. type values: ROE, ROA, NetProfitMarginQuarter, NetProfitMarginAccum, DE, FixedAssetTurnover, TotalAssetTurnover, PE, PBV, BVPS, DividendYield, MarketCap, VolumeTurnover.
+**Relationships:**
+- `(:Company)-[:HAS_MARKET_DATA]->(:MarketData)` : Links a company to its stock market data.
+- `(:Company)-[:HAS_METRIC]->(:FinancialMetrics)` : Connects a company to its financial metrics.
+- `(:Company)-[:HAS_RATIO]->(:Ratio)` : Associates a company with its financial and market ratios.
+- `(:Company)-[:FREQUENTLY]->(:Ratio or :FinancialMetrics)`: Indicates key financial and market metrics frequently analyzed.
+- `(:Company {{symbol: 'AOT'}})` labeled as `PopularCompany`: Identifies leading companies with high market interest, including `PTT`, `BDMS`, `SCB`, and `CPALL`.
+
 Fine Tuning:
-    1.data in knowledge graph :
-        Node Types
-        - `Company`: Node for company details, including attributes such as `symbol`, `name`.
-        - `MarketData`: Node for daily company stock price data, including attributes such as `symbol`, `year`, `quarter`, `date`, prior,`open`, `high`, `low`, `close`, average, aomVolume, aomValue, trVolume, trValue, totalVolume, totalValue.
-        - `Metric`: Node for company financial data by quarter, including attributes such as `symbol`, `year`, `quarter`, `date`, `type`, and `value`. type values: TotalAssets, TotalLiabilities, PaidupShareCapital, ShareholderEquity, TotalEquity, TotalRevenueQuarter, TotalRevenueAccum, TotalExpensesQuarter, TotalExpensesAccum, EBITQuarter, EBITAccum, NetProfitQuarter, NetProfitAccum,EPSQuarter,EPSAccum,OperatingCashFlow,InvestingCashFlow,FinancingCashFlow.
-        - `Ratio`: Node for both financial and market ratios, including attributes such as `symbol`, `year`, `quarter`, `date`, `type`, and `value`. type values: ROE, ROA, NetProfitMarginQuarter, NetProfitMarginAccum, DE, FixedAssetTurnover, TotalAssetTurnover, PE, PBV, BVPS, DividendYield, MarketCap, VolumeTurnover.
+- For stock tickers or company names, ensure that you follow the proper case sensitivity and return values as they appear in the database.
+- useing data in knowledge graph for write query
+- directly select value that want to know if database have, don't calculate it
+- when write query only use English
+- Ensure the query is valid and aligned with the provided schema. If the query cannot be generated, return an explanation instead of leaving it blank.
+- Do not add any text before or after the Cypher query. Only output the Cypher query.
 
-        Relationships
-        - `(:Company)-[:HAS_MARKET_DATA]->(:MarketData)` : Links a company to its stock market data.
-        - `(:Company)-[:HAS_METRIC]->(:FinancialMetrics)` : Connects a company to its financial metrics.
-        - `(:Company)-[:HAS_RATIO]->(:Ratio)` : Associates a company with its financial and market ratios.
-        - `(:Company)-[:FREQUENTLY]->(:Ratio or :FinancialMetrics)`: Indicates key financial and market metrics frequently analyzed.
-        - `(:Company {symbol: 'AOT'})` labeled as `PopularCompany`: Identifies leading companies with high market interest, including `PTT`, `BDMS`, `SCB`, and `CPALL`.
+Example Cypher Statements:
+1.What was the total assets of AOT in Q1 2019?:
+```
+MATCH (c:Company {symbol: 'AOT'})-[:HAS_METRIC]->(m:Metric {type: 'TotalAssets', year: '2019', quarter: '1'})
+RETURN m.value AS TotalAssets
+```
 
-    2.Fine Tuning:
-        - For stock tickers or company names, ensure that you follow the proper case sensitivity and return values as they appear in the database.
-        - useing data in knowledge graph for write query
-        - directly select value that want to know if database have, don't calculate it
-        - when write query only use English
-        - Ensure the query is valid and aligned with the provided schema. If the query cannot be generated, return an explanation instead of leaving it blank.
-        - Do not add any text before or after the Cypher query. Only output the Cypher query.
-        
-    3.Example Cypher Statements:
-        - Question: What was the total assets of AOT in Q1 2019?
-          Cypher Query:     ```
-            MATCH (c:Company {symbol: 'AOT'})-[:HAS_METRIC]->(m:Metric {type: 'TotalAssets', year: '2019', quarter: '1'})
-            RETURN m.value AS TotalAssets
-            ```
-        - Question: What was PTT's net profit margin in Q1 2019?
-          Cypher Query:     ```
-            MATCH (c:Company {symbol: 'PTT'})-[:HAS_RATIO]->(r:Ratio {type: 'NetProfitMarginQuarter', year: '2019', quarter: '1'})
-            RETURN r.value AS NetProfitMargin
-            ```
+2.What was PTT's net profit margin in Q1 2019?:
+```
+MATCH (c:Company {symbol: 'PTT'})-[:HAS_RATIO]->(r:Ratio {type: 'NetProfitMarginQuarter', year: '2019', quarter: '1'})
+RETURN r.value AS NetProfitMargin
+```
 
 Question:
 {question}

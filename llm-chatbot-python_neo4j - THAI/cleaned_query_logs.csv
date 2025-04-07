@@ -1,0 +1,2 @@
+﻿Sequence,Question,Response,Query (SQL),Query Generation Time (s),Database Fetch Time (s),Response Generation Time (s),Total Time (s),Error
+1,บริษัท ADVANC มีสินทรัพย์รวมในไตรมาสที่ 1 ปี 2019 เท่าไหร่,"บริษัท ADVANC มีสินทรัพย์รวมในไตรมาสที่ 1 ปี 2019 อยู่ที่ 296,633,567 บาท","MATCH (c:Company {symbol: 'ADVANC'})-[:HAS_METRIC]->(m:Metric {type: 'TotalAssets', year: '2019', quarter: '1'}) RETURN m.value AS TotalAssets",1.353149,0.00646281,66.747738,68.10735,

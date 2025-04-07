@@ -139,9 +139,9 @@ def get_query_execution_details(user_input):
     selected_function = function_map.get("financial_statements")  # Default to financial_statements_function
 
     # Call the function and capture output
-    data, query, query_gen_time, db_fetch_time, error = selected_function(user_input)
-    
-    return data, query, query_gen_time, db_fetch_time, error
+    result = selected_function(user_input)
+
+    return result["data"], result["query"], result["query_generation_time"], result["database_fetch_time"], result["error"]
 
 import time  # Import the time module
 
@@ -152,17 +152,8 @@ def generate_response(user_input):
     """
     try:
         print(f"Raw user input: {user_input}")
-        
-        output= get_query_execution_details(user_input)
 
-        data = output.get('data')
-        query = output.get('query')  # Extract the query
-        query_gen_time = output.get('query_gen_time')  # Extract query generation time
-        db_fetch_time = output.get('db_fetch_time')  # Extract database fetch time
-        error = output.get('error')  # Extract error, if any
-
-        if error:
-            raise ValueError(f"Error in cypher query generation: {error}")
+        data, query, query_gen_time, db_fetch_time, error = get_query_execution_details(user_input)
         
         start_time = time.time()
 
