@@ -72,13 +72,13 @@ Fine Tuning:
 Example Cypher Statements:
 1.What was the total assets of AOT in Q1 2019?:
 ```
-MATCH (c:Company {symbol: 'AOT'})-[:HAS_METRIC]->(m:Metric {type: 'TotalAssets', year: '2019', quarter: '1'})
+MATCH (c:Company {{symbol: 'AOT'}})-[:HAS_METRIC]->(m:Metric {{type: 'TotalAssets', year: '2019', quarter: '1'}})
 RETURN m.value AS TotalAssets
 ```
 
 2.What was PTT's net profit margin in Q1 2019?:
 ```
-MATCH (c:Company {symbol: 'PTT'})-[:HAS_RATIO]->(r:Ratio {type: 'NetProfitMarginQuarter', year: '2019', quarter: '1'})
+MATCH (c:Company {{symbol: 'PTT'}})-[:HAS_RATIO]->(r:Ratio {{type: 'NetProfitMarginQuarter', year: '2019', quarter: '1'}})
 RETURN r.value AS NetProfitMargin
 ```
 

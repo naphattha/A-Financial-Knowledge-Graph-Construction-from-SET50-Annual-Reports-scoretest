@@ -72,15 +72,15 @@ Fine Tuning:
 Example Cypher Statements:
 1.Compare ADVANC's PE ratio with CPALL's PE ratio on September 1, 2023.:
 ```
-MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_RATIO]->(adv_ratio:Ratio {type: 'PE', date: '2023-09-01'}),
-    (cpall:Company {symbol: 'CPALL'})-[:HAS_RATIO]->(cpall_ratio:Ratio {type: 'PE', date: '2023-09-01'})
+MATCH (adv:Company {{symbol: 'ADVANC'}})-[:HAS_RATIO]->(adv_ratio:Ratio {{type: 'PE', date: '2023-09-01'}}),
+    (cpall:Company {{symbol: 'CPALL'}})-[:HAS_RATIO]->(cpall_ratio:Ratio {{type: 'PE', date: '2023-09-01'}})
 RETURN adv_ratio.value AS ADVANC_PERatio, cpall_ratio.value AS CPALL_PERatio
 ```
 
 2.Compare ADVANC's Return on Assets (ROA) with AOT's in 2021.:
 ```
-MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_RATIO]->(adv_roa:Ratio {type: 'ROA', year: '2021'}),
-    (aot:Company {symbol: 'AOT'})-[:HAS_RATIO]->(aot_roa:Ratio {type: 'ROA', year: '2021'})
+MATCH (adv:Company {{symbol: 'ADVANC'}})-[:HAS_RATIO]->(adv_roa:Ratio {{type: 'ROA', year: '2021'}}),
+    (aot:Company {{symbol: 'AOT'}})-[:HAS_RATIO]->(aot_roa:Ratio {{type: 'ROA', year: '2021'}})
 WHERE adv_roa.quarter = aot_roa.quarter
 RETURN adv_roa.quarter AS Quarter, adv_roa.value AS ADVANC_ROA, aot_roa.value AS AOT_ROA
 ORDER BY adv_roa.quarter
@@ -88,15 +88,15 @@ ORDER BY adv_roa.quarter
 
 3.Compare AOT's closing price with CPALL's on September 4, 2023.:
 ```
-MATCH (aot:Company {symbol: 'AOT'})-[:HAS_MARKET_DATA]->(aot_market:MarketData {date: '2023-09-04'}),
-    (cpall:Company {symbol: 'CPALL'})-[:HAS_MARKET_DATA]->(cpall_market:MarketData {date: '2023-09-04'})
+MATCH (aot:Company {{symbol: 'AOT'}})-[:HAS_MARKET_DATA]->(aot_market:MarketData {{date: '2023-09-04'}}),
+    (cpall:Company {{symbol: 'CPALL'}})-[:HAS_MARKET_DATA]->(cpall_market:MarketData {{date: '2023-09-04'}})
 RETURN aot_market.close AS AOT_ClosingPrice, cpall_market.close AS CPALL_ClosingPrice
 ```
 
 4.Compare ADVANC's PE ratio with CPALL's PE ratio on September 1, 2023.:
 ```
-MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_RATIO]->(adv_ratio:Ratio {type: 'PE', date: '2023-09-01'}),
-    (cpall:Company {symbol: 'CPALL'})-[:HAS_RATIO]->(cpall_ratio:Ratio {type: 'PE', date: '2023-09-01'})
+MATCH (adv:Company {{symbol: 'ADVANC'}})-[:HAS_RATIO]->(adv_ratio:Ratio {{type: 'PE', date: '2023-09-01'}}),
+    (cpall:Company {{symbol: 'CPALL'}})-[:HAS_RATIO]->(cpall_ratio:Ratio {{type: 'PE', date: '2023-09-01'}})
 RETURN adv_ratio.value AS ADVANC_PERatio, cpall_ratio.value AS CPALL_PERatio
 ```
 

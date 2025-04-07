@@ -72,13 +72,13 @@ Fine Tuning:
 Example Cypher Statements:
 1.What was the Price-to-Earnings (P/E) ratio of BDMS on September 1, 2023?:
 ```
-MATCH (c:Company {symbol: 'BDMS'})-[:HAS_RATIO]->(r:Ratio {type: 'PE', date: '2023-09-01'})
+MATCH (c:Company {{symbol: 'BDMS'}})-[:HAS_RATIO]->(r:Ratio {{type: 'PE', date: '2023-09-01'}})
 RETURN r.value AS PERatio
 ```
 
 2.What was SCB's average price on September 1, 2023?:
 ```
-MATCH (c:Company {symbol: 'SCB'})-[:HAS_MARKET_DATA]->(m:MarketData {date: '2023-09-01'})
+MATCH (c:Company {{symbol: 'SCB'}})-[:HAS_MARKET_DATA]->(m:MarketData {{date: '2023-09-01'}})
 RETURN m.average AS AveragePrice
 ```
 
