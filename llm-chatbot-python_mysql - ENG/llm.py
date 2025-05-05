@@ -2,7 +2,6 @@
 
 import os
 import streamlit as st
-from llama_index.llms.groq import Groq
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from langchain_groq import ChatGroq
 

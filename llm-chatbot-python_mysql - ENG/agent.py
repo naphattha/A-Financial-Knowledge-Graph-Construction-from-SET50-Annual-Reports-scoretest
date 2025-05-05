@@ -1,10 +1,8 @@
 from llm import llm
 from llm import embeddings
-from db import database
 from langchain_core.prompts import PromptTemplate
 from langchain.tools import Tool
 from langchain.agents import AgentExecutor, create_react_agent
-from langchain import hub
 # from tools.vector import get_company_industry
 from tools.analysis import analysis_function
 from tools.comparisons import comparisons_function
