@@ -1,0 +1,32 @@
+# Core tools
+streamlit==1.35.0
+langchain==0.2.11
+llama-index==0.10.55
+openai==1.33.0
+
+# Database
+mysql-connector-python==9.0.0
+neo4j==5.19.0
+
+# NLP / Embeddings
+sentence-transformers==3.0.1
+transformers==4.42.4
+spacy==3.7.5
+en-core-web-sm==3.7.1  # Only if used; needs manual install via `python -m spacy download en_core_web_sm`
+
+# Data & Parsing
+pandas==2.1.3
+beautifulsoup4==4.12.3
+lxml==5.3.0
+python-docx==1.1.2
+openpyxl==3.1.4
+
+# Visualization (if needed for Streamlit/Altair)
+altair==5.3.0
+matplotlib==3.7.2
+
+# Utility
+requests==2.32.3
+tqdm==4.66.4
+pyyaml==6.0.1
+protobuf==4.25.3
