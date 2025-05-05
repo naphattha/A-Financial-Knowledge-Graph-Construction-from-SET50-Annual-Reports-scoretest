@@ -42,6 +42,13 @@ git clone https://github.com/naphattha/A-Financial-Knowledge-Graph-Construction-
 cd A-Financial-Knowledge-Graph-Construction-from-SET50-Annual-Reports-scoretest
 ```
 
+Set Up a Virtual Environment:
+
+```bash
+python3 -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
 Install Dependencies:
 
 ```bash
