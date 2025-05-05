@@ -80,13 +80,13 @@ Example Cypher Statements:
 Example Cypher Statements:
 1.อัตราส่วนราคาต่อกำไร (P/E) ของหุ้น BDMS ในวันที่ 1 กันยายน 2023 คือเท่าไหร่:
 ```
-MATCH (c:Company {symbol: 'BDMS'})-[:HAS_RATIO]->(r:Ratio {type: 'PE', date: '2023-09-01'})
+MATCH (c:Company {{symbol: 'BDMS'}})-[:HAS_RATIO]->(r:Ratio {{type: 'PE', date: '2023-09-01'}})
 RETURN r.value AS PERatio
 ```
 
 2.ราคาเฉลี่ยของหุ้น SCB ในวันที่ 1 กันยายน 2023 คือเท่าไหร่:
 ```
-MATCH (c:Company {symbol: 'SCB'})-[:HAS_MARKET_DATA]->(m:MarketData {date: '2023-09-01'})
+MATCH (c:Company {{symbol: 'SCB'}})-[:HAS_MARKET_DATA]->(m:MarketData {{date: '2023-09-01'}})
 RETURN m.average AS AveragePrice
 ```
 

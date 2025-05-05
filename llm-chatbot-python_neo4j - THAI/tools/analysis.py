@@ -72,8 +72,8 @@ Fine Tuning:
 Example Cypher Statements:
 1.อัตราการหมุนเวียนของสินทรัพย์ถาวรของ BCP ส่งผลต่อกำไรจากการดำเนินงานอย่างไร:
 ```
-MATCH (bcp:Company {symbol: 'BCP'})-[:HAS_RATIO]->(fat:Ratio {type: 'FixedAssetTurnover'}),
-    (bcp)-[:HAS_METRIC]->(op:Metric {type: 'EBITQuarter'})
+MATCH (bcp:Company {{symbol: 'BCP'}})-[:HAS_RATIO]->(fat:Ratio {{type: 'FixedAssetTurnover'}}),
+    (bcp)-[:HAS_METRIC]->(op:Metric {{type: 'EBITQuarter'}})
 WHERE fat.year = op.year AND fat.quarter = op.quarter
 RETURN fat.year AS Year, fat.quarter AS Quarter, fat.value AS FixedAssetTurnover, op.value AS OperatingProfit
 ORDER BY fat.year, fat.quarter
@@ -81,7 +81,7 @@ ORDER BY fat.year, fat.quarter
 
 2.แนวโน้มของกระแสเงินสดจากการดำเนินงานของ BGRIM ระหว่างปี 2019-2021 เป็นอย่างไร:
 ```
-MATCH (bgrim:Company {symbol: 'BGRIM'})-[:HAS_METRIC]->(ocf:Metric {type: 'OperatingCashFlow'})
+MATCH (bgrim:Company {{symbol: 'BGRIM'}})-[:HAS_METRIC]->(ocf:Metric {{type: 'OperatingCashFlow'}})
 WHERE ocf.year IN ['2019', '2020', '2021']
 RETURN ocf.year AS Year, ocf.quarter AS Quarter, ocf.value AS OperatingCashFlow
 ORDER BY ocf.year, ocf.quarter
@@ -89,7 +89,7 @@ ORDER BY ocf.year, ocf.quarter
 
 3.อัตราส่วนหนี้สินต่อทุน (DE) ของ ADVANC มีการเปลี่ยนแปลงอย่างไรในแต่ละไตรมาสของปี 2019:
 ```
-MATCH (adv:Company {symbol: 'ADVANC'})-[:HAS_RATIO]->(de:Ratio {type: 'DE', year: '2019'})
+MATCH (adv:Company {{symbol: 'ADVANC'}})-[:HAS_RATIO]->(de:Ratio {{type: 'DE', year: '2019'}})
 RETURN de.quarter AS Quarter, de.value AS DE_Ratio
 ORDER BY de.quarter
 ```
